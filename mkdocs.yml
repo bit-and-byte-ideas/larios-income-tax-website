@@ -1,0 +1,64 @@
+site_name: Larios Income Tax Website
+site_description: Angular-based web application for Larios Income Tax services
+site_author: Larios Income Tax Team
+repo_url: https://github.com/your-org/lario-income-tax-website
+edit_uri: edit/main/docs/
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Setup Guide: setup-guide.md
+      - Environment Configuration: environment-config.md
+  - Development:
+      - Architecture: architecture.md
+      - Project Structure: project-structure.md
+      - Code Quality: code-quality.md
+  - Deployment:
+      - Docker Setup: docker-setup.md
+      - Production Build: production-build.md
+  - Migration:
+      - Project Information: project-info.md
+      - Bootstrap Summary: bootstrap-summary.md
+  - Style Guides:
+      - Markdown Style Guide: markdown-style-guide.md
+      - Pre-commit Setup: pre-commit-setup.md
+
+theme:
+  name: material
+  palette:
+    primary: brown
+    accent: amber
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      linenums: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - toc:
+      permalink: true
+  - tables
+  - attr_list
+  - md_in_html
+
+plugins:
+  - search
+  - techdocs-core
+
+extra:
+  version: 0.0.0
+  project:
+    name: Larios Income Tax Website
+    type: website
+    framework: Angular 21.0.4

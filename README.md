@@ -201,14 +201,46 @@ This project enforces code quality through:
 - **markdownlint** - Markdown documentation standards
 - **TypeScript strict mode** - Enhanced type safety
 
-## Additional Documentation
+## Documentation
 
-- [PROJECT_INFO.md](PROJECT_INFO.md) - Detailed project information and migration notes
-- [SETUP_GUIDE.md](SETUP_GUIDE.md) - Setup instructions and next steps
-- [PRE_COMMIT_SETUP.md](PRE_COMMIT_SETUP.md) - Pre-commit hooks documentation
-- [MARKDOWN_STYLE_GUIDE.md](MARKDOWN_STYLE_GUIDE.md) - Markdown linting rules and violations
+This project uses [Backstage TechDocs](https://backstage.io/docs/features/techdocs/) for comprehensive
+technical documentation.
+
+### Viewing Documentation
+
+**In Backstage:**
+
+Documentation is available in your Backstage developer portal at `/docs/default/component/lario-income-tax-website`
+
+**Locally:**
+
+```bash
+# Install MkDocs
+pip install mkdocs-techdocs-core
+
+# Serve documentation locally
+mkdocs serve
+
+# Open http://localhost:8000
+```
+
+### Documentation Index
+
+- [Home](docs/index.md) - Documentation overview
+- [Setup Guide](docs/setup-guide.md) - Installation and getting started
+- [Architecture](docs/architecture.md) - Project structure and patterns
+- [Code Quality](docs/code-quality.md) - Standards and tooling
+- [Docker Setup](docs/docker-setup.md) - Container deployment
+- [Production Build](docs/production-build.md) - Building for production
+- [Environment Config](docs/environment-config.md) - Configuration guide
+- [Project Info](docs/project-info.md) - Migration details
+- [Markdown Style Guide](docs/markdown-style-guide.md) - Markdown standards
+
+### Additional Resources
+
 - [CLAUDE.md](CLAUDE.md) - Guidelines for AI-assisted development
 - [Angular CLI Documentation](https://angular.dev/tools/cli)
+- [Backstage Integration](catalog-info.yaml) - Service catalog metadata
 
 ## License
 
