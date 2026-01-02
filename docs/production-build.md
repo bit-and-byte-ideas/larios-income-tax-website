@@ -233,7 +233,6 @@ scp -r dist/lario-income-tax/browser/* user@server:/var/www/html/
    - Enable AOT compilation
 
 1. **Code Splitting:**
-
    - Split large modules
    - Use dynamic imports
    - Implement lazy loading

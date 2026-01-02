@@ -59,7 +59,8 @@ repos:
         exclude: |
           (?x)^(
             package-lock\.json|
-            tsconfig\..*\.json
+            tsconfig\..*\.json|
+            .devcontainer/devcontainer.json
           )
       - id: check-merge-conflict
         name: Check for merge conflicts
