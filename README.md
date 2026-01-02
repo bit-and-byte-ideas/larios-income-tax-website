@@ -206,14 +206,12 @@ This project enforces code quality through automated checks and continuous integ
 ### GitHub Actions Workflows
 
 - **PR Validation** - Runs on every pull request
-
   - Code linting (Prettier, markdownlint)
   - Production build verification
   - Unit tests execution
   - Docker image build test
 
 - **Docker Publish** - Runs on main branch and version tags
-
   - Multi-platform Docker build (amd64, arm64)
   - Publish to Docker Hub as `<DOCKERHUB_USERNAME>/lariosincometax-website`
   - Automated tagging (latest, version, sha)

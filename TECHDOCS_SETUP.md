@@ -92,7 +92,6 @@ ls site/
 ### Register Component
 
 1. **In Backstage UI:**
-
    - Navigate to "Create Component"
    - Choose "Register Existing Component"
    - Enter repository URL with `/catalog-info.yaml`

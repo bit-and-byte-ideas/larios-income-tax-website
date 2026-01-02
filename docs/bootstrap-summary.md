@@ -127,13 +127,11 @@ Production build tested successfully:
    ```
 
 2. **Set up Global Styles**:
-
    - Add color variables to `styles.css`
    - Import fonts (Open Sans, Brandon Grotesque)
    - Set up responsive grid system
 
 3. **Build Core Services**:
-
    - Contact form service
    - SEO service
    - Analytics service

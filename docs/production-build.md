@@ -226,7 +226,6 @@ scp -r dist/lario-income-tax/browser/* user@server:/var/www/html/
    ```
 
 1. **Tree Shaking:**
-
    - Remove unused imports
    - Use production build
    - Enable AOT compilation
@@ -263,7 +262,6 @@ scp -r dist/lario-income-tax/browser/* user@server:/var/www/html/
 ### Asset Optimization
 
 1. **Image Optimization:**
-
    - Compress images
    - Use WebP format
    - Implement lazy loading
@@ -313,12 +311,10 @@ debugger;
 ### Application Monitoring
 
 1. **Google Analytics:**
-
    - Configured in `environment.prod.ts`
    - Track page views and events
 
 1. **Error Tracking:**
-
    - Implement error interceptor
    - Log to monitoring service (Sentry, etc.)
 

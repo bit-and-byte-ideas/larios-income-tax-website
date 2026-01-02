@@ -16,18 +16,15 @@ code quality, run tests, build Docker images, and publish to Docker Hub.
 **Jobs:**
 
 1. **Lint** - Code quality checks
-
    - Prettier formatting validation
    - Markdown linting
 
 1. **Build** - Application build
-
    - Production bundle creation
    - Bundle size check
    - Artifact upload
 
 1. **Test** - Unit tests
-
    - Vitest test execution
    - Coverage reporting
 
@@ -50,7 +47,6 @@ code quality, run tests, build Docker images, and publish to Docker Hub.
 **Jobs:**
 
 1. **Build and Publish**
-
    - Multi-platform build (linux/amd64, linux/arm64)
    - Push to Docker Hub
    - Tag management (latest, version, sha)
@@ -100,11 +96,9 @@ Configure these as organization or repository secrets:
 ### Setting Up Secrets
 
 1. **Navigate to Repository Settings**
-
    - Go to Settings > Secrets and variables > Actions
 
 1. **Add Organization Secrets** (if not already configured)
-
    - `DOCKERHUB_USERNAME`
    - `DOCKERHUB_TOKEN`
 
@@ -433,13 +427,11 @@ When workflows fail:
 ### Regular Tasks
 
 1. **Update dependencies**
-
    - Review Dependabot PRs
    - Update Node.js version
    - Update GitHub Actions versions
 
 1. **Clean up Docker Hub**
-
    - Remove old tags
    - Archive unused images
    - Monitor storage usage
