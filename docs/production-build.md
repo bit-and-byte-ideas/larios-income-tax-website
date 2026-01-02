@@ -220,8 +220,7 @@ scp -r dist/lario-income-tax/browser/* user@server:/var/www/html/
    const routes: Routes = [
      {
        path: 'services',
-       loadChildren: () =>
-         import('./features/services/services.module').then(m => m.ServicesModule),
+       loadChildren: () => import('./features/services/services.module').then(m => m.ServicesModule),
      },
    ];
    ```

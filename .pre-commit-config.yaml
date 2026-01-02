@@ -1,5 +1,19 @@
 repos:
-  # Prettier for code formatting
+  # Markdownlint first to catch issues
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.39.0
+    hooks:
+      - id: markdownlint
+        name: Lint Markdown files
+        args: [--fix]
+        exclude: |
+          (?x)^(
+            node_modules/|
+            dist/|
+            .angular/
+          )
+
+  # Prettier after markdownlint for final formatting
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.1.0
     hooks:
@@ -14,20 +28,6 @@ repos:
             node_modules/|
             .angular/|
             coverage/
-          )
-
-  # Markdownlint for markdown files
-  - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.39.0
-    hooks:
-      - id: markdownlint
-        name: Lint Markdown files
-        args: [--fix]
-        exclude: |
-          (?x)^(
-            node_modules/|
-            dist/|
-            .angular/
           )
 
   # Additional useful hooks
@@ -59,8 +59,9 @@ repos:
         exclude: |
           (?x)^(
             package-lock\.json|
-            tsconfig\..*\.json|
-            .devcontainer/devcontainer.json
+            tsconfig.*\.json|
+            .devcontainer/.*\.json|
+            .vscode/.*\.json
           )
       - id: check-merge-conflict
         name: Check for merge conflicts
