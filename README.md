@@ -1,2 +1,171 @@
-# lario-income-tax-website
-Frontend website for lariosincometax.com
+# Larios Income Tax Website
+
+An Angular-based web application for Larios Income Tax services, migrated from the original Wix site at [lariosincometax.com](https://www.lariosincometax.com/).
+
+## Business Information
+
+- **Business Name:** Larios Income Tax
+- **Address:** 3317 El Cajon Blvd, San Diego, CA 92104
+- **Phone:** +1 (619) 283-2828
+- **Services:** Income Tax and Immigration Services
+
+## Technology Stack
+
+- **Framework:** Angular 21.0.4
+- **Language:** TypeScript
+- **Styling:** CSS
+- **Container:** Docker with Nginx
+- **Node Version:** 20 LTS
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── core/           # Singleton services, guards, interceptors
+│   ├── shared/         # Shared components, directives, pipes
+│   ├── features/       # Feature modules (home, services, contact, about)
+│   └── app.ts          # Root component
+├── environments/       # Environment configurations
+└── styles.css          # Global styles
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 20.x or higher
+- npm 10.x or higher
+- Docker (for containerized deployment)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd lario-income-tax-website
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Set up environment variables:
+```bash
+cp .env.example .env
+# Edit .env with your configuration
+```
+
+## Development
+
+### Development Server
+
+Start the development server:
+```bash
+ng serve
+```
+
+Navigate to `http://localhost:4200/`. The application will automatically reload when you modify source files.
+
+### Code Scaffolding
+
+Generate a new component:
+```bash
+ng generate component component-name
+```
+
+Generate a new service:
+```bash
+ng generate service service-name
+```
+
+For more options:
+```bash
+ng generate --help
+```
+
+## Building
+
+### Development Build
+```bash
+ng build
+```
+
+### Production Build
+```bash
+ng build --configuration production
+```
+
+Build artifacts will be stored in the `dist/lario-income-tax/` directory.
+
+## Testing
+
+### Unit Tests
+```bash
+ng test
+```
+
+Run a specific test file:
+```bash
+ng test --include='**/path/to/component.spec.ts'
+```
+
+### End-to-End Tests
+```bash
+ng e2e
+```
+
+### Linting
+```bash
+ng lint
+```
+
+## Docker Deployment
+
+### Build Docker Image
+```bash
+docker build -t lario-income-tax-website .
+```
+
+### Run with Docker Compose
+```bash
+docker-compose up -d
+```
+
+The application will be available at `http://localhost:80`.
+
+### Stop Docker Container
+```bash
+docker-compose down
+```
+
+## Environment Configuration
+
+Environment-specific settings are configured in:
+- `src/environments/environment.ts` - Development
+- `src/environments/environment.prod.ts` - Production
+
+Key configuration includes:
+- API endpoints
+- Business contact information
+- Google Maps API key
+- Analytics tracking ID
+
+## Architecture Guidelines
+
+- **Core Module:** Import only once in AppModule. Contains singleton services.
+- **Shared Module:** Import in feature modules that need shared functionality.
+- **Feature Modules:** Use lazy loading for optimal performance.
+- **Styling:** Follow the warm, professional aesthetic of the original site.
+- **Responsive Design:** Mobile-first approach with accessibility in mind.
+
+## Additional Documentation
+
+- [PROJECT_INFO.md](PROJECT_INFO.md) - Detailed project information and migration notes
+- [CLAUDE.md](CLAUDE.md) - Guidelines for AI-assisted development
+- [Angular CLI Documentation](https://angular.dev/tools/cli)
+
+## License
+
+See [LICENSE](LICENSE) file for details.

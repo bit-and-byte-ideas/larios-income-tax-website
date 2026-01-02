@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  lario-income-tax-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lario-income-tax-website
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    networks:
+      - lario-network
+
+networks:
+  lario-network:
+    driver: bridge
