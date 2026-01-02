@@ -1,5 +1,11 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+
 # Compiled output
 /dist
 /tmp
@@ -70,3 +76,4 @@ yarn-error.log*
 
 # TechDocs build output
 /site/
+.venv/

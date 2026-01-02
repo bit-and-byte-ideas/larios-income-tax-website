@@ -15,11 +15,11 @@ consistent formatting on every commit.
 
 ### Configuration Files
 
-- [.pre-commit-config.yaml](.pre-commit-config.yaml) - Pre-commit framework configuration
-- [.prettierrc.json](.prettierrc.json) - Prettier formatting rules
-- [.prettierignore](.prettierignore) - Files to exclude from Prettier
-- [.markdownlint.json](.markdownlint.json) - Markdown linting rules
-- [.markdownlintignore](.markdownlintignore) - Files to exclude from markdown linting
+- `.pre-commit-config.yaml` - Pre-commit framework configuration
+- `.prettierrc.json` - Prettier formatting rules
+- `.prettierignore` - Files to exclude from Prettier
+- `.markdownlint.json` - Markdown linting rules
+- `.markdownlintignore` - Files to exclude from markdown linting
 
 ## How It Works
 
@@ -130,8 +130,8 @@ pre-commit clean
 
 Check if the file is in an ignore list:
 
-- [.prettierignore](.prettierignore)
-- [.markdownlintignore](.markdownlintignore)
+- `.prettierignore`
+- `.markdownlintignore`
 
 ### Update hooks to fix issues
 

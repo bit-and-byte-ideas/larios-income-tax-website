@@ -317,7 +317,7 @@ Or let pre-commit hooks handle it automatically!
 
 ## Configuration
 
-Markdown linting rules are defined in [.markdownlint.json](.markdownlint.json)
+Markdown linting rules are defined in `.markdownlint.json` in the project root
 
 Current configuration:
 
@@ -395,5 +395,5 @@ src/
 ## Resources
 
 - [markdownlint rules](https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md)
-- [.markdownlint.json](.markdownlint.json) - Project configuration
-- [PRE_COMMIT_SETUP.md](PRE_COMMIT_SETUP.md) - Pre-commit hook details
+- `.markdownlint.json` - Project configuration (in project root)
+- [pre-commit-setup.md](pre-commit-setup.md) - Pre-commit hook details
