@@ -192,14 +192,36 @@ Key configuration includes:
 - **Styling:** Follow the warm, professional aesthetic of the original site.
 - **Responsive Design:** Mobile-first approach with accessibility in mind.
 
-## Code Quality
+## Code Quality & CI/CD
 
-This project enforces code quality through:
+This project enforces code quality through automated checks and continuous integration:
+
+### Code Quality Tools
 
 - **Pre-commit hooks** - Automatic formatting and linting on every commit
 - **Prettier** - Consistent code formatting (TypeScript, CSS, HTML, JSON, Markdown)
 - **markdownlint** - Markdown documentation standards
 - **TypeScript strict mode** - Enhanced type safety
+
+### GitHub Actions Workflows
+
+- **PR Validation** - Runs on every pull request
+  - Code linting (Prettier, markdownlint)
+  - Production build verification
+  - Unit tests execution
+  - Docker image build test
+
+- **Docker Publish** - Runs on main branch and version tags
+  - Multi-platform Docker build (amd64, arm64)
+  - Publish to Docker Hub as `<DOCKERHUB_USERNAME>/lariosincometax-website`
+  - Automated tagging (latest, version, sha)
+
+- **TechDocs Validation** - Runs on documentation changes
+  - MkDocs build verification
+  - Broken link detection
+  - Markdown linting
+
+See [CI/CD Pipeline](docs/ci-cd.md) for detailed information.
 
 ## Documentation
 

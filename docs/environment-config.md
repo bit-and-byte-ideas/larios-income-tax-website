@@ -240,9 +240,7 @@ ng build --configuration production
      private config: Config;
 
      loadConfig() {
-       return this.http
-         .get<Config>('/assets/config.json')
-         .pipe(tap(config => (this.config = config)));
+       return this.http.get<Config>('/assets/config.json').pipe(tap(config => (this.config = config)));
      }
    }
    ```

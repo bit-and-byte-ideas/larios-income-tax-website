@@ -16,15 +16,15 @@ export const environment = {
       street: '3317 El Cajon Blvd',
       city: 'San Diego',
       state: 'CA',
-      zip: '92104'
-    }
+      zip: '92104',
+    },
   },
   googleMaps: {
     apiKey: '', // Add Google Maps API key from environment variable
-    defaultZoom: 15
+    defaultZoom: 15,
   },
   analytics: {
     enabled: false,
-    trackingId: ''
-  }
+    trackingId: '',
+  },
 };

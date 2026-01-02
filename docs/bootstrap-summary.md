@@ -53,7 +53,7 @@ Created production-ready containerization:
 
 ### 5. Documentation
 
-- **PROJECT_INFO.md**: Migration details and design system
+- **project-info.md**: Migration details and design system
 - **SETUP_GUIDE.md**: Step-by-step setup instructions
 - **README.md**: Comprehensive project documentation
 - Module-specific READMEs in core/, shared/, and features/
@@ -127,13 +127,11 @@ Production build tested successfully:
    ```
 
 2. **Set up Global Styles**:
-
    - Add color variables to `styles.css`
    - Import fonts (Open Sans, Brandon Grotesque)
    - Set up responsive grid system
 
 3. **Build Core Services**:
-
    - Contact form service
    - SEO service
    - Analytics service
@@ -178,4 +176,4 @@ The project is fully bootstrapped and ready for feature implementation. All core
 - Development/production environments
 - Documentation and setup guides
 
-Proceed with implementing the feature modules and components based on the migration requirements in [PROJECT_INFO.md](PROJECT_INFO.md).
+Proceed with implementing the feature modules and components based on the migration requirements in [project-info.md](project-info.md).

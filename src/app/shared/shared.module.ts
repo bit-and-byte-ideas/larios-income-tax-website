@@ -13,12 +13,10 @@ import { CommonModule } from '@angular/common';
   declarations: [
     // Add shared components, directives, and pipes here
   ],
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   exports: [
-    CommonModule
+    CommonModule,
     // Export shared components, directives, and pipes here
-  ]
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -1,5 +1,11 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+
 # Compiled output
 /dist
 /tmp
@@ -50,9 +56,7 @@ Thumbs.db
 /.angular/
 .angular/
 
-# Node modules and dependency files
-/node_modules/
-/package-lock.json
+# Dependency files
 /yarn.lock
 
 # Environment files
@@ -72,3 +76,4 @@ yarn-error.log*
 
 # TechDocs build output
 /site/
+.venv/

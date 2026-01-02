@@ -15,7 +15,6 @@ The Larios Income Tax website uses a multi-stage Docker build with Nginx for pro
 **Stages:**
 
 1. **Build Stage** - Compiles Angular application
-
    - Base: `node:20-alpine`
    - Installs dependencies
    - Builds production bundle

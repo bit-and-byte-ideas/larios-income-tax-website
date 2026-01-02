@@ -220,20 +220,17 @@ scp -r dist/lario-income-tax/browser/* user@server:/var/www/html/
    const routes: Routes = [
      {
        path: 'services',
-       loadChildren: () =>
-         import('./features/services/services.module').then(m => m.ServicesModule),
+       loadChildren: () => import('./features/services/services.module').then(m => m.ServicesModule),
      },
    ];
    ```
 
 1. **Tree Shaking:**
-
    - Remove unused imports
    - Use production build
    - Enable AOT compilation
 
 1. **Code Splitting:**
-
    - Split large modules
    - Use dynamic imports
    - Implement lazy loading
@@ -265,7 +262,6 @@ scp -r dist/lario-income-tax/browser/* user@server:/var/www/html/
 ### Asset Optimization
 
 1. **Image Optimization:**
-
    - Compress images
    - Use WebP format
    - Implement lazy loading
@@ -315,12 +311,10 @@ debugger;
 ### Application Monitoring
 
 1. **Google Analytics:**
-
    - Configured in `environment.prod.ts`
    - Track page views and events
 
 1. **Error Tracking:**
-
    - Implement error interceptor
    - Log to monitoring service (Sentry, etc.)
 

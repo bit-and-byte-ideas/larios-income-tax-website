@@ -1,0 +1,94 @@
+name: TechDocs Validation
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - 'catalog-info.yaml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - 'catalog-info.yaml'
+
+jobs:
+  validate-techdocs:
+    name: Validate TechDocs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install MkDocs
+        run: |
+          pip install mkdocs-techdocs-core
+
+      - name: Validate mkdocs.yml
+        run: |
+          python -c "import yaml; yaml.safe_load(open('mkdocs.yml'))"
+          echo "✅ mkdocs.yml is valid YAML"
+
+      - name: Validate catalog-info.yaml
+        run: |
+          python -c "import yaml; yaml.safe_load(open('catalog-info.yaml'))"
+          echo "✅ catalog-info.yaml is valid YAML"
+
+      - name: Build TechDocs
+        run: |
+          mkdocs build --strict
+          echo "✅ TechDocs build successful"
+
+      - name: Check for broken links
+        run: |
+          find docs/ -name "*.md" -exec grep -l "](.*\.md)" {} \; | while read file; do
+            echo "Checking links in: $file"
+            grep -o "](.*\.md)" "$file" | sed 's/](\(.*\))/\1/' | while read link; do
+              if [[ ! $link =~ ^http ]]; then
+                target_file="docs/$link"
+                if [[ ! -f "$target_file" ]]; then
+                  echo "❌ Broken link in $file: $link"
+                  exit 1
+                fi
+              fi
+            done
+          done
+          echo "✅ No broken internal links found"
+
+      - name: Validate markdown
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli2
+
+      - name: Lint markdown files
+        run: markdownlint-cli2 "docs/**/*.md"
+
+      - name: Upload TechDocs site
+        uses: actions/upload-artifact@v4
+        with:
+          name: techdocs-site
+          path: site/
+          retention-days: 7
+
+      - name: TechDocs summary
+        run: |
+          echo "### TechDocs Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ MkDocs configuration valid" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Catalog metadata valid" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Documentation built successfully" >> $GITHUB_STEP_SUMMARY
+          echo "✅ No broken links detected" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Markdown linting passed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Documentation pages:" >> $GITHUB_STEP_SUMMARY
+          find docs/ -name "*.md" | wc -l | xargs echo "- Total markdown files:" >> $GITHUB_STEP_SUMMARY

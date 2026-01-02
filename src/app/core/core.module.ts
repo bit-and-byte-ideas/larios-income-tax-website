@@ -11,12 +11,10 @@ import { CommonModule } from '@angular/common';
  */
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   providers: [
     // Add singleton services here
-  ]
+  ],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
