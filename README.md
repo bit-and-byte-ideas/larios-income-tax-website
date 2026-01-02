@@ -146,7 +146,7 @@ This project uses pre-commit hooks to automatically format and lint code on ever
 - markdownlint (markdown linting)
 - Additional checks (trailing whitespace, EOF, etc.)
 
-See [PRE_COMMIT_SETUP.md](PRE_COMMIT_SETUP.md) for detailed information.
+See [Pre-commit Setup](docs/pre-commit-setup.md) for detailed information.
 
 ## Docker Deployment
 
