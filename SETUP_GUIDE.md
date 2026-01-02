@@ -46,7 +46,7 @@ cp .env.example .env
 After setup, verify:
 
 - [ ] Development server starts without errors (`ng serve`)
-- [ ] Application loads at http://localhost:4200
+- [ ] Application loads at <http://localhost:4200>
 - [ ] No console errors in browser
 - [ ] Docker build completes successfully
 - [ ] Docker container runs and serves the app
@@ -89,11 +89,11 @@ Configure lazy loading in `src/app/app.routes.ts`:
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule),
   },
   {
     path: 'services',
-    loadChildren: () => import('./features/services/services.module').then(m => m.ServicesModule)
+    loadChildren: () => import('./features/services/services.module').then(m => m.ServicesModule),
   },
   // ... more routes
 ];
@@ -102,6 +102,7 @@ export const routes: Routes = [
 ### 4. Styling
 
 Update `src/styles.css` with the warm, professional color scheme:
+
 - Cream/off-white backgrounds
 - Earth tone accents (tans, browns)
 - Professional typography
@@ -109,6 +110,7 @@ Update `src/styles.css` with the warm, professional color scheme:
 ### 5. Add Business Content
 
 Use the information from [PROJECT_INFO.md](PROJECT_INFO.md):
+
 - Business name: Larios Income Tax
 - Address: 3317 El Cajon Blvd, San Diego, CA 92104
 - Phone: +1 (619) 283-2828
@@ -117,12 +119,14 @@ Use the information from [PROJECT_INFO.md](PROJECT_INFO.md):
 ## Troubleshooting
 
 ### Port 4200 already in use
+
 ```bash
 # Use a different port
 ng serve --port 4300
 ```
 
 ### Docker build fails
+
 ```bash
 # Clear Docker cache
 docker system prune -a
@@ -130,6 +134,7 @@ docker-compose build --no-cache
 ```
 
 ### Module not found errors
+
 ```bash
 # Reinstall dependencies
 rm -rf node_modules package-lock.json

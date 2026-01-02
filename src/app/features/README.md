@@ -1,6 +1,7 @@
 # Features Module
 
-This directory contains feature modules for the application. Each feature should be organized as a separate module with its own routing, components, and services.
+This directory contains feature modules for the application. Each feature should be organized as a
+separate module with its own routing, components, and services.
 
 ## Planned Features
 
@@ -15,7 +16,7 @@ Based on the Larios Income Tax website migration:
 
 Each feature module should follow this structure:
 
-```
+```text
 feature-name/
 ├── components/
 │   ├── feature-component-1/
@@ -28,4 +29,5 @@ feature-name/
 
 ## Lazy Loading
 
-Feature modules should be lazy loaded for optimal performance. Configure routes in app.routes.ts using loadChildren.
+Feature modules should be lazy loaded for optimal performance. Configure routes in app.routes.ts
+using loadChildren.

@@ -14,6 +14,7 @@ Frontend website for lariosincometax.com - an Angular-based web application for 
 ## Common Commands
 
 ### Development
+
 ```bash
 npm install          # Install dependencies
 ng serve            # Start development server
@@ -25,6 +26,7 @@ ng lint             # Run linter
 ```
 
 ### Angular CLI
+
 ```bash
 ng generate component <name>   # Generate new component
 ng generate service <name>     # Generate new service

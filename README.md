@@ -19,7 +19,7 @@ An Angular-based web application for Larios Income Tax services, migrated from t
 
 ## Project Structure
 
-```
+```text
 src/
 ├── app/
 │   ├── core/           # Singleton services, guards, interceptors
@@ -41,27 +41,31 @@ src/
 ### Installation
 
 1. Clone the repository:
-```bash
-git clone <repository-url>
-cd lario-income-tax-website
-```
 
-2. Install dependencies:
-```bash
-npm install
-```
+   ```bash
+   git clone <repository-url>
+   cd lario-income-tax-website
+   ```
 
-3. Set up environment variables:
-```bash
-cp .env.example .env
-# Edit .env with your configuration
-```
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+1. Set up environment variables:
+
+   ```bash
+   cp .env.example .env
+   # Edit .env with your configuration
+   ```
 
 ## Development
 
 ### Development Server
 
 Start the development server:
+
 ```bash
 ng serve
 ```
@@ -71,16 +75,19 @@ Navigate to `http://localhost:4200/`. The application will automatically reload 
 ### Code Scaffolding
 
 Generate a new component:
+
 ```bash
 ng generate component component-name
 ```
 
 Generate a new service:
+
 ```bash
 ng generate service service-name
 ```
 
 For more options:
+
 ```bash
 ng generate --help
 ```
@@ -88,11 +95,13 @@ ng generate --help
 ## Building
 
 ### Development Build
+
 ```bash
 ng build
 ```
 
 ### Production Build
+
 ```bash
 ng build --configuration production
 ```
@@ -102,33 +111,53 @@ Build artifacts will be stored in the `dist/lario-income-tax/` directory.
 ## Testing
 
 ### Unit Tests
+
 ```bash
 ng test
 ```
 
 Run a specific test file:
+
 ```bash
 ng test --include='**/path/to/component.spec.ts'
 ```
 
 ### End-to-End Tests
+
 ```bash
 ng e2e
 ```
 
-### Linting
+### Linting and Formatting
+
 ```bash
-ng lint
+ng lint                  # Run Angular linter
+npm run format           # Format all files with Prettier
+npm run format:check     # Check formatting without changes
+npm run lint:md          # Lint markdown files
+npm run lint:md:fix      # Fix markdown issues
 ```
+
+### Pre-commit Hooks
+
+This project uses pre-commit hooks to automatically format and lint code on every commit. Hooks run:
+
+- Prettier (code formatting)
+- markdownlint (markdown linting)
+- Additional checks (trailing whitespace, EOF, etc.)
+
+See [PRE_COMMIT_SETUP.md](PRE_COMMIT_SETUP.md) for detailed information.
 
 ## Docker Deployment
 
 ### Build Docker Image
+
 ```bash
 docker build -t lario-income-tax-website .
 ```
 
 ### Run with Docker Compose
+
 ```bash
 docker-compose up -d
 ```
@@ -136,6 +165,7 @@ docker-compose up -d
 The application will be available at `http://localhost:80`.
 
 ### Stop Docker Container
+
 ```bash
 docker-compose down
 ```
@@ -143,10 +173,12 @@ docker-compose down
 ## Environment Configuration
 
 Environment-specific settings are configured in:
+
 - `src/environments/environment.ts` - Development
 - `src/environments/environment.prod.ts` - Production
 
 Key configuration includes:
+
 - API endpoints
 - Business contact information
 - Google Maps API key
@@ -160,9 +192,21 @@ Key configuration includes:
 - **Styling:** Follow the warm, professional aesthetic of the original site.
 - **Responsive Design:** Mobile-first approach with accessibility in mind.
 
+## Code Quality
+
+This project enforces code quality through:
+
+- **Pre-commit hooks** - Automatic formatting and linting on every commit
+- **Prettier** - Consistent code formatting (TypeScript, CSS, HTML, JSON, Markdown)
+- **markdownlint** - Markdown documentation standards
+- **TypeScript strict mode** - Enhanced type safety
+
 ## Additional Documentation
 
 - [PROJECT_INFO.md](PROJECT_INFO.md) - Detailed project information and migration notes
+- [SETUP_GUIDE.md](SETUP_GUIDE.md) - Setup instructions and next steps
+- [PRE_COMMIT_SETUP.md](PRE_COMMIT_SETUP.md) - Pre-commit hooks documentation
+- [MARKDOWN_STYLE_GUIDE.md](MARKDOWN_STYLE_GUIDE.md) - Markdown linting rules and violations
 - [CLAUDE.md](CLAUDE.md) - Guidelines for AI-assisted development
 - [Angular CLI Documentation](https://angular.dev/tools/cli)
 

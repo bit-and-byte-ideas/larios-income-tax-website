@@ -1,6 +1,7 @@
 # Core Module
 
-This directory contains singleton services, guards, interceptors, and other core functionality that should be loaded only once in the application.
+This directory contains singleton services, guards, interceptors, and other core functionality that
+should be loaded only once in the application.
 
 ## Structure
 
@@ -10,4 +11,5 @@ This directory contains singleton services, guards, interceptors, and other core
 
 ## Usage
 
-The CoreModule is imported only once in the root AppModule and should never be imported in feature modules.
+The CoreModule is imported only once in the root AppModule and should never be imported in feature
+modules.

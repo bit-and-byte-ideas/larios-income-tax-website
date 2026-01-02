@@ -1,0 +1,71 @@
+repos:
+  # Prettier for code formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.1.0
+    hooks:
+      - id: prettier
+        name: Format with Prettier
+        types_or: [javascript, jsx, ts, tsx, css, scss, json, yaml, markdown]
+        args: [--write]
+        exclude: |
+          (?x)^(
+            package-lock\.json|
+            dist/|
+            node_modules/|
+            .angular/|
+            coverage/
+          )
+
+  # Markdownlint for markdown files
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.39.0
+    hooks:
+      - id: markdownlint
+        name: Lint Markdown files
+        args: [--fix]
+        exclude: |
+          (?x)^(
+            node_modules/|
+            dist/|
+            .angular/
+          )
+
+  # Additional useful hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        name: Trim trailing whitespace
+        exclude: |
+          (?x)^(
+            \.min\.|
+            package-lock\.json
+          )
+      - id: end-of-file-fixer
+        name: Fix end of files
+        exclude: |
+          (?x)^(
+            \.min\.|
+            package-lock\.json
+          )
+      - id: check-yaml
+        name: Check YAML syntax
+        exclude: |
+          (?x)^(
+            node_modules/
+          )
+      - id: check-json
+        name: Check JSON syntax
+        exclude: |
+          (?x)^(
+            package-lock\.json|
+            tsconfig\..*\.json
+          )
+      - id: check-merge-conflict
+        name: Check for merge conflicts
+      - id: mixed-line-ending
+        name: Fix mixed line endings
+        args: [--fix=lf]
+      - id: check-added-large-files
+        name: Check for large files
+        args: [--maxkb=1000]
