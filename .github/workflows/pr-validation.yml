@@ -36,6 +36,8 @@ jobs:
   build:
     name: Build Application
     runs-on: ubuntu-latest
+    outputs:
+      bundle_size: ${{ steps.bundle.outputs.bundle_size }}
     needs: lint
     steps:
       - name: Checkout code
@@ -54,10 +56,10 @@ jobs:
         run: npm run build
 
       - name: Check bundle size
+        id: bundle
         run: |
           BUNDLE_SIZE=$(du -sh dist/lario-income-tax/browser | cut -f1)
-          echo "Bundle size: $BUNDLE_SIZE"
-          echo "Bundle size: $BUNDLE_SIZE" >> "$GITHUB_OUTPUT"
+          echo "bundle_size=$BUNDLE_SIZE" >> "$GITHUB_OUTPUT"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -134,6 +136,7 @@ jobs:
             | Build | `${{ needs.build.result }}` |
             | Tests | `${{ needs.test.result }}` |
             | Docker build/test | `${{ needs.docker-build.result }}` |
+            | Bundle size | `${{ needs.build.outputs.bundle_size || 'n/a' }}` |
 
       - name: Fail if any job failed
         run: |
