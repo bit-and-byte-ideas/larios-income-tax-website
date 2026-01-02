@@ -6,6 +6,10 @@ on:
       - main
       - develop
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   lint:
     name: Lint Code
@@ -32,6 +36,8 @@ jobs:
   build:
     name: Build Application
     runs-on: ubuntu-latest
+    outputs:
+      bundle_size: ${{ steps.bundle.outputs.bundle_size }}
     needs: lint
     steps:
       - name: Checkout code
@@ -50,9 +56,10 @@ jobs:
         run: npm run build
 
       - name: Check bundle size
+        id: bundle
         run: |
           BUNDLE_SIZE=$(du -sh dist/lario-income-tax/browser | cut -f1)
-          echo "Bundle size: $BUNDLE_SIZE"
+          echo "bundle_size=$BUNDLE_SIZE" >> "$GITHUB_OUTPUT"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -116,14 +123,26 @@ jobs:
     needs: [lint, build, test, docker-build]
     if: always()
     steps:
-      - name: Check all jobs status
+      - name: Post/Update PR comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: pr-validation
+          message: |
+            ## PR Validation Results
+
+            | Check | Result |
+            |------:|:------|
+            | Lint | `${{ needs.lint.result }}` |
+            | Build | `${{ needs.build.result }}` |
+            | Tests | `${{ needs.test.result }}` |
+            | Docker build/test | `${{ needs.docker-build.result }}` |
+            | Bundle size | `${{ needs.build.outputs.bundle_size || 'n/a' }}` |
+
+      - name: Fail if any job failed
         run: |
           if [ "${{ needs.lint.result }}" != "success" ] || \
              [ "${{ needs.build.result }}" != "success" ] || \
              [ "${{ needs.test.result }}" != "success" ] || \
              [ "${{ needs.docker-build.result }}" != "success" ]; then
-            echo "❌ One or more validation checks failed"
             exit 1
-          else
-            echo "✅ All validation checks passed"
           fi
