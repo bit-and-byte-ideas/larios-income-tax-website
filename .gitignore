@@ -50,9 +50,7 @@ Thumbs.db
 /.angular/
 .angular/
 
-# Node modules and dependency files
-/node_modules/
-/package-lock.json
+# Dependency files
 /yarn.lock
 
 # Environment files
