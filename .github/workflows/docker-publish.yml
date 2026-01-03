@@ -53,13 +53,13 @@ jobs:
           platforms: linux/amd64,linux/arm64
 
       - name: Update Docker Hub description
-        uses: peter-evans/dockerhub-description@v4
+        uses: peter-evans/dockerhub-description@v5
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ env.DOCKER_IMAGE }}
           short-description: 'Angular-based web application for Larios Income Tax services'
-          readme-filepath: ./README.md
+          # readme-filepath: ./README.md
 
   test-image:
     name: Test Published Image
