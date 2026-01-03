@@ -59,7 +59,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ env.DOCKER_IMAGE }}
           short-description: 'Angular-based web application for Larios Income Tax services'
-          # readme-filepath: ./README.md
+          readme-filepath: ./README.md
 
   test-image:
     name: Test Published Image
