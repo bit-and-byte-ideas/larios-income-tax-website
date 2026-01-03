@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#c6bca4"/>
+  <g transform="translate(400,300)">
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="48" fill="#272419" text-anchor="middle" dominant-baseline="middle">E-File &amp; Rapid Refund</text>
+    <path d="M-80,-120 L80,-120 L80,0 L-80,0 Z" fill="none" stroke="#272419" stroke-width="4" opacity="0.3"/>
+    <path d="M-50,-90 L50,-90 M-50,-60 L50,-60 M-50,-30 L50,-30" stroke="#272419" stroke-width="3" opacity="0.3"/>
+    <path d="M20,20 L60,60 L20,100 M60,60 L-20,60" fill="none" stroke="#272419" stroke-width="4" opacity="0.5"/>
+  </g>
+</svg>
