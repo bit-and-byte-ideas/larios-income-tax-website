@@ -11,8 +11,9 @@
   --color-link: #116dff;
   --color-link-hover: #0d54cc;
 
-  --font-primary: 'Open Sans', sans-serif;
-  --font-heading: 'Brandon Grotesque', 'Open Sans', sans-serif;
+  --font-primary: 'brandon-grot-w01-light', sans-serif;
+  --font-heading: 'brandon-grot-w01-light', sans-serif;
+  --font-body: 'brandon-grot-w01-light', sans-serif;
 
   --max-width-container: 1200px;
   --spacing-xs: 0.5rem;
