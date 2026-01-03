@@ -27,7 +27,8 @@
       "Bash(pkill:*)",
       "Bash(npm start)",
       "Bash(curl:*)",
-      "Bash(ng build:*)"
+      "Bash(ng build:*)",
+      "Bash(file:*)"
     ]
   }
 }

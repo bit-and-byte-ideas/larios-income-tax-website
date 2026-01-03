@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
-  <rect width="800" height="600" fill="#c6bca4"/>
-  <g transform="translate(400,300)">
-    <text x="0" y="0" font-family="Arial, sans-serif" font-size="48" fill="#272419" text-anchor="middle" dominant-baseline="middle">Immigration Services</text>
-    <circle cx="-60" cy="-80" r="30" fill="#272419" opacity="0.3"/>
-    <circle cx="60" cy="-80" r="30" fill="#272419" opacity="0.3"/>
-    <path d="M-60,-40 Q-60,0 -40,40 L-80,100 L-40,100 L0,50 L40,100 L80,100 L40,40 Q60,0 60,-40 Z" fill="#272419" opacity="0.3"/>
-  </g>
-</svg>
