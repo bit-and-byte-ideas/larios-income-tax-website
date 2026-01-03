@@ -1,55 +1,108 @@
 .hero {
-  background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent-beige) 100%);
-  padding: 6rem 0;
-  text-align: center;
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
+/* Parallax Background - Fixed Position */
+.hero-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url('/assets/images/tax-preparation.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+
+/* Dark Overlay */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+/* Content */
 .hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 var(--spacing-md);
   max-width: 800px;
-  margin: 0 auto;
 }
 
 .hero-title {
-  font-size: 3rem;
-  color: var(--color-primary-text);
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-}
-
-.hero-subtitle {
-  font-size: 1.25rem;
-  color: var(--color-accent-dark);
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--color-background);
   margin-bottom: 2rem;
-  line-height: 1.6;
+  line-height: 1.3;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-.hero-actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
+.hero-button {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1rem 3rem;
+  background-color: transparent;
+  color: var(--color-background);
+  border: 2px solid var(--color-background);
+  border-radius: 50px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-@media (max-width: 768px) {
+.hero-button:hover {
+  background-color: var(--color-background);
+  color: var(--color-primary-text);
+}
+
+.hero-button:focus-visible {
+  outline: 2px solid var(--color-background);
+  outline-offset: 4px;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-button {
+    padding: 0.875rem 2.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 640px) {
   .hero {
-    padding: 4rem 0;
+    min-height: 500px;
   }
 
   .hero-title {
     font-size: 2rem;
   }
 
-  .hero-subtitle {
-    font-size: 1.125rem;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-    max-width: 300px;
+  .hero-button {
+    padding: 0.75rem 2rem;
+    font-size: 0.85rem;
   }
 }
