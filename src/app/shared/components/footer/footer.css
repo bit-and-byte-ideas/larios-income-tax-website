@@ -1,48 +1,77 @@
 .site-footer {
-  background-color: var(--color-primary-text);
-  color: var(--color-background);
-  padding: 3rem 0 1rem;
-  margin-top: 4rem;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-top {
+  background-color: var(--color-background);
+  padding: var(--spacing-xl) 0;
+  border-top: 1px solid var(--color-primary-text);
 }
 
 .footer-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-xl);
 }
 
-.footer-section h3,
-.footer-section h4 {
-  color: var(--color-accent-beige);
-  margin-bottom: 1rem;
-}
-
-.footer-section p {
+.footer-location {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
   line-height: 1.8;
-  margin-bottom: 0.5rem;
+  color: var(--color-primary-text);
 }
 
-.footer-section a {
-  color: var(--color-background);
+.footer-location p {
+  margin: 0 0 0.5rem 0;
+}
+
+.footer-address {
+  font-weight: 400;
+}
+
+.footer-email a,
+.footer-phone a {
+  color: var(--color-primary-text);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
-.footer-section a:hover {
-  color: var(--color-accent-beige);
+.footer-email a:hover,
+.footer-phone a:hover {
+  opacity: 0.7;
+}
+
+.footer-phone a {
+  margin-right: 1rem;
+}
+
+.footer-whatsapp {
+  margin-top: 0.5rem;
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(198, 188, 164, 0.3);
-  padding-top: 1.5rem;
+  background-color: var(--color-primary-text);
+  color: var(--color-background);
+  padding: 1rem 0;
+  margin: 0;
+}
+
+.footer-bottom p {
+  margin: 0;
   text-align: center;
   font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
 }
 
 @media (max-width: 768px) {
   .footer-content {
     grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .footer-location {
     text-align: center;
   }
 }
