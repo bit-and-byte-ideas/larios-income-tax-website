@@ -1,36 +1,63 @@
 .services-page {
   background-color: var(--color-accent-dark);
   min-height: 100vh;
-  padding: var(--spacing-xl) 0;
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-lg);
-  max-width: 1000px;
+/* Top Banner Styles */
+.services-banner {
+  background-color: var(--color-background);
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--color-accent-beige);
+}
+
+.banner-content {
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
 }
 
-.service-item {
+.banner-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.banner-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--color-primary-text);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Services List */
+.services-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+/* Service Row - Each service in its own row */
+.service-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
   align-items: center;
-  background-color: transparent;
+  margin-bottom: var(--spacing-xl);
 }
 
-.service-image {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 4/3;
+/* Reverse class for alternating layout */
+.service-row.reverse {
+  direction: rtl;
 }
 
-.service-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.service-row.reverse > * {
+  direction: ltr;
 }
 
 .service-content {
@@ -42,41 +69,90 @@
 
 .service-content h2 {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 300;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--color-background);
   text-align: center;
   margin: 0;
 }
 
+.service-image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  max-width: 100%;
+}
+
+.service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* Responsive Design */
 @media (max-width: 968px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
+  .banner-title {
+    font-size: 1rem;
   }
 
-  .service-item {
-    grid-template-columns: 1fr;
+  .banner-icon {
+    width: 40px;
+    height: 40px;
   }
 
   .service-content h2 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+  }
+
+  .service-row {
+    gap: var(--spacing-md);
   }
 }
 
 @media (max-width: 768px) {
-  .services-page {
-    padding: var(--spacing-md) 0;
+  /* Stack title above image on mobile */
+  .service-row,
+  .service-row.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  /* Title always comes first on mobile */
+  .service-row .service-content {
+    order: 1;
+    padding: var(--spacing-sm);
+  }
+
+  .service-row .service-image {
+    order: 2;
   }
 
   .service-content h2 {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
   }
 
-  .services-grid {
+  .services-list {
+    padding: var(--spacing-md);
+  }
+
+  .banner-content {
+    flex-direction: column;
+    text-align: center;
     gap: var(--spacing-sm);
+  }
+
+  .banner-title {
+    font-size: 0.9rem;
+  }
+
+  .banner-icon {
+    width: 35px;
+    height: 35px;
   }
 }
