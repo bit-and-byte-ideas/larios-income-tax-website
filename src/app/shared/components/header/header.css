@@ -82,6 +82,10 @@
   padding: 0;
 }
 
+.nav-list > li {
+  position: relative;
+}
+
 .nav-link {
   color: var(--color-background);
   text-decoration: none;
@@ -94,6 +98,61 @@
 .nav-link:hover,
 .nav-link.active {
   opacity: 0.7;
+}
+
+/* Dropdown Menu */
+.nav-item-dropdown {
+  position: relative;
+}
+
+/* Create invisible bridge between nav link and dropdown */
+.nav-item-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 0.5rem;
+  background: transparent;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  background-color: var(--color-background);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 160px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.nav-item-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  border-bottom: 1px solid var(--color-accent-beige);
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-link {
+  display: block;
+  color: var(--color-primary-text);
+  text-decoration: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-link:hover {
+  background-color: var(--color-accent-beige);
 }
 
 /* Contact and Social Section */

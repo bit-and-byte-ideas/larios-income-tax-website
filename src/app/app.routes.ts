@@ -24,4 +24,14 @@ export const routes: Routes = [
         m => m.ServiceDetailPage
       ),
   },
+  {
+    path: 'contact',
+    redirectTo: 'contact/united-states',
+    pathMatch: 'full',
+  },
+  {
+    path: 'contact/:location',
+    loadComponent: () =>
+      import('./features/contact/pages/contact-page/contact-page').then(m => m.ContactPage),
+  },
 ];

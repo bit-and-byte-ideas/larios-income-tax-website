@@ -1,0 +1,99 @@
+@if (currentLocation) {
+  <div class="contact-page">
+    <div class="container">
+      <h1 class="contact-heading">{{ currentLocation.labels.heading }}</h1>
+
+      <div class="contact-content">
+        <div class="left-column">
+          <div class="image-container">
+            <img
+              src="/assets/images/professionals.avif"
+              alt="Professionals"
+              class="contact-image"
+            />
+          </div>
+
+          <p class="contact-subheading">{{ currentLocation.labels.subheading }}</p>
+
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+            <div class="form-group">
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                [placeholder]="currentLocation.labels.name"
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                [placeholder]="currentLocation.labels.email"
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                id="subject"
+                formControlName="subject"
+                [placeholder]="currentLocation.labels.subject"
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <textarea
+                id="message"
+                formControlName="message"
+                [placeholder]="currentLocation.labels.message"
+                rows="5"
+                class="form-input form-textarea"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="submit-button" [disabled]="!contactForm.valid">
+              {{ currentLocation.labels.submit }}
+            </button>
+          </form>
+        </div>
+
+        <div class="right-column">
+          <div class="contact-info">
+            <p class="info-item">{{ currentLocation.address }}</p>
+            <p class="info-item">
+              <a [href]="'mailto:' + currentLocation.email">{{ currentLocation.email }}</a>
+            </p>
+            <p class="info-item">
+              <a [href]="'tel:' + currentLocation.phone.replace(/[^0-9+]/g, '')">{{
+                currentLocation.phone
+              }}</a>
+            </p>
+          </div>
+
+          <div class="map-container">
+            <iframe
+              [src]="currentLocation.mapSrc | safe: 'resourceUrl'"
+              width="100%"
+              height="400"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="contact-page">
+    <div class="container">
+      <p class="error-message">Location not found</p>
+    </div>
+  </div>
+}

@@ -29,7 +29,17 @@
           <li>
             <a routerLink="/book-online" routerLinkActive="active" class="nav-link">Book Online</a>
           </li>
-          <li><a routerLink="/contact" routerLinkActive="active" class="nav-link">Contact</a></li>
+          <li class="nav-item-dropdown">
+            <a routerLink="/contact" routerLinkActive="active" class="nav-link">Contact</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a routerLink="/contact/united-states" class="dropdown-link">United States</a>
+              </li>
+              <li>
+                <a routerLink="/contact/mexico" class="dropdown-link">Mexico</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
 

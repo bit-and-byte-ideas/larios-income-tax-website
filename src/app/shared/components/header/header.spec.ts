@@ -53,4 +53,27 @@ describe('Header', () => {
     expect(emailLink).toBeTruthy();
     expect(phoneLink).toBeTruthy();
   });
+
+  it('should have Contact dropdown menu', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const dropdownMenu = compiled.querySelector('.dropdown-menu');
+    expect(dropdownMenu).toBeTruthy();
+  });
+
+  it('should have United States and Mexico dropdown links', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const dropdownLinks = compiled.querySelectorAll('.dropdown-link');
+    expect(dropdownLinks.length).toBe(2);
+    expect(dropdownLinks[0].textContent?.trim()).toBe('United States');
+    expect(dropdownLinks[1].textContent?.trim()).toBe('Mexico');
+  });
+
+  it('should have correct routes for dropdown links', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const dropdownLinks = Array.from(compiled.querySelectorAll('.dropdown-link'));
+    const usLink = dropdownLinks.find(link => link.textContent?.trim() === 'United States');
+    const mxLink = dropdownLinks.find(link => link.textContent?.trim() === 'Mexico');
+    expect(usLink).toBeTruthy();
+    expect(mxLink).toBeTruthy();
+  });
 });
