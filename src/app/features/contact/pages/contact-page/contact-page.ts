@@ -18,6 +18,7 @@ interface LocationData {
     message: string;
     submit: string;
     addressLabel: string;
+    subheading: string;
   };
 }
 
@@ -47,6 +48,8 @@ export class ContactPage implements OnInit {
         message: 'Message',
         submit: 'Submit',
         addressLabel: 'Address',
+        subheading:
+          'Contact us to see how our expertise and personalized services can save you time, money, and frustration.',
       },
     },
     mexico: {
@@ -64,6 +67,8 @@ export class ContactPage implements OnInit {
         message: 'Mensaje',
         submit: 'Enviar',
         addressLabel: 'Dirección',
+        subheading:
+          'Contáctenos para ver cómo nuestra experiencia y servicios personalizados pueden ahorrarle tiempo, dinero y frustraciones.',
       },
     },
   };

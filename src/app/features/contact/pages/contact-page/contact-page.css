@@ -37,6 +37,14 @@
   display: block;
 }
 
+.contact-subheading {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-primary-text);
+  margin: var(--spacing-md) 0;
+  line-height: 1.6;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;

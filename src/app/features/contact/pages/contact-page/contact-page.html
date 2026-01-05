@@ -13,6 +13,8 @@
             />
           </div>
 
+          <p class="contact-subheading">{{ currentLocation.labels.subheading }}</p>
+
           <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
             <div class="form-group">
               <input

@@ -56,6 +56,14 @@ describe('ContactPage', () => {
       expect(heading?.textContent).toBe('CONTACT US');
     });
 
+    it('should display subheading text', () => {
+      const compiled = fixture.nativeElement as HTMLElement;
+      const subheading = compiled.querySelector('.contact-subheading');
+      expect(subheading?.textContent).toBe(
+        'Contact us to see how our expertise and personalized services can save you time, money, and frustration.'
+      );
+    });
+
     it('should display professionals image', () => {
       const compiled = fixture.nativeElement as HTMLElement;
       const img = compiled.querySelector('.contact-image') as HTMLImageElement;
@@ -162,6 +170,14 @@ describe('ContactPage', () => {
       const compiled = fixture.nativeElement as HTMLElement;
       const heading = compiled.querySelector('.contact-heading');
       expect(heading?.textContent).toBe('CONTÁCTENOS');
+    });
+
+    it('should display Spanish subheading text', () => {
+      const compiled = fixture.nativeElement as HTMLElement;
+      const subheading = compiled.querySelector('.contact-subheading');
+      expect(subheading?.textContent).toBe(
+        'Contáctenos para ver cómo nuestra experiencia y servicios personalizados pueden ahorrarle tiempo, dinero y frustraciones.'
+      );
     });
 
     it('should display Spanish submit button', () => {
