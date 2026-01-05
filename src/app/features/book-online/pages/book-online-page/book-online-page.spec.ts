@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { BookOnlinePage } from './book-online-page';
 
 describe('BookOnlinePage', () => {
@@ -8,6 +9,7 @@ describe('BookOnlinePage', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BookOnlinePage],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BookOnlinePage);
@@ -44,6 +46,12 @@ describe('BookOnlinePage', () => {
     readMoreLinks.forEach(link => {
       expect(link.textContent?.trim()).toBe('Read More');
     });
+  });
+
+  it('should have service IDs for routing', () => {
+    expect(component.services[0].id).toBe('tax-preparation');
+    expect(component.services[1].id).toBe('immigration-services');
+    expect(component.services[2].id).toBe('translations');
   });
 
   it('should have Book Now buttons for each service', () => {

@@ -1,0 +1,123 @@
+.service-detail-page {
+  background-color: var(--color-background);
+  padding: var(--spacing-xl) 0;
+  min-height: calc(100vh - 200px);
+}
+
+.service-title {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--color-primary-text);
+  margin: 0 0 var(--spacing-lg) 0;
+  letter-spacing: 0.05em;
+}
+
+.service-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  max-width: 600px;
+  margin-bottom: var(--spacing-lg);
+}
+
+.info-box {
+  border: 1px solid var(--color-primary-text);
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.info-box:not(:first-child) {
+  border-left: none;
+}
+
+.info-box p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-primary-text);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.book-now-button {
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding: 0.875rem 2rem;
+  background-color: var(--color-primary-text);
+  color: var(--color-background);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-xl);
+}
+
+.book-now-button:hover {
+  opacity: 0.85;
+}
+
+.service-image {
+  max-width: 400px;
+  margin-bottom: var(--spacing-xl);
+}
+
+.service-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.contact-details {
+  border-top: 1px solid var(--color-accent-beige);
+  padding-top: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.contact-heading {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--color-primary-text);
+  margin: 0 0 var(--spacing-sm) 0;
+  letter-spacing: 0.05em;
+}
+
+.contact-address {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-primary-text);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.error-message {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-primary-text);
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .service-title {
+    font-size: 2rem;
+  }
+
+  .service-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-box:not(:first-child) {
+    border-left: 1px solid var(--color-primary-text);
+    border-top: none;
+  }
+
+  .service-image {
+    max-width: 100%;
+  }
+}

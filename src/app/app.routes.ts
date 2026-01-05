@@ -17,4 +17,11 @@ export const routes: Routes = [
         m => m.BookOnlinePage
       ),
   },
+  {
+    path: 'book-online/:id',
+    loadComponent: () =>
+      import('./features/book-online/pages/service-detail-page/service-detail-page').then(
+        m => m.ServiceDetailPage
+      ),
+  },
 ];
