@@ -10,6 +10,7 @@ nav:
       - Setup Guide: setup-guide.md
       - Environment Configuration: environment-config.md
   - Development:
+      - Features: features.md
       - Architecture: architecture.md
       - Project Structure: project-structure.md
       - Code Quality: code-quality.md
