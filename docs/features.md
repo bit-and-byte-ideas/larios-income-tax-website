@@ -192,7 +192,7 @@ Bilingual contact pages with location-specific data and Google Maps integration.
   - Submit button (disabled when form invalid)
 - Contact information:
   - Address: 3317 El Cajon Blvd San Diego CA United States 92104
-  - Email: lariosincometax@gmail.com
+  - Email: <lariosincometax@gmail.com>
   - Phone: (619) 283-2828
 - Google Maps iframe with San Diego location
 
@@ -203,7 +203,8 @@ Bilingual contact pages with location-specific data and Google Maps integration.
 **Content:**
 
 - Heading: "CONTÁCTENOS"
-- Subheading: "Contáctenos para ver cómo nuestra experiencia y servicios personalizados pueden ahorrarle tiempo, dinero y frustraciones."
+- Subheading: "Contáctenos para ver cómo nuestra experiencia y servicios personalizados
+  pueden ahorrarle tiempo, dinero y frustraciones."
 - Professional team image
 - Contact form (Spanish labels):
   - Nombre (required)
@@ -213,7 +214,7 @@ Bilingual contact pages with location-specific data and Google Maps integration.
   - Enviar button (disabled when form invalid)
 - Contact information:
   - Address: Av. Las Plazas No. 17101-1 Fracc Rinconada De Otay Tijuana, B.C
-  - Email: lariosincometax@gmail.com
+  - Email: <lariosincometax@gmail.com>
   - Phone: (619) 283-2828
 - Google Maps iframe with Tijuana location
 
