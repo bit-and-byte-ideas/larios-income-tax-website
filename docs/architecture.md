@@ -66,39 +66,94 @@ import { SharedModule } from '../shared/shared.module';
 export class FeatureModule { }
 ```
 
+**Implemented Shared Components:**
+
+- **Header** - Two-tier responsive header with navigation and dropdown menu
+  - Top section: Logo and business title
+  - Bottom section: Navigation with Contact dropdown (United States/Mexico), email, phone, social media icons
+  - Sticky positioning for persistent access
+- **Footer** - Two-tier footer with business locations and copyright
+  - Top section: Dual location display (San Diego, CA and Tijuana, B.C.)
+  - Bottom section: Copyright notice
+- **SafePipe** - Custom pipe for sanitizing URLs (Google Maps iframes)
+- **Social Media Constants** - Frozen constants for Facebook and Instagram URLs
+
 ### Feature Modules
 
 Feature modules encapsulate distinct application features with lazy loading for optimal performance.
 
 **Location:** `src/app/features/`
 
-**Planned Features:**
+**Implemented Features:**
 
-- **home/** - Home page with hero section and overview
-- **services/** - Income tax and immigration services information
-- **contact/** - Contact information, form, and location
-- **about/** - Business information and credentials
+- **home/** - Landing page with parallax hero section, services overview, and contact form
+  - Hero component with smooth scroll navigation
+  - Services overview showcasing three main services
+  - Contact section with dual location display and social media integration
+- **services/** - Detailed information about four service offerings
+  - Tax Preparation
+  - Immigration Services
+  - Notary Services
+  - Translations
+- **book-online/** - Service booking interface
+  - Service listing page with "Read More" and "Book Now" actions
+  - Dynamic service detail pages for each service type
+- **contact/** - Bilingual contact pages with location-specific data
+  - United States contact page (English)
+  - Mexico contact page (Spanish)
+  - Google Maps integration with location-specific coordinates
+  - Reactive contact form with validation
 
 **Structure Example:**
 
 ```text
-feature-name/
-├── components/
-│   ├── feature-component-1/
-│   └── feature-component-2/
+features/
+├── home/
+│   ├── pages/home-page/
+│   └── components/
+│       ├── hero/
+│       ├── services-overview/
+│       └── contact-section/
 ├── services/
-│   └── feature.service.ts
-├── feature-name-routing.module.ts
-└── feature-name.module.ts
+│   └── pages/services-page/
+├── book-online/
+│   └── pages/
+│       ├── book-online-page/
+│       └── service-detail-page/
+└── contact/
+    └── pages/contact-page/
 ```
 
-**Lazy Loading:**
+**Lazy Loading with Standalone Components:**
 
 ```typescript
 export const routes: Routes = [
   {
+    path: '',
+    loadComponent: () => import('./features/home/pages/home-page/home-page').then(m => m.HomePage),
+  },
+  {
     path: 'services',
-    loadChildren: () => import('./features/services/services.module').then(m => m.ServicesModule),
+    loadComponent: () => import('./features/services/pages/services-page/services-page').then(m => m.ServicesPage),
+  },
+  {
+    path: 'book-online',
+    loadComponent: () =>
+      import('./features/book-online/pages/book-online-page/book-online-page').then(m => m.BookOnlinePage),
+  },
+  {
+    path: 'book-online/:id',
+    loadComponent: () =>
+      import('./features/book-online/pages/service-detail-page/service-detail-page').then(m => m.ServiceDetailPage),
+  },
+  {
+    path: 'contact',
+    redirectTo: 'contact/united-states',
+    pathMatch: 'full',
+  },
+  {
+    path: 'contact/:location',
+    loadComponent: () => import('./features/contact/pages/contact-page/contact-page').then(m => m.ContactPage),
   },
 ];
 ```
@@ -111,7 +166,16 @@ Used for core services (API, authentication, logging) to ensure single instance 
 
 ### Lazy Loading Pattern
 
-Feature modules are lazy loaded to reduce initial bundle size and improve load time.
+Feature modules are lazy loaded using standalone components to reduce initial bundle size and improve load time.
+
+### Standalone Components
+
+The application uses Angular's standalone component pattern (no NgModules) for:
+
+- Simpler component architecture
+- Better tree-shaking
+- Reduced boilerplate
+- Direct imports in component metadata
 
 ### Module Pattern
 
@@ -122,6 +186,15 @@ Clear separation between core, shared, and feature modules for better organizati
 - **Input/Output** - Parent-child communication
 - **Services** - Cross-component communication
 - **RxJS Subjects** - Complex state management
+
+### Internationalization (i18n)
+
+Implemented through location-based routing and data structures:
+
+- English content for United States location
+- Spanish content for Mexico location
+- Bilingual labels stored in component data structures
+- Dynamic content switching based on route parameters
 
 ## Routing Strategy
 

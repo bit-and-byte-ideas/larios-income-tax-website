@@ -60,6 +60,7 @@ See [Docker Setup](docs/docker-setup.md) for detailed deployment options.
 
 Comprehensive technical documentation is available using [Backstage TechDocs](https://backstage.io/docs/features/techdocs/):
 
+- [Features](docs/features.md) - Detailed feature documentation
 - [Setup Guide](docs/setup-guide.md) - Installation and development workflow
 - [Architecture](docs/architecture.md) - Project structure and design patterns
 - [Code Quality](docs/code-quality.md) - Standards, linting, and pre-commit hooks
@@ -75,20 +76,32 @@ pip install mkdocs-techdocs-core
 mkdocs serve  # Open http://localhost:8000
 ```
 
+## Features
+
+- **Landing Page** - Parallax hero section, services overview, contact form
+- **Services** - Four service offerings with detailed descriptions
+- **Book Online** - Service booking interface with dynamic detail pages
+- **Contact** - Bilingual contact pages (English/Spanish) with Google Maps integration
+- **Responsive Design** - Mobile-first approach with warm, professional aesthetic
+- **Internationalization** - Location-based English/Spanish content
+
 ## Project Structure
 
 ```text
 src/
 ├── app/
-│   ├── core/           # Singleton services, guards, interceptors
-│   ├── shared/         # Shared components, directives, pipes
-│   ├── features/       # Feature modules (home, services, contact, about)
+│   ├── shared/         # Header, Footer, SafePipe, constants
+│   ├── features/       # Home, Services, Book Online, Contact
+│   │   ├── home/       # Hero, ServicesOverview, ContactSection
+│   │   ├── services/   # ServicesPage
+│   │   ├── book-online/# BookOnlinePage, ServiceDetailPage
+│   │   └── contact/    # ContactPage (bilingual)
 │   └── app.ts          # Root component
 ├── environments/       # Environment configurations
-└── styles.css          # Global styles
+└── styles.css          # Global styles with CSS variables
 ```
 
-See [Project Structure](docs/project-structure.md) for detailed organization.
+See [Architecture](docs/architecture.md) for detailed organization and patterns.
 
 ## Code Quality & CI/CD
 
