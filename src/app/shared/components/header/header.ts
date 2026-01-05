@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { SOCIAL_MEDIA_LINKS } from '../../constants/social-media.constants';
 
 @Component({
   selector: 'app-header',
@@ -8,4 +9,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
-export class Header {}
+export class Header {
+  readonly socialMediaLinks = SOCIAL_MEDIA_LINKS;
+}
