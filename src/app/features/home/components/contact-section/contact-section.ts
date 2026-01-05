@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SOCIAL_MEDIA_LINKS } from '../../../../shared/constants/social-media.constants';
 
 @Component({
   selector: 'app-contact-section',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './contact-section.html',
   styleUrl: './contact-section.css',
 })
-export class ContactSection {}
+export class ContactSection {
+  readonly socialMediaLinks = SOCIAL_MEDIA_LINKS;
+}
