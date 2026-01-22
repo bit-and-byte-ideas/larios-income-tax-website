@@ -4,7 +4,8 @@ Angular-based web application for Larios Income Tax and Immigration services.
 
 ## Overview
 
-This is the official website for Larios Income Tax, providing comprehensive tax preparation, immigration services, and translation services to clients in San Diego, California.
+This is the official website for Larios Income Tax, providing comprehensive tax preparation, immigration services,
+and translation services to clients in San Diego, California.
 
 ## Features
 
@@ -39,7 +40,8 @@ Professional translation services for various documents and materials. Duration:
 
 ## Container Information
 
-This Docker image contains a production-ready build of the Larios Income Tax website, served through Nginx. The application is optimized for performance with lazy-loaded routes and efficient bundle sizes.
+This Docker image contains a production-ready build of the Larios Income Tax website, served through Nginx.
+The application is optimized for performance with lazy-loaded routes and efficient bundle sizes.
 
 ### Available Platforms
 
@@ -56,7 +58,7 @@ The application runs on port 80 inside the container.
 
 **Contact**:
 
-- Email: lariosincometax@gmail.com
+- Email: <lariosincometax@gmail.com>
 - Phone: (619) 283-2828
 
 **Social Media**:
@@ -70,7 +72,8 @@ This is proprietary software for Larios Income Tax services.
 
 ## Support
 
-For technical support or questions about our services, please contact us through our website or call our office during business hours.
+For technical support or questions about our services, please contact us through our website or call our office
+during business hours.
 
 ---
 
