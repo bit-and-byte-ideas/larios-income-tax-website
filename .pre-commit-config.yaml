@@ -24,9 +24,8 @@ repos:
         name: Lint Markdown files
         args:
           - --fix
-          - --disable
-          - MD022
-          - MD032
+          - --config
+          - .markdownlint.json
         exclude: |
           (?x)^(
             node_modules/|
