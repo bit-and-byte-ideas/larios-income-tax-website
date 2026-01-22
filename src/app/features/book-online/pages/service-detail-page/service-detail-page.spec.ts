@@ -43,38 +43,38 @@ describe('ServiceDetailPage', () => {
 
     it('should display three info boxes', () => {
       const compiled = fixture.nativeElement as HTMLElement;
-      const infoBoxes = compiled.querySelectorAll('.info-box');
-      expect(infoBoxes.length).toBe(3);
+      const chips = compiled.querySelectorAll('mat-chip');
+      expect(chips.length).toBe(3);
     });
 
     it('should display duration, consultation, and address', () => {
       const compiled = fixture.nativeElement as HTMLElement;
-      const infoBoxes = Array.from(compiled.querySelectorAll('.info-box p')).map(el =>
+      const chips = Array.from(compiled.querySelectorAll('mat-chip')).map(el =>
         el.textContent?.trim()
       );
-      expect(infoBoxes[0]).toBe('50 min');
-      expect(infoBoxes[1]).toBe('Free Consultation');
-      expect(infoBoxes[2]).toBe('3317 El Cajon Blvd');
+      expect(chips[0]).toBe('50 min');
+      expect(chips[1]).toBe('Free Consultation');
+      expect(chips[2]).toBe('3317 El Cajon Blvd');
     });
 
     it('should have Book Now button', () => {
       const compiled = fixture.nativeElement as HTMLElement;
       const button = compiled.querySelector('.book-now-button');
-      expect(button?.textContent?.trim()).toBe('Book Now');
+      expect(button?.textContent?.trim()).toContain('Book Now');
     });
 
     it('should display service image', () => {
       const compiled = fixture.nativeElement as HTMLElement;
-      const img = compiled.querySelector('.service-image img') as HTMLImageElement;
+      const img = compiled.querySelector('mat-card img') as HTMLImageElement;
       expect(img).toBeTruthy();
       expect(img.src).toContain('tax-preparation.avif');
     });
 
     it('should display contact details section', () => {
       const compiled = fixture.nativeElement as HTMLElement;
-      const heading = compiled.querySelector('.contact-heading');
+      const cardTitle = compiled.querySelector('mat-card-title');
       const address = compiled.querySelector('.contact-address');
-      expect(heading?.textContent).toBe('Contact Details');
+      expect(cardTitle?.textContent?.trim()).toBe('Contact Details');
       expect(address?.textContent).toBe('3317 El Cajon Blvd, San Diego, CA 92104, USA');
     });
 

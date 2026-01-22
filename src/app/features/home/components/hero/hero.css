@@ -6,6 +6,8 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* Parallax Background - Fixed Position */
@@ -14,6 +16,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  max-width: 100vw;
   height: 100vh;
   background-image: url('/assets/images/tax-preparation.avif');
   background-size: cover;

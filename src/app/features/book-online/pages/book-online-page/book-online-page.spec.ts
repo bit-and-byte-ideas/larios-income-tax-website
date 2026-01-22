@@ -78,7 +78,7 @@ describe('BookOnlinePage', () => {
 
   it('should have service images', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    const images = compiled.querySelectorAll('.service-image img');
+    const images = compiled.querySelectorAll('mat-card img');
     expect(images.length).toBe(3);
 
     images.forEach(img => {

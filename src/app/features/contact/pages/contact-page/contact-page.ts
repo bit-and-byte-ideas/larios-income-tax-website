@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { SafePipe } from '../../../../shared/pipes/safe-pipe';
 
 interface LocationData {
@@ -24,7 +28,15 @@ interface LocationData {
 
 @Component({
   selector: 'app-contact-page',
-  imports: [CommonModule, ReactiveFormsModule, SafePipe],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    SafePipe,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+  ],
   templateUrl: './contact-page.html',
   styleUrl: './contact-page.css',
 })

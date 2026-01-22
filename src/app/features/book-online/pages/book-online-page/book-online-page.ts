@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-book-online-page',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, MatCardModule, MatButtonModule],
   templateUrl: './book-online-page.html',
   styleUrl: './book-online-page.css',
 })

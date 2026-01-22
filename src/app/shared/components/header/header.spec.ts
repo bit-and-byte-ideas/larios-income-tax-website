@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { provideRouter, RouterLink } from '@angular/router';
+import { By } from '@angular/platform-browser';
 import { Header } from './header';
 import { SOCIAL_MEDIA_LINKS } from '../../constants/social-media.constants';
 
@@ -42,8 +43,8 @@ describe('Header', () => {
 
   it('should have navigation links', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    const navLinks = compiled.querySelectorAll('.nav-link');
-    expect(navLinks.length).toBeGreaterThan(0);
+    const navButtons = compiled.querySelectorAll('.nav-button');
+    expect(navButtons.length).toBeGreaterThan(0);
   });
 
   it('should have contact information', () => {
@@ -56,24 +57,26 @@ describe('Header', () => {
 
   it('should have Contact dropdown menu', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    const dropdownMenu = compiled.querySelector('.dropdown-menu');
-    expect(dropdownMenu).toBeTruthy();
+    const contactMenu = compiled.querySelector('mat-menu');
+    expect(contactMenu).toBeTruthy();
   });
 
   it('should have United States and Mexico dropdown links', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    const dropdownLinks = compiled.querySelectorAll('.dropdown-link');
-    expect(dropdownLinks.length).toBe(2);
-    expect(dropdownLinks[0].textContent?.trim()).toBe('United States');
-    expect(dropdownLinks[1].textContent?.trim()).toBe('Mexico');
-  });
+    // Find the contact button (4th nav button)
+    const navButtons = fixture.debugElement.queryAll(By.css('.nav-button'));
+    const contactButton = navButtons.find(
+      btn => btn.nativeElement.textContent?.trim() === 'Contact'
+    );
+    expect(contactButton).toBeTruthy();
 
-  it('should have correct routes for dropdown links', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    const dropdownLinks = Array.from(compiled.querySelectorAll('.dropdown-link'));
-    const usLink = dropdownLinks.find(link => link.textContent?.trim() === 'United States');
-    const mxLink = dropdownLinks.find(link => link.textContent?.trim() === 'Mexico');
-    expect(usLink).toBeTruthy();
-    expect(mxLink).toBeTruthy();
+    // Trigger the menu to open
+    contactButton!.nativeElement.click();
+    fixture.detectChanges();
+
+    // Now query for menu items in the overlay
+    const menuButtons = document.querySelectorAll('button[mat-menu-item]');
+    expect(menuButtons.length).toBe(2);
+    expect(menuButtons[0].textContent?.trim()).toBe('United States');
+    expect(menuButtons[1].textContent?.trim()).toBe('Mexico');
   });
 });

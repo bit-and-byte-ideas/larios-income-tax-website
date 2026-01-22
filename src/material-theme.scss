@@ -1,0 +1,213 @@
+// Custom Angular Material Theme for Larios Income Tax
+// This theme uses the existing color schema with earthy browns, tans, and beiges
+
+@use '@angular/material' as mat;
+
+// Define custom color palettes based on existing color schema
+// Primary: Tan/Brown tones (--color-accent-tan: rgb(161, 151, 128))
+$primary-palette: (
+  0: #000000,
+  10: #241e0e,
+  20: #3b3320,
+  25: #474028,
+  30: #534c31,
+  35: #5f583a,
+  40: #6c6443,
+  50: #857c56,
+  60: #a1976e,
+  70: #bdb287,
+  80: #d9cda1,
+  90: #f6e9bb,
+  95: #fff5d6,
+  98: #fffbf0,
+  99: #fffdfa,
+  100: #ffffff,
+  // Semantic color mappings
+  primary: #a19780,
+  // --color-accent-tan
+  on-primary: #ffffff,
+  primary-container: #f5f2eb,
+  // --color-accent-light
+  on-primary-container: #27241d, // --color-primary-text
+);
+
+// Secondary: Beige tones (--color-accent-beige: rgb(198, 188, 164))
+$secondary-palette: (
+  0: #000000,
+  10: #1f1b10,
+  20: #352f24,
+  25: #403a2e,
+  30: #4c4639,
+  35: #585144,
+  40: #645d50,
+  50: #7d7668,
+  60: #988f81,
+  70: #b2a99a,
+  80: #cec5b4,
+  90: #ebe0ce,
+  95: #f9efdc,
+  98: #fff8ed,
+  99: #fffbf7,
+  100: #ffffff,
+  // Semantic color mappings
+  secondary: #c6bca4,
+  // --color-accent-beige
+  on-secondary: #2e2a21,
+  secondary-container: #f5f2eb,
+  on-secondary-container: #27241d,
+);
+
+// Tertiary: Accent/Link blue for interactive elements
+$tertiary-palette: (
+  0: #000000,
+  10: #001d36,
+  20: #00325b,
+  25: #003d6d,
+  30: #004880,
+  35: #005494,
+  40: #0060a8,
+  50: #2379d1,
+  60: #4c92eb,
+  70: #75abff,
+  80: #a6c8ff,
+  90: #d4e3ff,
+  95: #ebf1ff,
+  98: #f8f9ff,
+  99: #fdfbff,
+  100: #ffffff,
+  // Semantic color mappings
+  tertiary: #116dff,
+  // --color-link
+  on-tertiary: #ffffff,
+  tertiary-container: #d4e3ff,
+  on-tertiary-container: #001d36,
+);
+
+// Error palette (standard Material red)
+$error-palette: (
+  0: #000000,
+  10: #410002,
+  20: #690005,
+  25: #7e0007,
+  30: #93000a,
+  35: #a80710,
+  40: #ba1a1a,
+  50: #de3730,
+  60: #ff5449,
+  70: #ff897d,
+  80: #ffb4ab,
+  90: #ffdad6,
+  95: #ffedea,
+  98: #fff8f7,
+  99: #fffbff,
+  100: #ffffff,
+  primary: #ba1a1a,
+  on-primary: #ffffff,
+  primary-container: #ffdad6,
+  on-primary-container: #410002,
+);
+
+// Neutral palette for surfaces and backgrounds
+$neutral-palette: (
+  0: #000000,
+  4: #0d0c09,
+  6: #121110,
+  10: #1b1a17,
+  12: #1f1e1b,
+  17: #2a2826,
+  20: #302f2c,
+  22: #343330,
+  24: #393735,
+  25: #3b3a37,
+  30: #474541,
+  35: #52504c,
+  40: #5e5c58,
+  50: #777571,
+  60: #918e8a,
+  70: #aca9a4,
+  80: #c8c4bf,
+  87: #dcd9d3,
+  90: #e4e1db,
+  92: #eae7e1,
+  94: #f0ede7,
+  95: #f2efea,
+  96: #f5f2ec,
+  98: #faf8f2,
+  99: #fdfbf5,
+  100: #ffffff,
+  // Semantic color mappings
+  surface: #fffbf5,
+  on-surface: #27241d,
+  // --color-primary-text
+  surface-variant: #f5f2eb,
+  // --color-accent-light
+  on-surface-variant: #59544b,
+  outline: #8a8578,
+  outline-variant: #cec6b8,
+);
+
+html {
+  // Apply custom theme with Material 3 design tokens
+  @include mat.theme(
+    (
+      color: (
+        primary: $primary-palette,
+        secondary: $secondary-palette,
+        tertiary: $tertiary-palette,
+        error: $error-palette,
+        neutral: $neutral-palette,
+        neutral-variant: $neutral-palette,
+        theme-type: light,
+      ),
+      // Use existing font family
+      typography: (
+          brand-family: 'brandon-grot-w01-light',
+          plain-family: 'brandon-grot-w01-light',
+          bold-weight: 700,
+          regular-weight: 400,
+        ),
+      density: (
+        scale: 0,
+      ),
+    )
+  );
+}
+
+body {
+  // Set color scheme
+  color-scheme: light;
+
+  // Use Material system variables for consistency
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-large);
+
+  // Reset margin
+  margin: 0;
+  min-height: 100vh;
+}
+
+// Custom overrides to match existing design language
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button {
+  letter-spacing: normal;
+  font-family: 'brandon-grot-w01-light', sans-serif;
+  font-weight: 600;
+}
+
+// Ensure cards use the warm neutral palette
+.mat-mdc-card {
+  --mdc-elevated-card-container-color: var(--mat-sys-surface);
+  --mdc-outlined-card-outline-color: var(--mat-sys-outline-variant);
+}
+
+// Form fields with existing style
+.mat-mdc-form-field {
+  font-family: 'brandon-grot-w01-light', sans-serif;
+}
+
+// Toolbar customization
+.mat-toolbar {
+  font-family: 'brandon-grot-w01-light', sans-serif;
+}

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 
 interface ServiceDetail {
   title: string;
@@ -11,7 +14,7 @@ interface ServiceDetail {
 @Component({
   selector: 'app-service-detail-page',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule, MatButtonModule, MatChipsModule],
   templateUrl: './service-detail-page.html',
   styleUrl: './service-detail-page.css',
 })
