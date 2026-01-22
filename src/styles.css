@@ -255,3 +255,23 @@ label {
 .mt-lg {
   margin-top: var(--spacing-lg);
 }
+
+/* Angular Material Menu Overrides */
+.mat-mdc-menu-panel {
+  background-color: var(--color-background) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid var(--color-accent-beige);
+}
+
+.mat-mdc-menu-item {
+  font-family: var(--font-primary) !important;
+  color: var(--color-primary-text) !important;
+}
+
+.mat-mdc-menu-item:hover {
+  background-color: var(--color-accent-light) !important;
+}
+
+.mat-mdc-menu-item .mdc-list-item__primary-text {
+  color: var(--color-primary-text) !important;
+}
