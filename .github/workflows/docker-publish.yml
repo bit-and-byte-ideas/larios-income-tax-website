@@ -52,14 +52,14 @@ jobs:
           cache-to: type=gha,mode=max
           platforms: linux/amd64,linux/arm64
 
-      - name: Update Docker Hub description
-        uses: peter-evans/dockerhub-description@v5
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: ${{ env.DOCKER_IMAGE }}
-          short-description: 'Angular-based web application for Larios Income Tax services'
-          readme-filepath: ./README.dockerhub.md
+      # - name: Update Docker Hub description
+      #   uses: peter-evans/dockerhub-description@v5
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      #     repository: ${{ env.DOCKER_IMAGE }}
+      #     short-description: 'Angular-based web application for Larios Income Tax services'
+      #     readme-filepath: ./README.dockerhub.md
 
   test-image:
     name: Test Published Image
