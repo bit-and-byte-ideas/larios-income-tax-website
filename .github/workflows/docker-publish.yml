@@ -52,15 +52,6 @@ jobs:
           cache-to: type=gha,mode=max
           platforms: linux/amd64,linux/arm64
 
-      - name: Sanitize README for Docker Hub
-        run: |
-          # Create sanitized README by removing code blocks and inline code
-          sed -e '/```/,/```/d' \
-              -e 's/`[^`]*`//g' \
-              -e 's/<[^>]*>//g' \
-              README.md > README.sanitized.md
-          echo "Sanitized README created"
-
       - name: Update Docker Hub description
         uses: peter-evans/dockerhub-description@v5
         with:
@@ -68,7 +59,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ env.DOCKER_IMAGE }}
           short-description: 'Angular-based web application for Larios Income Tax services'
-          readme-filepath: ./README.sanitized.md
+          readme-filepath: ./README.dockerhub.md
 
   test-image:
     name: Test Published Image
