@@ -30,7 +30,8 @@
       "Bash(ng build:*)",
       "Bash(file:*)",
       "Bash(npm test:*)",
-      "Bash(ng add:*)"
+      "Bash(ng add:*)",
+      "Bash(ng test:*)"
     ]
   }
 }
