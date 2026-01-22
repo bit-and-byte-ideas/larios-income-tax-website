@@ -1,6 +1,6 @@
 <header class="site-header">
   <!-- Top Section: Logo and Title -->
-  <div class="header-top">
+  <mat-toolbar class="header-top">
     <div class="header-top-content">
       <img src="/assets/images/tax-icon.avif" alt="Tax Icon" class="header-logo-icon" />
       <div class="header-title-group">
@@ -8,86 +8,99 @@
         <p class="header-subtitle">Tax Preparation Service · Accountant</p>
       </div>
     </div>
-  </div>
+  </mat-toolbar>
 
   <!-- Bottom Section: Navigation and Contact -->
-  <div class="header-bottom">
+  <mat-toolbar class="header-bottom">
     <div class="header-bottom-content">
       <!-- Navigation Links -->
       <nav class="main-nav">
-        <ul class="nav-list">
-          <li>
-            <a
-              routerLink="/"
-              routerLinkActive="active"
-              class="nav-link"
-              [routerLinkActiveOptions]="{ exact: true }"
-              >Home</a
-            >
-          </li>
-          <li><a routerLink="/services" routerLinkActive="active" class="nav-link">Services</a></li>
-          <li>
-            <a routerLink="/book-online" routerLinkActive="active" class="nav-link">Book Online</a>
-          </li>
-          <li class="nav-item-dropdown">
-            <a routerLink="/contact" routerLinkActive="active" class="nav-link">Contact</a>
-            <ul class="dropdown-menu">
-              <li>
-                <a routerLink="/contact/united-states" class="dropdown-link">United States</a>
-              </li>
-              <li>
-                <a routerLink="/contact/mexico" class="dropdown-link">Mexico</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+        <button
+          mat-button
+          routerLink="/"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-button"
+        >
+          Home
+        </button>
+        <button mat-button routerLink="/services" routerLinkActive="active-link" class="nav-button">
+          Services
+        </button>
+        <button
+          mat-button
+          routerLink="/book-online"
+          routerLinkActive="active-link"
+          class="nav-button"
+        >
+          Book Online
+        </button>
+        <button
+          mat-button
+          [matMenuTriggerFor]="contactMenu"
+          routerLink="/contact"
+          routerLinkActive="active-link"
+          class="nav-button"
+        >
+          Contact
+        </button>
+        <mat-menu #contactMenu="matMenu" class="contact-dropdown">
+          <button mat-menu-item routerLink="/contact/united-states">United States</button>
+          <button mat-menu-item routerLink="/contact/mexico">Mexico</button>
+        </mat-menu>
       </nav>
 
       <!-- Contact and Social -->
       <div class="header-contact">
-        <a href="mailto:lariosincometax@gmail.com" class="contact-link"
-          >LARIOSINCOMETAX@GMAIL.COM</a
-        >
-        <a href="tel:+16192832828" class="contact-link">(619) 283-2828</a>
+        <a href="mailto:lariosincometax@gmail.com" class="contact-link" mat-button>
+          LARIOSINCOMETAX@GMAIL.COM
+        </a>
+        <a href="tel:+16192832828" class="contact-link" mat-button>(619) 283-2828</a>
         <a
           [href]="socialMediaLinks.facebook"
           target="_blank"
           rel="noopener"
-          class="social-link"
+          mat-icon-button
           aria-label="Facebook"
+          class="social-button"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path
-              d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-            />
-          </svg>
+          <mat-icon svgIcon="facebook">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+              />
+            </svg>
+          </mat-icon>
         </a>
         <a
           [href]="socialMediaLinks.instagram"
           target="_blank"
           rel="noopener"
-          class="social-link"
+          mat-icon-button
           aria-label="Instagram"
+          class="social-button"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path
-              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-            />
-          </svg>
+          <mat-icon svgIcon="instagram">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+              />
+            </svg>
+          </mat-icon>
         </a>
       </div>
     </div>
-  </div>
+  </mat-toolbar>
 </header>

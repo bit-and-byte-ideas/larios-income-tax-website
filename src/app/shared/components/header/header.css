@@ -7,9 +7,10 @@
 
 /* Top Section - White Background with Logo and Title */
 .header-top {
-  background-color: var(--color-background);
+  background-color: var(--color-background) !important;
   border-bottom: 1px solid var(--color-accent-beige);
-  padding: var(--spacing-md) 0;
+  height: auto !important;
+  padding: var(--spacing-md) 0 !important;
 }
 
 .header-top-content {
@@ -19,6 +20,7 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
+  width: 100%;
 }
 
 .header-logo-icon {
@@ -55,8 +57,9 @@
 
 /* Bottom Section - Dark Background with Nav and Contact */
 .header-bottom {
-  background-color: var(--color-primary-text);
-  padding: var(--spacing-sm) 0;
+  background-color: var(--color-primary-text) !important;
+  height: auto !important;
+  padding: var(--spacing-sm) 0 !important;
 }
 
 .header-bottom-content {
@@ -67,127 +70,72 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-md);
+  width: 100%;
 }
 
 /* Navigation */
 .main-nav {
   display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.nav-list {
-  display: flex;
-  list-style: none;
-  gap: var(--spacing-md);
-  margin: 0;
-  padding: 0;
-}
-
-.nav-list > li {
-  position: relative;
-}
-
-.nav-link {
-  color: var(--color-background);
-  text-decoration: none;
+.nav-button {
+  color: var(--color-background) !important;
+  text-transform: capitalize;
+  font-family: var(--font-primary) !important;
   font-weight: 400;
   font-size: 1rem;
-  transition: opacity 0.3s ease;
-  text-transform: capitalize;
 }
 
-.nav-link:hover,
-.nav-link.active {
+.nav-button.active-link {
   opacity: 0.7;
 }
 
-/* Dropdown Menu */
-.nav-item-dropdown {
-  position: relative;
-}
-
-/* Create invisible bridge between nav link and dropdown */
-.nav-item-dropdown::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 0.5rem;
-  background: transparent;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  left: 0;
-  background-color: var(--color-background);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  min-width: 160px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-}
-
-.nav-item-dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu li {
-  border-bottom: 1px solid var(--color-accent-beige);
-}
-
-.dropdown-menu li:last-child {
-  border-bottom: none;
-}
-
-.dropdown-link {
-  display: block;
-  color: var(--color-primary-text);
-  text-decoration: none;
-  padding: var(--spacing-sm) var(--spacing-md);
-  font-size: 0.95rem;
-  transition: background-color 0.3s ease;
-}
-
-.dropdown-link:hover {
-  background-color: var(--color-accent-beige);
+.nav-button:hover {
+  opacity: 0.7;
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 /* Contact and Social Section */
 .header-contact {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
+  gap: 0.5rem;
 }
 
 .contact-link {
-  color: var(--color-background);
+  color: var(--color-background) !important;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 400;
-  transition: opacity 0.3s ease;
   text-transform: uppercase;
+  font-family: var(--font-primary) !important;
 }
 
 .contact-link:hover {
   opacity: 0.7;
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-.social-link {
-  color: var(--color-background);
+.social-button {
+  color: var(--color-background) !important;
+  width: 40px;
+  height: 40px;
+}
+
+.social-button:hover {
+  opacity: 0.7;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.social-button mat-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.3s ease;
 }
 
-.social-link:hover {
-  opacity: 0.7;
-}
-
-.social-link svg {
+.social-button mat-icon svg {
   width: 20px;
   height: 20px;
 }
@@ -211,7 +159,7 @@
     font-size: 0.8rem;
   }
 
-  .nav-link {
+  .nav-button {
     font-size: 0.9rem;
   }
 }
@@ -222,14 +170,14 @@
     gap: var(--spacing-sm);
   }
 
-  .nav-list {
-    gap: var(--spacing-sm);
+  .main-nav {
+    gap: 0.25rem;
   }
 
   .header-contact {
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--spacing-sm);
+    gap: 0.25rem;
   }
 
   .header-title {
@@ -256,21 +204,30 @@
     font-size: 0.8rem;
   }
 
-  .nav-list {
+  .main-nav {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 0.25rem;
   }
 
-  .nav-link {
+  .nav-button {
     font-size: 0.85rem;
+    padding: 4px 8px !important;
+    min-width: auto !important;
   }
 
   .contact-link {
     font-size: 0.7rem;
+    padding: 4px 8px !important;
+    min-width: auto !important;
   }
 
-  .social-link svg {
+  .social-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .social-button mat-icon svg {
     width: 18px;
     height: 18px;
   }

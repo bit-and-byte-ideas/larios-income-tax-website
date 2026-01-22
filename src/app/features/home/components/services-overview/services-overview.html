@@ -2,28 +2,32 @@
   <div class="container">
     <div class="services-grid">
       <!-- Tax Preparation -->
-      <div class="service-card">
-        <div class="service-image">
-          <img src="/assets/images/tax-preparation.avif" alt="Tax Preparation" />
-        </div>
-        <h3 class="service-title">TAX PREPARATION</h3>
-      </div>
+      <mat-card class="service-card" appearance="outlined">
+        <img mat-card-image src="/assets/images/tax-preparation.avif" alt="Tax Preparation" />
+        <mat-card-content>
+          <h3 class="service-title">TAX PREPARATION</h3>
+        </mat-card-content>
+      </mat-card>
 
       <!-- Immigration Services -->
-      <div class="service-card">
-        <div class="service-image">
-          <img src="/assets/images/immigration-services.avif" alt="Immigration Services" />
-        </div>
-        <h3 class="service-title">IMMIGRATION SERVICES</h3>
-      </div>
+      <mat-card class="service-card" appearance="outlined">
+        <img
+          mat-card-image
+          src="/assets/images/immigration-services.avif"
+          alt="Immigration Services"
+        />
+        <mat-card-content>
+          <h3 class="service-title">IMMIGRATION SERVICES</h3>
+        </mat-card-content>
+      </mat-card>
 
       <!-- Translations -->
-      <div class="service-card">
-        <div class="service-image">
-          <img src="/assets/images/transaltion-services.avif" alt="Translations" />
-        </div>
-        <h3 class="service-title">TRANSLATIONS</h3>
-      </div>
+      <mat-card class="service-card" appearance="outlined">
+        <img mat-card-image src="/assets/images/transaltion-services.avif" alt="Translations" />
+        <mat-card-content>
+          <h3 class="service-title">TRANSLATIONS</h3>
+        </mat-card-content>
+      </mat-card>
     </div>
 
     <div class="services-description">
@@ -34,7 +38,9 @@
     </div>
 
     <div class="services-action">
-      <a routerLink="/services" class="services-button">More Services</a>
+      <a routerLink="/services" mat-raised-button color="primary" class="services-button"
+        >More Services</a
+      >
     </div>
   </div>
 </section>

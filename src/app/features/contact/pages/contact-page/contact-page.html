@@ -5,75 +5,64 @@
 
       <div class="contact-content">
         <div class="left-column">
-          <div class="image-container">
+          <mat-card class="image-card" appearance="outlined">
             <img
+              mat-card-image
               src="/assets/images/professionals.avif"
               alt="Professionals"
               class="contact-image"
             />
-          </div>
+          </mat-card>
 
           <p class="contact-subheading">{{ currentLocation.labels.subheading }}</p>
 
           <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
-            <div class="form-group">
-              <input
-                type="text"
-                id="name"
-                formControlName="name"
-                [placeholder]="currentLocation.labels.name"
-                class="form-input"
-              />
-            </div>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>{{ currentLocation.labels.name }}</mat-label>
+              <input matInput type="text" id="name" formControlName="name" />
+            </mat-form-field>
 
-            <div class="form-group">
-              <input
-                type="email"
-                id="email"
-                formControlName="email"
-                [placeholder]="currentLocation.labels.email"
-                class="form-input"
-              />
-            </div>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>{{ currentLocation.labels.email }}</mat-label>
+              <input matInput type="email" id="email" formControlName="email" />
+            </mat-form-field>
 
-            <div class="form-group">
-              <input
-                type="text"
-                id="subject"
-                formControlName="subject"
-                [placeholder]="currentLocation.labels.subject"
-                class="form-input"
-              />
-            </div>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>{{ currentLocation.labels.subject }}</mat-label>
+              <input matInput type="text" id="subject" formControlName="subject" />
+            </mat-form-field>
 
-            <div class="form-group">
-              <textarea
-                id="message"
-                formControlName="message"
-                [placeholder]="currentLocation.labels.message"
-                rows="5"
-                class="form-input form-textarea"
-              ></textarea>
-            </div>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>{{ currentLocation.labels.message }}</mat-label>
+              <textarea matInput id="message" formControlName="message" rows="5"></textarea>
+            </mat-form-field>
 
-            <button type="submit" class="submit-button" [disabled]="!contactForm.valid">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              class="submit-button"
+              [disabled]="!contactForm.valid"
+            >
               {{ currentLocation.labels.submit }}
             </button>
           </form>
         </div>
 
         <div class="right-column">
-          <div class="contact-info">
-            <p class="info-item">{{ currentLocation.address }}</p>
-            <p class="info-item">
-              <a [href]="'mailto:' + currentLocation.email">{{ currentLocation.email }}</a>
-            </p>
-            <p class="info-item">
-              <a [href]="'tel:' + currentLocation.phone.replace(/[^0-9+]/g, '')">{{
-                currentLocation.phone
-              }}</a>
-            </p>
-          </div>
+          <mat-card class="contact-info-card" appearance="outlined">
+            <mat-card-content>
+              <p class="info-item">{{ currentLocation.address }}</p>
+              <p class="info-item">
+                <a [href]="'mailto:' + currentLocation.email">{{ currentLocation.email }}</a>
+              </p>
+              <p class="info-item">
+                <a [href]="'tel:' + currentLocation.phone.replace(/[^0-9+]/g, '')">{{
+                  currentLocation.phone
+                }}</a>
+              </p>
+            </mat-card-content>
+          </mat-card>
 
           <div class="map-container">
             <iframe
