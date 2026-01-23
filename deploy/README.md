@@ -256,6 +256,23 @@ For infrastructure issues:
 
 ## Additional Resources
 
+### Documentation
+
+For comprehensive documentation, see the [docs](../docs/) folder:
+
+- [Azure Infrastructure Architecture](../docs/azure-infrastructure.md): Complete infrastructure documentation
+- [Azure Deployment Setup Guide](../docs/azure-deployment-setup.md): Step-by-step setup instructions
+- [Azure Deployment Checklist](../docs/azure-deployment-checklist.md): Pre and post-deployment checklists
+- [CI/CD Pipeline](../docs/ci-cd.md): Complete CI/CD pipeline documentation
+- [CI/CD Flow Diagram](../docs/cicd-flow-diagram.drawio.xml): Visual CI/CD flow (Draw.IO)
+- [Azure Infrastructure Diagram](../docs/azure-infrastructure-diagram.drawio.xml): Visual infrastructure diagram (Draw.IO)
+
+### Terraform Modules
+
+- [App Service Module](modules/app-service/README.md): Reusable App Service module documentation
+
+### External Resources
+
 - [Azure App Service Documentation](https://docs.microsoft.com/azure/app-service/)
 - [Terraform Azure Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
 - [Azure App Service Best Practices](https://docs.microsoft.com/azure/app-service/app-service-best-practices)

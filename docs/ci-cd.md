@@ -441,9 +441,271 @@ When workflows fail:
    - Optimize slow jobs
    - Update caching strategies
 
+## Azure Deployment Workflows
+
+See [cicd-flow-diagram.drawio.xml](cicd-flow-diagram.drawio.xml) for the complete CI/CD flow diagram including Azure
+deployments.
+
+### Development Deployment Workflow
+
+**File:** `.github/workflows/docker-publish.yml`
+
+**Trigger:** Push to `main` branch
+
+**Additional Steps (after Docker publish):**
+
+1. **Validate Terraform** - Validate Terraform configuration
+   - Format check
+   - Validates dev environment configuration
+   - Runs without backend (validation only)
+
+1. **Deploy to Azure Dev** - Deploy to development environment
+   - Requires manual approval via GitHub Environment
+   - Initializes Terraform with Azure backend
+   - Plans infrastructure changes
+   - Applies changes to dev environment
+   - Deploys Docker image with `latest` tag
+
+**Environment:** `dev`
+
+**Resources Created:**
+
+- Resource Group: `rg-larios-income-tax-dev`
+- App Service Plan: `asp-larios-income-tax-dev` (B1 SKU)
+- App Service: `app-larios-income-tax-dev`
+- Application Insights: `appi-larios-income-tax-dev`
+
+**Deployment URL:** `https://app-larios-income-tax-dev.azurewebsites.net`
+
+### Production Deployment Workflow
+
+**File:** `.github/workflows/release-publish.yml`
+
+**Trigger:** GitHub Release published
+
+**Steps:**
+
+1. **Build and Push Release Image**
+   - Builds Docker image
+   - Pushes to Docker Hub with version tags
+   - Creates semantic versioning tags (v1.0.0, v1.0, v1)
+
+1. **Validate Terraform**
+   - Format check
+   - Validates prod environment configuration
+
+1. **Deploy to Azure Production**
+   - Requires manual approval via GitHub Environment
+   - Initializes Terraform with Azure backend
+   - Plans infrastructure changes
+   - Applies changes to prod environment
+   - Deploys Docker image with release version tag
+   - Creates deployment record
+
+**Environment:** `prod`
+
+**Resources Created:**
+
+- Resource Group: `rg-larios-income-tax-prod`
+- App Service Plan: `asp-larios-income-tax-prod` (P1v2 SKU)
+- App Service: `app-larios-income-tax-prod`
+- Application Insights: `appi-larios-income-tax-prod`
+
+**Deployment URL:** `https://app-larios-income-tax-prod.azurewebsites.net`
+
+### Approval Process
+
+#### Development Deployment
+
+1. Workflow reaches "Deploy to Azure Dev" job
+1. GitHub sends notification to configured reviewers
+1. Reviewer can:
+   - **Approve**: Deployment proceeds
+   - **Reject**: Deployment is cancelled
+1. After approval, Terraform applies changes
+
+#### Production Deployment
+
+1. Create GitHub Release (e.g., v1.0.0)
+1. Workflow reaches "Deploy to Azure Production" job
+1. Requires approval from production reviewers
+1. Recommended: Multiple reviewers for production
+1. After approval, Terraform applies changes
+
+### Azure Configuration
+
+#### Required Secrets
+
+In addition to Docker Hub secrets, configure these Azure secrets:
+
+| Secret                       | Description                        | Required By     |
+| ---------------------------- | ---------------------------------- | --------------- |
+| `AZURE_CLIENT_ID`            | Service principal client ID        | Azure workflows |
+| `AZURE_CLIENT_SECRET`        | Service principal secret           | Azure workflows |
+| `AZURE_SUBSCRIPTION_ID`      | Azure subscription ID              | Azure workflows |
+| `AZURE_TENANT_ID`            | Azure AD tenant ID                 | Azure workflows |
+| `TF_BACKEND_RESOURCE_GROUP`  | Resource group for Terraform state | Azure workflows |
+| `TF_BACKEND_STORAGE_ACCOUNT` | Storage account name for Terraform | Azure workflows |
+| `TF_BACKEND_CONTAINER`       | Container name (usually "tfstate") | Azure workflows |
+
+See [Azure Deployment Setup Guide](azure-deployment-setup.md) for detailed setup instructions.
+
+#### GitHub Environments
+
+Configure protected environments in repository settings:
+
+**Development Environment (`dev`):**
+
+- Name: `dev`
+- Protection rules: Required reviewers
+- Deployment branch: `main` (optional)
+
+**Production Environment (`prod`):**
+
+- Name: `prod`
+- Protection rules: Required reviewers (recommend 2+ for production)
+- Deployment branch: `tags/*` (optional, release tags only)
+
+### Release Process
+
+#### Creating a Production Release
+
+1. **Prepare Release:**
+
+   ```bash
+   # Ensure main branch is stable
+   git checkout main
+   git pull origin main
+
+   # Create and push tag
+   git tag -a v1.0.0 -m "Release version 1.0.0"
+   git push origin v1.0.0
+   ```
+
+1. **Create GitHub Release:**
+   - Go to repository → Releases
+   - Click "Create a new release"
+   - Choose tag: v1.0.0
+   - Add release title: "v1.0.0"
+   - Add release notes
+   - Click "Publish release"
+
+1. **Monitor Deployment:**
+   - Go to Actions tab
+   - Select "Release Build and Deploy" workflow
+   - Monitor build and deployment progress
+   - Approve when prompted
+
+#### Version Numbering
+
+Follow semantic versioning (semver):
+
+- **Major version** (v2.0.0): Breaking changes
+- **Minor version** (v1.1.0): New features, backwards compatible
+- **Patch version** (v1.0.1): Bug fixes, backwards compatible
+
+#### Rollback Process
+
+If deployment fails or issues are found:
+
+1. **Quick Rollback** (GitHub UI):
+
+   ```bash
+   # Create new release with previous version
+   git tag -a v1.0.1 -m "Rollback to working version"
+   git push origin v1.0.1
+   ```
+
+1. **Manual Rollback** (Azure Portal):
+   - Go to App Service
+   - Settings → Deployment Center
+   - Find previous successful deployment
+   - Click "Redeploy"
+
+1. **Terraform Rollback:**
+
+   ```bash
+   cd deploy/environments/prod
+   terraform plan -var="docker_image_tag=USERNAME/lariosincometax-website:v1.0.0"
+   terraform apply
+   ```
+
+### Monitoring Azure Deployments
+
+#### GitHub Actions
+
+- **View workflows**: Repository → Actions tab
+- **Check logs**: Click on workflow run → Select job
+- **Download artifacts**: Available in workflow summary
+
+#### Azure Portal
+
+- **Deployment logs**: App Service → Deployment Center → Logs
+- **Application logs**: App Service → Monitoring → Log stream
+- **Metrics**: App Service → Monitoring → Metrics
+- **Alerts**: App Service → Monitoring → Alerts
+
+#### Application Insights
+
+- **Performance**: Application Insights → Performance
+- **Failures**: Application Insights → Failures
+- **Availability**: Application Insights → Availability
+- **Live Metrics**: Application Insights → Live Metrics
+
+### Troubleshooting Azure Deployments
+
+#### Deployment Fails at Terraform Init
+
+**Issue**: Backend initialization fails
+
+**Solutions:**
+
+- Verify Azure credentials are correct
+- Check backend storage account exists
+- Ensure service principal has access to storage account
+
+#### Deployment Fails at Terraform Apply
+
+**Issue**: Resource creation fails
+
+**Solutions:**
+
+- Check Terraform plan output for errors
+- Verify resource names are unique
+- Check Azure service limits
+- Review Terraform state for conflicts
+
+#### Docker Image Not Pulling
+
+**Issue**: App Service can't pull Docker image
+
+**Solutions:**
+
+- Verify Docker Hub credentials in secrets
+- Check image exists with specified tag
+- Review App Service logs for pull errors
+- Ensure image is public or credentials are configured
+
+#### App Service Not Responding
+
+**Issue**: Deployment succeeds but app not accessible
+
+**Solutions:**
+
+- Check App Service status in Azure Portal
+- Review application logs
+- Verify container is running
+- Check health check endpoint
+- Restart App Service
+
 ## Resources
 
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [Docker Build and Push Action](https://github.com/docker/build-push-action)
 - [Docker Hub](https://hub.docker.com/)
+- [Azure App Service Documentation](https://docs.microsoft.com/azure/app-service/)
+- [Terraform Azure Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
+- [Azure Infrastructure Architecture](azure-infrastructure.md)
+- [Azure Deployment Setup Guide](azure-deployment-setup.md)
+- [Azure Deployment Checklist](azure-deployment-checklist.md)
 - [Workflow Files](.github/workflows/)
