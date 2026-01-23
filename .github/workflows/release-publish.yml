@@ -1,19 +1,15 @@
-name: Docker Build and Publish
+name: Release Build and Deploy
 
 on:
-  push:
-    branches:
-      - main
-    tags:
-      - 'v*'
-  workflow_dispatch:
+  release:
+    types: [published]
 
 env:
   DOCKER_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/lariosincometax-website
 
 jobs:
   build-and-publish:
-    name: Build and Push Docker Image
+    name: Build and Push Release Image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -28,18 +24,23 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Extract release version
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Release version: $VERSION"
+
       - name: Extract metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.DOCKER_IMAGE }}
           tags: |
-            type=ref,event=branch
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-            type=sha,prefix={{branch}}-
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ steps.version.outputs.version }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -52,41 +53,11 @@ jobs:
           cache-to: type=gha,mode=max
           platforms: linux/amd64,linux/arm64
 
-      # - name: Update Docker Hub description
-      #   uses: peter-evans/dockerhub-description@v5
-      #   with:
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
-      #     repository: ${{ env.DOCKER_IMAGE }}
-      #     short-description: 'Angular-based web application for Larios Income Tax services'
-      #     readme-filepath: ./README.dockerhub.md
-
-  test-image:
-    name: Test Published Image
-    runs-on: ubuntu-latest
-    needs: build-and-publish
-    steps:
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Pull and test image
-        run: |
-          docker pull ${{ env.DOCKER_IMAGE }}:latest
-          docker run -d -p 8080:80 --name test-container ${{ env.DOCKER_IMAGE }}:latest
-          sleep 10
-          curl -f http://localhost:8080 || exit 1
-          docker stop test-container
-          docker rm test-container
-          echo "✅ Docker image test successful"
-
       - name: Image details
         run: |
-          echo "Published image: ${{ env.DOCKER_IMAGE }}"
-          docker image inspect ${{ env.DOCKER_IMAGE }}:latest --format='{{.Size}}' | \
-            awk '{printf "Image size: %.2f MB\n", $1/1024/1024}'
+          echo "Published release image: ${{ env.DOCKER_IMAGE }}"
+          echo "Version: ${{ steps.version.outputs.version }}"
+          echo "Tags: ${{ steps.meta.outputs.tags }}"
 
   terraform-validate:
     name: Validate Terraform
@@ -102,27 +73,33 @@ jobs:
           terraform_version: 1.6.0
 
       - name: Terraform Format Check
-        working-directory: ./deploy/environments/dev
+        working-directory: ./deploy/environments/prod
         run: terraform fmt -check -recursive
 
       - name: Terraform Init
-        working-directory: ./deploy/environments/dev
+        working-directory: ./deploy/environments/prod
         run: terraform init -backend=false
 
       - name: Terraform Validate
-        working-directory: ./deploy/environments/dev
+        working-directory: ./deploy/environments/prod
         run: terraform validate
 
-  deploy-dev:
-    name: Deploy to Azure Dev
+  deploy-prod:
+    name: Deploy to Azure Production
     runs-on: ubuntu-latest
     needs: terraform-validate
     environment:
-      name: dev
+      name: prod
       url: ${{ steps.deploy.outputs.app_url }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Extract release version
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Azure Login
         uses: azure/login@v1
@@ -142,13 +119,13 @@ jobs:
           terraform_wrapper: false
 
       - name: Terraform Init
-        working-directory: ./deploy/environments/dev
+        working-directory: ./deploy/environments/prod
         run: |
           terraform init \
             -backend-config="resource_group_name=${{ secrets.TF_BACKEND_RESOURCE_GROUP }}" \
             -backend-config="storage_account_name=${{ secrets.TF_BACKEND_STORAGE_ACCOUNT }}" \
             -backend-config="container_name=${{ secrets.TF_BACKEND_CONTAINER }}" \
-            -backend-config="key=larios-income-tax-dev.tfstate"
+            -backend-config="key=larios-income-tax-prod.tfstate"
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -157,10 +134,10 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        working-directory: ./deploy/environments/dev
+        working-directory: ./deploy/environments/prod
         run: |
           terraform plan \
-            -var="docker_image_tag=${{ secrets.DOCKERHUB_USERNAME }}/lariosincometax-website:latest" \
+            -var="docker_image_tag=${{ secrets.DOCKERHUB_USERNAME }}/lariosincometax-website:${{ steps.version.outputs.version }}" \
             -out=tfplan
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -170,7 +147,7 @@ jobs:
 
       - name: Terraform Apply
         id: deploy
-        working-directory: ./deploy/environments/dev
+        working-directory: ./deploy/environments/prod
         run: |
           terraform apply -auto-approve tfplan
           echo "app_url=$(terraform output -raw app_service_url)" >> $GITHUB_OUTPUT
@@ -182,7 +159,22 @@ jobs:
 
       - name: Deployment Summary
         run: |
-          echo "🚀 Deployment successful!"
-          echo "Environment: dev"
+          echo "🚀 Production deployment successful!"
+          echo "Environment: prod"
+          echo "Release Version: ${{ steps.version.outputs.version }}"
           echo "App URL: ${{ steps.deploy.outputs.app_url }}"
-          echo "Docker Image: ${{ env.DOCKER_IMAGE }}:latest"
+          echo "Docker Image: ${{ env.DOCKER_IMAGE }}:${{ steps.version.outputs.version }}"
+
+      - name: Create deployment comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.ref,
+              environment: 'prod',
+              description: 'Deployed version ${{ steps.version.outputs.version }} to production',
+              auto_merge: false,
+              required_contexts: []
+            })

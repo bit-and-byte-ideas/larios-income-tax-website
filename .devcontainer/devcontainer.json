@@ -21,7 +21,13 @@
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
-      "extensions": ["anthropic.claude-code", "tal7aouy.icons", "angular.ng-template"]
+      "extensions": [
+        "anthropic.claude-code",
+        "tal7aouy.icons",
+        "angular.ng-template",
+        "hashicorp.terraform",
+        "ms-azuretools.vscode-azureterraform"
+      ]
     }
   }
 

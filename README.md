@@ -49,6 +49,21 @@ docker-compose up -d
 
 See [Docker Setup](docs/docker-setup.md) for detailed deployment options.
 
+## Azure Deployment
+
+This project includes complete Terraform infrastructure for deploying to Azure App Services:
+
+- **Development**: Automatic deployment from `main` branch (with approval)
+- **Production**: Automatic deployment from GitHub Releases (with approval)
+
+### Quick Deploy
+
+1. Configure [Azure and GitHub secrets](deploy/SETUP.md#step-3-github-secrets)
+2. Push to main branch or create a release
+3. Approve deployment in GitHub Actions
+
+See [Infrastructure Setup Guide](deploy/SETUP.md) for complete instructions.
+
 ## Technology Stack
 
 - **Framework:** Angular 21.0.4
