@@ -91,3 +91,11 @@ yarn-error.log*
 **/*_override.tf.json
 **/crash.log
 **/crash.*.log
+
+# Azure Static Web Apps
+.azure/
+**/.vscode/settings.json
+swa-cli.config.json
+
+# Old Docker files (migrated to Static Web Apps)
+*.old
