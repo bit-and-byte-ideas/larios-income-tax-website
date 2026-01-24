@@ -22,7 +22,6 @@ lario-income-tax-website/
 │   ├── index.html          # Main HTML file
 │   ├── main.ts             # Application entry point
 │   └── styles.css          # Global styles
-├── .dockerignore           # Docker ignore patterns
 ├── .env.example            # Environment variables template
 ├── .gitignore              # Git ignore patterns
 ├── .markdownlint.json      # Markdown linting rules
@@ -31,14 +30,18 @@ lario-income-tax-website/
 ├── angular.json            # Angular CLI configuration
 ├── catalog-info.yaml       # Backstage catalog metadata
 ├── CLAUDE.md               # AI assistant guidelines
-├── docker-compose.yml      # Docker Compose configuration
-├── Dockerfile              # Docker build instructions
 ├── LICENSE                 # Project license
 ├── mkdocs.yml              # TechDocs configuration
-├── nginx.conf              # Nginx server configuration
 ├── package.json            # NPM dependencies and scripts
 ├── README.md               # Project overview
-└── tsconfig.json           # TypeScript configuration
+├── staticwebapp.config.json # Azure Static Web Apps configuration
+├── tsconfig.json           # TypeScript configuration
+└── deploy/                 # Terraform infrastructure
+    ├── modules/
+    │   └── static-web-app/ # Static Web App module
+    └── environments/
+        ├── dev/            # Dev environment
+        └── prod/           # Prod environment
 ```
 
 ## Key Directories
@@ -142,12 +145,16 @@ Static assets served directly without processing.
 - **.markdownlint.json** - Markdown linting rules
 - **.pre-commit-config.yaml** - Pre-commit hooks
 
-### Docker
+### Deployment
 
-- **Dockerfile** - Multi-stage Docker build
-- **docker-compose.yml** - Container orchestration
-- **.dockerignore** - Files excluded from Docker build
-- **nginx.conf** - Nginx server configuration
+- **staticwebapp.config.json** - Azure Static Web Apps configuration
+  - Navigation fallback for SPA routing
+  - Security headers
+  - MIME types
+- **deploy/** - Terraform infrastructure as code
+  - Infrastructure for dev and prod environments
+  - Static Web App resources
+  - Application Insights
 
 ### Development
 

@@ -16,12 +16,11 @@ integrates seamlessly with the Backstage developer portal.
     ├── setup-guide.md
     ├── architecture.md
     ├── code-quality.md
-    ├── docker-setup.md
     ├── production-build.md
+    ├── azure-deployment-setup.md
     ├── environment-config.md
     ├── project-info.md
     ├── project-structure.md
-    ├── bootstrap-summary.md
     ├── markdown-style-guide.md
     └── pre-commit-setup.md
 ```

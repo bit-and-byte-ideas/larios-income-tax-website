@@ -19,7 +19,7 @@ site at [lariosincometax.com](https://www.lariosincometax.com/).
 - **Framework:** Angular 21.0.4
 - **Language:** TypeScript
 - **Styling:** CSS
-- **Container:** Docker with Nginx
+- **Deployment:** Azure Static Web Apps
 - **Node Version:** 20 LTS
 - **Testing:** Vitest
 - **Code Quality:** Prettier, markdownlint, pre-commit hooks
@@ -28,13 +28,12 @@ site at [lariosincometax.com](https://www.lariosincometax.com/).
 
 - [Setup Guide](setup-guide.md) - Get started with local development
 - [Architecture](architecture.md) - Understand the project structure
-- [Docker Setup](docker-setup.md) - Deploy with containers
 - [Code Quality](code-quality.md) - Code standards and tools
 
 ## Project Status
 
 - ✅ Angular project bootstrapped
-- ✅ Docker containerization configured
+- ✅ Azure Static Web Apps deployment configured
 - ✅ Pre-commit hooks active
 - ✅ TechDocs documentation structured
 - ⏳ Feature modules pending implementation
@@ -52,7 +51,8 @@ site at [lariosincometax.com](https://www.lariosincometax.com/).
 
 - Mobile-first responsive design
 - Lazy-loaded feature modules
-- Production-ready Docker deployment
+- Azure Static Web Apps with global CDN
+- Automated CI/CD pipeline
 - Automated code quality checks
 - SEO optimization ready
 

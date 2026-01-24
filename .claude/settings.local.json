@@ -33,7 +33,8 @@
       "Bash(ng add:*)",
       "Bash(ng test:*)",
       "Bash(chmod:*)",
-      "Bash(./validate.sh:*)"
+      "Bash(./validate.sh:*)",
+      "Bash(grep:*)"
     ]
   }
 }
