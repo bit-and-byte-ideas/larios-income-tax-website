@@ -1,0 +1,204 @@
+<mxfile host="app.diagrams.net" modified="2024-01-23T00:00:00.000Z" agent="Claude Code" etag="azure-infra-swa" version="22.1.11" type="device">
+  <diagram name="Azure Infrastructure - Static Web Apps" id="azure-infrastructure-diagram-swa">
+    <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Azure Subscription -->
+        <mxCell id="azure-subscription" value="Azure Subscription" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="1520" height="1000" as="geometry" />
+        </mxCell>
+
+        <!-- Terraform State Resource Group -->
+        <mxCell id="tf-state-rg" value="Resource Group: rg-terraform-state" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="azure-subscription">
+          <mxGeometry x="40" y="40" width="400" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="tf-storage" value="Storage Account&#xa;sttfstateXXXXXX&#xa;&#xa;• Standard_LRS&#xa;• Server-side encryption&#xa;• Blob lease locking" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;align=left;verticalAlign=top;" vertex="1" parent="tf-state-rg">
+          <mxGeometry x="20" y="40" width="360" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="tf-container" value="Container: tfstate&#xa;&#xa;• larios-income-tax-dev.tfstate&#xa;• larios-income-tax-prod.tfstate" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;verticalAlign=top;" vertex="1" parent="tf-state-rg">
+          <mxGeometry x="40" y="80" width="320" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Development Environment -->
+        <mxCell id="dev-env-rg" value="Resource Group: rg-larios-income-tax-dev" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="azure-subscription">
+          <mxGeometry x="40" y="280" width="680" height="600" as="geometry" />
+        </mxCell>
+
+        <!-- Dev Static Web App -->
+        <mxCell id="dev-swa" value="Static Web App&#xa;swa-larios-income-tax-dev" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" vertex="1" parent="dev-env-rg">
+          <mxGeometry x="40" y="40" width="600" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="dev-swa-details" value="SKU: Free&#xa;Cost: $0/month&#xa;HTTPS Only: Yes (enforced)&#xa;Global CDN: Built-in&#xa;&#xa;URL:&#xa;https://swa-larios-income-tax-dev-*.azurestaticapps.net&#xa;&#xa;Features:&#xa;• Automatic SSL certificates&#xa;• Global CDN distribution&#xa;• Native Angular SPA support&#xa;• CI/CD integration via GitHub Actions&#xa;• Deployment tokens managed by Terraform" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;" vertex="1" parent="dev-swa">
+          <mxGeometry x="20" y="40" width="560" height="220" as="geometry" />
+        </mxCell>
+
+        <!-- Dev Managed Identity -->
+        <mxCell id="dev-identity" value="Managed Identity&#xa;(System-Assigned)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="dev-env-rg">
+          <mxGeometry x="40" y="340" width="280" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Dev Application Insights -->
+        <mxCell id="dev-insights" value="Application Insights&#xa;appi-larios-income-tax-dev" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" vertex="1" parent="dev-env-rg">
+          <mxGeometry x="360" y="340" width="280" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="dev-insights-details" value="Type: Web Application&#xa;Retention: 90 days&#xa;&#xa;Monitoring:&#xa;• Request rates&#xa;• Response times&#xa;• Failed requests&#xa;• Exceptions&#xa;• Dependencies&#xa;• Custom metrics" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;" vertex="1" parent="dev-insights">
+          <mxGeometry x="10" y="40" width="260" height="125" as="geometry" />
+        </mxCell>
+
+        <!-- Production Environment -->
+        <mxCell id="prod-env-rg" value="Resource Group: rg-larios-income-tax-prod" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="azure-subscription">
+          <mxGeometry x="800" y="280" width="680" height="600" as="geometry" />
+        </mxCell>
+
+        <!-- Prod Static Web App -->
+        <mxCell id="prod-swa" value="Static Web App&#xa;swa-larios-income-tax-prod" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;" vertex="1" parent="prod-env-rg">
+          <mxGeometry x="40" y="40" width="600" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="prod-swa-details" value="SKU: Standard&#xa;Cost: ~$9/month&#xa;HTTPS Only: Yes (enforced)&#xa;Global CDN: Built-in&#xa;&#xa;URL:&#xa;https://swa-larios-income-tax-prod-*.azurestaticapps.net&#xa;&#xa;Features:&#xa;• Automatic SSL certificates&#xa;• Global CDN distribution&#xa;• Custom domains with SSL&#xa;• SLA-backed uptime guarantee&#xa;• Native Angular SPA support&#xa;• Deployment tokens managed by Terraform" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;" vertex="1" parent="prod-swa">
+          <mxGeometry x="20" y="40" width="560" height="220" as="geometry" />
+        </mxCell>
+
+        <!-- Prod Managed Identity -->
+        <mxCell id="prod-identity" value="Managed Identity&#xa;(System-Assigned)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="prod-env-rg">
+          <mxGeometry x="40" y="340" width="280" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Prod Application Insights -->
+        <mxCell id="prod-insights" value="Application Insights&#xa;appi-larios-income-tax-prod" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;" vertex="1" parent="prod-env-rg">
+          <mxGeometry x="360" y="340" width="280" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="prod-insights-details" value="Type: Web Application&#xa;Retention: 90 days&#xa;&#xa;Monitoring:&#xa;• Request rates&#xa;• Response times&#xa;• Failed requests&#xa;• Exceptions&#xa;• Dependencies&#xa;• Custom metrics" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;" vertex="1" parent="prod-insights">
+          <mxGeometry x="10" y="40" width="260" height="125" as="geometry" />
+        </mxCell>
+
+        <!-- External Services -->
+        <mxCell id="external-services" value="GitHub Repository" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="azure-subscription">
+          <mxGeometry x="520" y="40" width="400" height="200" as="geometry" />
+        </mxCell>
+
+        <!-- GitHub -->
+        <mxCell id="github-details" value="Repository:&#xa;lario-income-tax-website&#xa;&#xa;Secrets:&#xa;• AZURE_CLIENT_ID&#xa;• AZURE_CLIENT_SECRET&#xa;• AZURE_SUBSCRIPTION_ID&#xa;• AZURE_TENANT_ID&#xa;• TF_BACKEND_RESOURCE_GROUP&#xa;• TF_BACKEND_STORAGE_ACCOUNT&#xa;• TF_BACKEND_CONTAINER&#xa;• AZURE_STATIC_WEB_APPS_API_TOKEN_DEV&#xa;• AZURE_STATIC_WEB_APPS_API_TOKEN_PROD" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;" vertex="1" parent="external-services">
+          <mxGeometry x="10" y="40" width="380" height="145" as="geometry" />
+        </mxCell>
+
+        <!-- Service Principal -->
+        <mxCell id="service-principal" value="Azure AD Service Principal&#xa;&#xa;Name: larios-income-tax-terraform&#xa;Role: Contributor&#xa;Scope: Subscription&#xa;&#xa;Used by:&#xa;• GitHub Actions&#xa;• Terraform" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;" vertex="1" parent="azure-subscription">
+          <mxGeometry x="1040" y="40" width="280" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- Connections -->
+        <!-- GitHub to Service Principal -->
+        <mxCell id="conn1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#6c8ebf;strokeWidth=2;dashed=1" edge="1" parent="azure-subscription" source="external-services" target="service-principal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn1-label" value="Authenticates" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" vertex="1" connectable="0" parent="conn1">
+          <mxGeometry x="-0.2" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Service Principal to Dev RG -->
+        <mxCell id="conn2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;strokeColor=#82b366;strokeWidth=2;dashed=1" edge="1" parent="azure-subscription" source="service-principal" target="dev-env-rg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn2-label" value="Manages via Terraform" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" vertex="1" connectable="0" parent="conn2">
+          <mxGeometry x="-0.2" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Service Principal to Prod RG -->
+        <mxCell id="conn3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#d6b656;strokeWidth=2;dashed=1" edge="1" parent="azure-subscription" source="service-principal" target="prod-env-rg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn3-label" value="Manages via Terraform" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" vertex="1" connectable="0" parent="conn3">
+          <mxGeometry x="-0.2" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Service Principal to TF State -->
+        <mxCell id="conn4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#6c8ebf;strokeWidth=2;dashed=1" edge="1" parent="azure-subscription" source="service-principal" target="tf-state-rg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn4-label" value="Reads/Writes State" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" vertex="1" connectable="0" parent="conn4">
+          <mxGeometry x="-0.2" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- GitHub to Dev SWA -->
+        <mxCell id="conn5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#82b366;strokeWidth=2" edge="1" parent="azure-subscription" source="external-services" target="dev-swa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn5-label" value="Deploys (GitHub Actions)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" vertex="1" connectable="0" parent="conn5">
+          <mxGeometry x="-0.2" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- GitHub to Prod SWA -->
+        <mxCell id="conn6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#d6b656;strokeWidth=2" edge="1" parent="azure-subscription" source="external-services" target="prod-swa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn6-label" value="Deploys (GitHub Actions)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" vertex="1" connectable="0" parent="conn6">
+          <mxGeometry x="-0.2" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Dev SWA to Dev Insights -->
+        <mxCell id="conn7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#82b366;strokeWidth=2;dashed=1" edge="1" parent="azure-subscription" source="dev-swa" target="dev-insights">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn7-label" value="Sends Telemetry" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" vertex="1" connectable="0" parent="conn7">
+          <mxGeometry x="-0.2" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Prod SWA to Prod Insights -->
+        <mxCell id="conn8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#d6b656;strokeWidth=2;dashed=1" edge="1" parent="azure-subscription" source="prod-swa" target="prod-insights">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn8-label" value="Sends Telemetry" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" vertex="1" connectable="0" parent="conn8">
+          <mxGeometry x="-0.2" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Cost Migration Note -->
+        <mxCell id="cost-note" value="💰 Cost Reduction&#xa;Previous: ~$86/month (App Services)&#xa;Current: ~$9/month (Static Web Apps)&#xa;Savings: ~90% ($77/month)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4e1f5;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontStyle=1" vertex="1" parent="azure-subscription">
+          <mxGeometry x="40" y="900" width="400" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Title -->
+        <mxCell id="title" value="Larios Income Tax Website - Azure Infrastructure Architecture (Static Web Apps)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="1080" width="1520" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="legend" value="Legend" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1140" width="500" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-dev" value="Development Environment (Free SKU, $0/month)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="legend">
+          <mxGeometry x="20" y="40" width="460" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-prod" value="Production Environment (Standard SKU, ~$9/month)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="legend">
+          <mxGeometry x="20" y="80" width="460" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Notes -->
+        <mxCell id="notes" value="Notes" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="600" y="1140" width="960" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="notes-text" value="• Terraform manages infrastructure (resource groups, Static Web Apps, App Insights)&#xa;• GitHub Actions handle application deployment using Static Web Apps native deployment&#xa;• Service Principal used for Terraform authentication&#xa;• Global CDN included at no additional cost&#xa;• Automatic SSL certificates and HTTPS enforcement&#xa;• Managed Identities provide secure access to Azure services" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="notes">
+          <mxGeometry x="20" y="40" width="920" height="90" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

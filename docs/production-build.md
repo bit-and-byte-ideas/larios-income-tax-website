@@ -155,46 +155,42 @@ npx webpack-bundle-analyzer dist/lario-income-tax/browser/stats.json
 
 ## Deployment Methods
 
-### 1. Docker Deployment
+### 1. Azure Static Web Apps (Production)
 
-> Recommended for production
+> Recommended deployment method - Automated via GitHub Actions
 
-```bash
-# Build Docker image
-docker build -t lario-income-tax-website .
+The application is automatically deployed to Azure Static Web Apps when:
 
-# Run container
-docker-compose up -d
-```
+- **Development**: Push to `main` branch
+- **Production**: Create a GitHub release
 
-See [Docker Setup](docker-setup.md) for details.
+See [Azure Deployment Setup](azure-deployment-setup.md) for complete details.
 
-### 2. Static File Hosting
-
-> For cloud platforms (AWS S3, Azure, GCP)
+**Manual deployment** (if needed):
 
 ```bash
 # Build production bundle
 npm run build
 
-# Deploy to S3 (example)
-aws s3 sync dist/lario-income-tax/browser/ s3://your-bucket --delete
-
-# Configure CloudFront or CDN
+# Deploy using Azure CLI
+az staticwebapp deploy \
+  --app-id "your-static-web-app-id" \
+  --resource-group rg-larios-income-tax-prod \
+  --source dist/browser/
 ```
 
-### 3. Traditional Server
+### 2. Local Testing
 
-> For VPS or dedicated servers
+> Test production build locally
 
 ```bash
 # Build production bundle
 npm run build
 
-# Copy to web server
-scp -r dist/lario-income-tax/browser/* user@server:/var/www/html/
+# Serve locally with a static server
+npx http-server dist/browser -p 8080
 
-# Configure Nginx (see nginx.conf)
+# Open http://localhost:8080
 ```
 
 ## Pre-deployment Checklist
@@ -323,79 +319,86 @@ debugger;
    - Monitor Core Web Vitals
    - Track bundle sizes
 
-### Server Monitoring
+### Deployment Monitoring
 
-1. **Docker Logs:**
-
-   ```bash
-   docker-compose logs -f
-   ```
-
-1. **Nginx Access Logs:**
+1. **Azure Static Web Apps:**
 
    ```bash
-   docker exec lario-income-tax-website tail -f /var/log/nginx/access.log
+   # Check deployment status
+   az staticwebapp show \
+     --name swa-larios-income-tax-prod \
+     --resource-group rg-larios-income-tax-prod
    ```
 
-1. **Resource Usage:**
+1. **Application Insights:**
 
    ```bash
-   docker stats lario-income-tax-website
+   # Query recent requests
+   az monitor app-insights query \
+     --app appi-larios-income-tax-prod \
+     --resource-group rg-larios-income-tax-prod \
+     --analytics-query "requests | where timestamp > ago(1h)"
    ```
+
+1. **GitHub Actions:**
+   - Check workflow runs at: `https://github.com/your-org/repo/actions`
+   - Review deployment logs for errors
 
 ## Rollback Strategy
 
-### Docker Rollback
+### Production Rollback
 
-```bash
-# Tag current version
-docker tag lario-income-tax-website:latest lario-income-tax-website:v1.0.0
+To rollback a production deployment:
 
-# Rollback to previous version
-docker-compose down
-docker-compose up -d lario-income-tax-website:v0.9.0
-```
+1. **Redeploy Previous Release:**
 
-### Git Rollback
+   ```bash
+   # Checkout previous release tag
+   git checkout v1.0.0
+
+   # Create new release from that tag
+   # GitHub Actions will automatically deploy
+   ```
+
+2. **Via GitHub Actions:**
+   - Navigate to Actions → Deploy to Production
+   - Re-run a previous successful workflow
+
+### Development Rollback
 
 ```bash
 # Revert to previous commit
 git revert HEAD
 
-# Or reset to specific commit
-git reset --hard <commit-hash>
-
-# Rebuild and deploy
-npm run build
+# Push to main (triggers auto-deployment)
+git push origin main
 ```
+
+See [Azure Deployment Checklist](azure-deployment-checklist.md) for emergency procedures.
 
 ## CI/CD Pipeline
 
-### GitHub Actions Example
+### Automated Deployment
 
-```yaml
-name: Build and Deploy
+The project uses GitHub Actions for automated deployments:
 
-on:
-  push:
-    branches: [main]
+- **Development**: `.github/workflows/deploy-dev.yml`
+  - Triggered on push to `main`
+  - Deploys to Free tier Static Web App
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
-      - name: Build Docker image
-        run: docker build -t lario-income-tax-website .
-      - name: Deploy
-        run: docker-compose up -d
-```
+- **Production**: `.github/workflows/deploy-prod.yml`
+  - Triggered on GitHub release creation
+  - Deploys to Standard tier Static Web App
+  - Requires approval gate
+
+**Pipeline Steps:**
+
+1. Build and validate (tests, linters)
+2. Terraform validate
+3. Deploy infrastructure (Terraform)
+4. Deploy application (Azure Static Web Apps)
+
+See [CI/CD Pipeline](ci-cd.md) for complete documentation.
 
 ## Troubleshooting
 
@@ -452,4 +455,6 @@ npm run build
 - [Angular Production Guide](https://angular.dev/tools/cli/build)
 - [Deployment Documentation](https://angular.dev/tools/cli/deployment)
 - [Performance Optimization](https://web.dev/articles/vitals)
-- [Docker Setup](docker-setup.md)
+- [Azure Static Web Apps Documentation](https://docs.microsoft.com/azure/static-web-apps/)
+- [Azure Deployment Setup](azure-deployment-setup.md)
+- [CI/CD Pipeline](ci-cd.md)

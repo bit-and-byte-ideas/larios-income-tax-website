@@ -2,8 +2,8 @@
 
 ## Overview
 
-This project uses GitHub Actions for continuous integration and deployment. Automated workflows ensure
-code quality, run tests, build Docker images, and publish to Docker Hub.
+This project uses GitHub Actions for continuous integration and deployment to Azure Static Web Apps. Automated
+workflows ensure code quality, run tests, build the Angular application, and deploy to Azure.
 
 ## Workflows
 
@@ -28,45 +28,81 @@ code quality, run tests, build Docker images, and publish to Docker Hub.
    - Vitest test execution
    - Coverage reporting
 
-1. **Docker Build** - Container validation
-   - Docker image build test
-   - Container smoke test
-
 **Status:** All jobs must pass before merge
 
-### 2. Docker Build and Publish
+### 2. Deploy to Development
 
-**File:** `.github/workflows/docker-publish.yml`
+**File:** `.github/workflows/deploy-dev.yml`
 
-**Trigger:**
-
-- Push to `main` branch
-- Version tags (`v*`)
-- Manual workflow dispatch
+**Trigger:** Push to `main` branch
 
 **Jobs:**
 
-1. **Build and Publish**
-   - Multi-platform build (linux/amd64, linux/arm64)
-   - Push to Docker Hub
-   - Tag management (latest, version, sha)
-   - Docker Hub description update
+1. **Build and Validate**
+   - Install dependencies
+   - Run linters (format check, markdown lint)
+   - Run tests
+   - Build Angular application
+   - Upload build artifact
 
-1. **Test Image**
-   - Pull published image
-   - Run smoke tests
-   - Verify functionality
+1. **Terraform Validate**
+   - Format check
+   - Initialize (no backend)
+   - Validate configuration
 
-**Docker Image:** `<DOCKERHUB_USERNAME>/lariosincometax-website`
+1. **Deploy Infrastructure**
+   - Initialize Terraform with Azure backend
+   - Plan infrastructure changes
+   - Apply changes (requires approval)
+   - Extract deployment token
 
-**Tags:**
+1. **Deploy Application**
+   - Download build artifact
+   - Deploy to Azure Static Web Apps
+   - Automatic CDN distribution
 
-- `latest` - Latest main branch build
-- `main-<sha>` - Specific commit
-- `v1.0.0` - Semantic version (on tags)
-- `v1.0`, `v1` - Version aliases
+**Environment:** `dev` (Free tier)
 
-### 3. TechDocs Validation
+**Deployment URL:** `https://swa-larios-income-tax-dev-*.azurestaticapps.net`
+
+### 3. Deploy to Production
+
+**File:** `.github/workflows/deploy-prod.yml`
+
+**Trigger:** GitHub Release published
+
+**Jobs:**
+
+1. **Build and Validate**
+   - Extract release version
+   - Install dependencies
+   - Run linters
+   - Run tests
+   - Build Angular application
+   - Upload build artifact (30-day retention)
+
+1. **Terraform Validate**
+   - Format check
+   - Initialize (no backend)
+   - Validate configuration
+
+1. **Deploy Infrastructure**
+   - Initialize Terraform with Azure backend
+   - Plan infrastructure changes
+   - Apply changes (requires approval)
+   - Extract deployment token
+
+1. **Deploy Application**
+   - Download build artifact
+   - Deploy to Azure Static Web Apps
+   - Create deployment record
+   - Display deployment summary
+
+**Environment:** `prod` (Standard tier)
+
+**Deployment URL:** `https://swa-larios-income-tax-prod-*.azurestaticapps.net`
+
+### 4. TechDocs Validation
 
 **File:** `.github/workflows/techdocs.yml`
 
@@ -88,23 +124,52 @@ code quality, run tests, build Docker images, and publish to Docker Hub.
 
 Configure these as organization or repository secrets:
 
-| Secret               | Description             | Required By        |
-| -------------------- | ----------------------- | ------------------ |
-| `DOCKERHUB_USERNAME` | Docker Hub username     | docker-publish.yml |
-| `DOCKERHUB_TOKEN`    | Docker Hub access token | docker-publish.yml |
+### Azure Credentials
+
+| Secret                  | Description                     | Required By                     |
+| ----------------------- | ------------------------------- | ------------------------------- |
+| `AZURE_CLIENT_ID`       | Service Principal client ID     | deploy-dev.yml, deploy-prod.yml |
+| `AZURE_CLIENT_SECRET`   | Service Principal client secret | deploy-dev.yml, deploy-prod.yml |
+| `AZURE_SUBSCRIPTION_ID` | Azure subscription ID           | deploy-dev.yml, deploy-prod.yml |
+| `AZURE_TENANT_ID`       | Azure tenant ID                 | deploy-dev.yml, deploy-prod.yml |
+
+### Terraform Backend
+
+| Secret                       | Description                     | Required By                     |
+| ---------------------------- | ------------------------------- | ------------------------------- |
+| `TF_BACKEND_RESOURCE_GROUP`  | Terraform state resource group  | deploy-dev.yml, deploy-prod.yml |
+| `TF_BACKEND_STORAGE_ACCOUNT` | Terraform state storage account | deploy-dev.yml, deploy-prod.yml |
+| `TF_BACKEND_CONTAINER`       | Terraform state container       | deploy-dev.yml, deploy-prod.yml |
+
+### Static Web Apps Deployment Tokens
+
+| Secret                                 | Description           | Required By     |
+| -------------------------------------- | --------------------- | --------------- |
+| `AZURE_STATIC_WEB_APPS_API_TOKEN_DEV`  | Dev deployment token  | deploy-dev.yml  |
+| `AZURE_STATIC_WEB_APPS_API_TOKEN_PROD` | Prod deployment token | deploy-prod.yml |
 
 ### Setting Up Secrets
 
 1. **Navigate to Repository Settings**
    - Go to Settings > Secrets and variables > Actions
 
-1. **Add Organization Secrets** (if not already configured)
-   - `DOCKERHUB_USERNAME`
-   - `DOCKERHUB_TOKEN`
+1. **Add Azure Credentials** (from Service Principal creation)
+   - `AZURE_CLIENT_ID`
+   - `AZURE_CLIENT_SECRET`
+   - `AZURE_SUBSCRIPTION_ID`
+   - `AZURE_TENANT_ID`
 
-1. **Or Add Repository Secrets**
-   - Click "New repository secret"
-   - Add each secret individually
+1. **Add Terraform Backend Secrets**
+   - `TF_BACKEND_RESOURCE_GROUP`
+   - `TF_BACKEND_STORAGE_ACCOUNT`
+   - `TF_BACKEND_CONTAINER`
+
+1. **Add Deployment Tokens** (from Terraform output)
+   - Run `terraform output -raw static_web_app_api_key`
+   - Add as `AZURE_STATIC_WEB_APPS_API_TOKEN_DEV`
+   - Repeat for prod environment
+
+See [Azure Deployment Setup](azure-deployment-setup.md) for complete setup instructions.
 
 ## Workflow Details
 
@@ -124,8 +189,6 @@ jobs:
     # Build application
   test:
     # Run unit tests
-  docker-build:
-    # Test Docker build
 ```
 
 **Checks Performed:**
@@ -136,38 +199,72 @@ jobs:
 - ✅ Production build succeeds
 - ✅ Bundle size within limits
 - ✅ Unit tests pass
-- ✅ Docker image builds
-- ✅ Container runs successfully
 
-### Docker Publish Workflow
+### Development Deployment Workflow
 
 ```yaml
 on:
   push:
-    branches:
-      - main
-    tags:
-      - 'v*'
+    branches: [main]
+  workflow_dispatch:
 
-env:
-  DOCKER_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/lariosincometax-website
+jobs:
+  build-and-validate:
+    # Build Angular app and run tests
+  terraform-validate:
+    # Validate Terraform configuration
+  deploy-infrastructure:
+    environment: dev
+    # Deploy infrastructure with Terraform
+  deploy-app:
+    environment: dev
+    # Deploy to Azure Static Web Apps
 ```
 
-**Build Process:**
+**Deployment Process:**
 
-1. Checkout code
-1. Set up Docker Buildx
-1. Login to Docker Hub
-1. Extract metadata and tags
-1. Build multi-platform image
-1. Push to Docker Hub
-1. Update repository description
-1. Test published image
+1. Build Angular application
+1. Run linters and tests
+1. Validate Terraform configuration
+1. Deploy infrastructure (requires approval)
+1. Deploy application to Static Web App
+1. Automatic global CDN distribution
 
-**Platforms:**
+**Environment:** Free tier Static Web App
 
-- `linux/amd64` - Standard x86_64
-- `linux/arm64` - ARM64 (Apple Silicon, ARM servers)
+### Production Deployment Workflow
+
+```yaml
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  build-and-validate:
+    # Build Angular app with version
+  terraform-validate:
+    # Validate Terraform configuration
+  deploy-infrastructure:
+    environment: prod
+    # Deploy infrastructure with Terraform
+  deploy-app:
+    environment: prod
+    # Deploy to Azure Static Web Apps
+```
+
+**Deployment Process:**
+
+1. Extract release version
+1. Build Angular application
+1. Run linters and tests
+1. Validate Terraform configuration
+1. Deploy infrastructure (requires approval)
+1. Deploy application to Static Web App
+1. Create deployment record
+1. Display deployment summary
+
+**Environment:** Standard tier Static Web App with SLA
 
 ### TechDocs Workflow
 
@@ -193,35 +290,52 @@ Add to README.md:
 
 ```markdown
 ![PR Validation](https://github.com/your-org/lario-income-tax-website/actions/workflows/pr-validation.yml/badge.svg)
-![Docker Publish](https://github.com/your-org/lario-income-tax-website/actions/workflows/docker-publish.yml/badge.svg)
+![Deploy to Dev](https://github.com/your-org/lario-income-tax-website/actions/workflows/deploy-dev.yml/badge.svg)
+![Deploy to Prod](https://github.com/your-org/lario-income-tax-website/actions/workflows/deploy-prod.yml/badge.svg)
 ```
 
 ## Deployment Process
 
-### Automatic Deployment
+### Automatic Deployment to Development
 
 **On merge to main:**
 
 1. PR validation runs (all checks must pass)
 1. Code merged to main branch
-1. Docker publish workflow triggers
-1. New image built and published
-1. Image tagged as `latest`
-1. Available on Docker Hub
+1. Development deployment workflow triggers
+1. Application built and tested
+1. Terraform validates infrastructure
+1. Infrastructure deployed to Azure (requires approval)
+1. Application deployed to Azure Static Web Apps
+1. Automatic global CDN distribution
+
+### Automatic Deployment to Production
+
+**On GitHub Release:**
+
+1. Create GitHub Release with version tag (e.g., v1.0.0)
+1. Production deployment workflow triggers
+1. Application built with version metadata
+1. Terraform validates infrastructure
+1. Infrastructure deployed to Azure (requires approval)
+1. Application deployed to Azure Static Web Apps
+1. Deployment record created
+1. Deployment summary displayed
 
 ### Manual Deployment
 
 **Trigger workflow manually:**
 
 1. Go to Actions tab
-1. Select "Docker Build and Publish"
+1. Select "Deploy to Development" or "Deploy to Production"
 1. Click "Run workflow"
-1. Select branch
+1. Select branch (main for dev, tag for prod)
 1. Click "Run workflow"
+1. Approve deployment when prompted
 
-### Version Releases
+### Creating Releases
 
-**Create a new version:**
+**Create a production release:**
 
 1. Create and push a version tag:
 
@@ -230,44 +344,36 @@ Add to README.md:
    git push origin v1.0.0
    ```
 
-1. Workflow builds and tags image:
-   - `lariosincometax-website:v1.0.0`
-   - `lariosincometax-website:v1.0`
-   - `lariosincometax-website:v1`
-   - `lariosincometax-website:latest`
+1. Create GitHub Release:
+   - Go to repository → Releases → Create new release
+   - Select tag v1.0.0
+   - Add release notes
+   - Publish release
 
-## Docker Hub
+1. Production deployment workflow automatically triggers
 
-### Pulling Images
+## Accessing Deployments
 
-```bash
-# Pull latest version
-docker pull <DOCKERHUB_USERNAME>/lariosincometax-website:latest
+### Development Environment
 
-# Pull specific version
-docker pull <DOCKERHUB_USERNAME>/lariosincometax-website:v1.0.0
+**URL:** `https://swa-larios-income-tax-dev-*.azurestaticapps.net`
 
-# Pull specific commit
-docker pull <DOCKERHUB_USERNAME>/lariosincometax-website:main-abc1234
-```
+**Access:**
 
-### Running Published Images
+- Automatically deployed on push to main
+- Free tier Static Web App
+- Global CDN distribution
 
-```bash
-# Run latest version
-docker run -d -p 80:80 <DOCKERHUB_USERNAME>/lariosincometax-website:latest
+### Production Environment
 
-# Run specific version
-docker run -d -p 80:80 <DOCKERHUB_USERNAME>/lariosincometax-website:v1.0.0
-```
+**URL:** `https://swa-larios-income-tax-prod-*.azurestaticapps.net`
 
-### Image Information
+**Access:**
 
-View on Docker Hub:
-
-```text
-https://hub.docker.com/r/<DOCKERHUB_USERNAME>/lariosincometax-website
-```
+- Deployed via GitHub Releases
+- Standard tier Static Web App with SLA
+- Custom domain support
+- Global CDN distribution
 
 ## Cache Management
 
@@ -276,8 +382,8 @@ https://hub.docker.com/r/<DOCKERHUB_USERNAME>/lariosincometax-website
 Workflows use GitHub Actions cache for:
 
 - NPM dependencies
-- Docker layers
 - Build artifacts
+- Terraform plugins
 
 **Benefits:**
 
@@ -288,7 +394,7 @@ Workflows use GitHub Actions cache for:
 **Cache Keys:**
 
 - NPM: `node-modules-${{ hashFiles('package-lock.json') }}`
-- Docker: `type=gha` (GitHub Actions cache)
+- Terraform: `.terraform` directory
 
 ### Clearing Cache
 
@@ -351,13 +457,13 @@ When workflows fail:
 1. Push tags to trigger release builds
 1. Document changes in release notes
 
-### Docker Images
+### Deployments
 
-1. Always tag with versions
-1. Use `latest` for development only
-1. Pin versions in production
-1. Monitor image sizes
-1. Clean up old images periodically
+1. Always approve deployments after reviewing changes
+1. Test in development before production releases
+1. Monitor deployment status in Actions tab
+1. Verify deployment health after completion
+1. Document deployment changes in release notes
 
 ## Troubleshooting
 
@@ -375,40 +481,53 @@ When workflows fail:
    npm run lint:md
    npm run build
    npm test
-   docker build .
    ```
 
 1. Fix issues and push
 1. Workflow re-runs automatically
 
-### Docker Build Fails
+### Terraform Validation Fails
 
-**Issue:** Docker build fails in workflow
+**Issue:** Terraform validation fails in workflow
 
 **Solutions:**
 
-1. Test locally:
+1. Check Terraform configuration syntax
+1. Validate locally:
 
    ```bash
-   docker build -t test .
+   cd deploy/environments/dev
+   terraform init
+   terraform validate
+   terraform fmt -check
    ```
 
-1. Check Dockerfile syntax
-1. Verify dependencies install
-1. Check build context size
-1. Review Docker logs
+1. Fix configuration errors
+1. Push changes
 
-### Image Not Pushing to Docker Hub
+### Deployment to Azure Fails
 
-**Issue:** Image builds but doesn't push
+**Issue:** Application deployment to Static Web Apps fails
 
 **Solutions:**
 
-1. Verify secrets are configured
-1. Check Docker Hub credentials
-1. Ensure organization secrets are accessible
-1. Review Docker Hub rate limits
-1. Check repository permissions
+1. Verify deployment token is correct
+1. Check Static Web App exists in Azure
+1. Review deployment logs in workflow
+1. Ensure build output directory is correct (`dist/browser/`)
+1. Verify staticwebapp.config.json syntax
+
+### Terraform Apply Fails
+
+**Issue:** Infrastructure deployment fails
+
+**Solutions:**
+
+1. Check Terraform plan output
+1. Verify Azure credentials are valid
+1. Check resource name conflicts
+1. Review Azure service limits
+1. Ensure service principal has proper permissions
 
 ### Tests Failing in CI
 
@@ -431,19 +550,111 @@ When workflows fail:
    - Update Node.js version
    - Update GitHub Actions versions
 
-1. **Clean up Docker Hub**
-   - Remove old tags
-   - Archive unused images
-   - Monitor storage usage
+1. **Monitor Azure resources**
+   - Review Static Web Apps usage
+   - Monitor bandwidth and requests
+   - Check deployment history
 
 1. **Review workflows**
    - Check execution times
    - Optimize slow jobs
    - Update caching strategies
 
+1. **Security updates**
+   - Rotate deployment tokens periodically
+   - Review service principal permissions
+   - Update Terraform provider versions
+
+## Deployment Architecture
+
+See [cicd-flow-diagram.drawio.xml](cicd-flow-diagram.drawio.xml) for the complete CI/CD flow diagram.
+
+### Azure Static Web Apps Resources
+
+#### Development Environment
+
+**Resources Created:**
+
+- Resource Group: `rg-larios-income-tax-dev`
+- Static Web App: `swa-larios-income-tax-dev` (Free tier)
+- Automatic global CDN distribution
+
+**Deployment URL:** `https://swa-larios-income-tax-dev-*.azurestaticapps.net`
+
+#### Production Environment
+
+**Resources Created:**
+
+- Resource Group: `rg-larios-income-tax-prod`
+- Static Web App: `swa-larios-income-tax-prod` (Standard tier)
+- Custom domain support
+- SLA-backed availability
+
+**Deployment URL:** `https://swa-larios-income-tax-prod-*.azurestaticapps.net`
+
+### GitHub Environments
+
+Configure protected environments in repository settings:
+
+**Development Environment (`dev`):**
+
+- Name: `dev`
+- Protection rules: Required reviewers
+- Deployment branch: `main`
+
+**Production Environment (`prod`):**
+
+- Name: `prod`
+- Protection rules: Required reviewers (recommend 2+ for production)
+- Deployment branch: `tags/*` (release tags only)
+
+### Monitoring Deployments
+
+#### GitHub Actions
+
+- **View workflows**: Repository → Actions tab
+- **Check logs**: Click on workflow run → Select job
+- **Download artifacts**: Available in workflow summary
+- **Deployment status**: Check job completion status
+
+#### Azure Portal
+
+- **Static Web App overview**: View deployment history and status
+- **Configuration**: Review app settings and environment variables
+- **Custom domains**: Manage custom domain mappings
+- **Monitoring**: View request metrics and bandwidth usage
+
+### Rollback Strategy
+
+If deployment fails or issues are found:
+
+1. **Redeploy Previous Release:**
+
+   ```bash
+   # Find the previous working release tag
+   git tag -l
+
+   # Create a new release from the working tag
+   # This triggers the production deployment workflow
+   ```
+
+1. **Via GitHub Releases:**
+   - Go to repository → Releases
+   - Find the last working release
+   - Click "Edit release"
+   - Re-publish the release (triggers redeployment)
+
+1. **Via GitHub Actions:**
+   - Go to Actions → Deploy to Production
+   - Find the last successful run
+   - Click "Re-run all jobs"
+
 ## Resources
 
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [Docker Build and Push Action](https://github.com/docker/build-push-action)
-- [Docker Hub](https://hub.docker.com/)
-- [Workflow Files](.github/workflows/)
+- [Azure Static Web Apps Documentation](https://docs.microsoft.com/azure/static-web-apps/)
+- [Terraform Azure Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
+- [Azure Infrastructure Architecture](azure-infrastructure.md)
+- [Azure Deployment Setup Guide](azure-deployment-setup.md)
+- [Azure Deployment Checklist](azure-deployment-checklist.md)
+- Workflow Files: See `.github/workflows/` directory in repository root

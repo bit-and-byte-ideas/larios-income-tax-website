@@ -10,7 +10,6 @@ An Angular-based web application for Larios Income Tax services, migrated from t
 
 - Node.js 20.x or higher
 - npm 10.x or higher
-- Docker (optional, for containerized deployment)
 
 ### Installation & Development
 
@@ -37,23 +36,26 @@ npm run lint:md        # Lint markdown files
 
 For Angular CLI commands (generate components, services, etc.), see [Setup Guide](docs/setup-guide.md).
 
-## Docker Deployment
+## Azure Deployment
 
-```bash
-# Build and run
-docker build -t lario-income-tax-website .
-docker-compose up -d
+This project includes complete Terraform infrastructure for deploying to Azure Static Web Apps:
 
-# Available at http://localhost:80
-```
+- **Development**: Automatic deployment from `main` branch (with approval)
+- **Production**: Automatic deployment from GitHub Releases (with approval)
 
-See [Docker Setup](docs/docker-setup.md) for detailed deployment options.
+### Quick Deploy
+
+1. Configure [Azure and GitHub secrets](deploy/SETUP.md#step-3-github-secrets)
+2. Push to main branch or create a release
+3. Approve deployment in GitHub Actions
+
+See [Infrastructure Setup Guide](deploy/SETUP.md) for complete instructions.
 
 ## Technology Stack
 
 - **Framework:** Angular 21.0.4
 - **Language:** TypeScript
-- **Container:** Docker with Nginx
+- **Deployment:** Azure Static Web Apps
 - **Node Version:** 20 LTS
 
 ## Documentation
@@ -65,8 +67,8 @@ Comprehensive technical documentation is available using [Backstage TechDocs](ht
 - [Architecture](docs/architecture.md) - Project structure and design patterns
 - [Code Quality](docs/code-quality.md) - Standards, linting, and pre-commit hooks
 - [CI/CD Pipeline](docs/ci-cd.md) - GitHub Actions workflows
-- [Docker Setup](docs/docker-setup.md) - Container deployment guide
 - [Production Build](docs/production-build.md) - Building for production
+- [Azure Deployment](docs/azure-deployment-setup.md) - Azure Static Web Apps deployment guide
 - [Environment Config](docs/environment-config.md) - Configuration guide
 
 **View locally:**
@@ -107,7 +109,7 @@ See [Architecture](docs/architecture.md) for detailed organization and patterns.
 
 - **Pre-commit hooks** enforce formatting and linting on every commit
 - **GitHub Actions** run on PRs: linting, tests, build verification
-- **Docker publishing** to Docker Hub on main branch and version tags
+- **Automated deployment** to Azure Static Web Apps on main branch and releases
 
 See [Code Quality](docs/code-quality.md) and [CI/CD Pipeline](docs/ci-cd.md) for details.
 

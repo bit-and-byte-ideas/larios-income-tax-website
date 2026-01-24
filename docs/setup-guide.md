@@ -16,20 +16,7 @@ ng serve
 # Open browser to http://localhost:4200
 ```
 
-### 2. Docker Deployment
-
-```bash
-# Build and run with Docker Compose
-docker-compose up -d
-
-# View logs
-docker-compose logs -f
-
-# Stop containers
-docker-compose down
-```
-
-### 3. Environment Setup
+### 2. Environment Setup
 
 ```bash
 # Copy environment template
@@ -48,8 +35,8 @@ After setup, verify:
 - [ ] Development server starts without errors (`ng serve`)
 - [ ] Application loads at <http://localhost:4200>
 - [ ] No console errors in browser
-- [ ] Docker build completes successfully
-- [ ] Docker container runs and serves the app
+- [ ] Production build completes successfully (`npm run build`)
+- [ ] All tests pass (`npm test`)
 
 ## Next Steps for Development
 
@@ -125,14 +112,6 @@ Use the information from [project-info.md](project-info.md):
 ng serve --port 4300
 ```
 
-### Docker build fails
-
-```bash
-# Clear Docker cache
-docker system prune -a
-docker-compose build --no-cache
-```
-
 ### Module not found errors
 
 ```bash
@@ -145,5 +124,5 @@ npm install
 
 - [Angular Documentation](https://angular.dev)
 - [Angular CLI Commands](https://angular.dev/tools/cli)
-- [Docker Documentation](https://docs.docker.com)
+- [Azure Static Web Apps Documentation](https://docs.microsoft.com/azure/static-web-apps/)
 - [project-info.md](project-info.md) - Detailed migration notes

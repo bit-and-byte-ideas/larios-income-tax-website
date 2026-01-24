@@ -331,8 +331,9 @@ npm audit fix            # Fix vulnerabilities
 
 ### Deployment Stage
 
-- Docker build
-- Container security scan
+- Terraform validation
+- Infrastructure deployment
+- Application deployment to Azure Static Web Apps
 - Deployment verification
 
 ## Code Review Guidelines

@@ -77,3 +77,25 @@ yarn-error.log*
 # TechDocs build output
 /site/
 .venv/
+
+# Terraform
+**/.terraform/
+**/.terraform.lock.hcl
+**/terraform.tfstate
+**/terraform.tfstate.backup
+**/terraform.tfvars
+**/.terraform.tfstate.lock.info
+**/override.tf
+**/override.tf.json
+**/*_override.tf
+**/*_override.tf.json
+**/crash.log
+**/crash.*.log
+
+# Azure Static Web Apps
+.azure/
+**/.vscode/settings.json
+swa-cli.config.json
+
+# Old Docker files (migrated to Static Web Apps)
+*.old
