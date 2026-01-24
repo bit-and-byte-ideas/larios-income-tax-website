@@ -24,10 +24,10 @@ resource "azurerm_static_web_app" "main" {
   sku_size            = var.sku_size
   tags                = var.tags
 
-  # Identity for accessing other Azure resources
-  identity {
-    type = "SystemAssigned"
-  }
+  # # Identity for accessing other Azure resources
+  # identity {
+  #   type = "SystemAssigned"
+  # }
 
   # App settings
   app_settings = var.app_settings
