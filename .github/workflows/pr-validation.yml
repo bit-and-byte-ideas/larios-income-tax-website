@@ -58,14 +58,14 @@ jobs:
       - name: Check bundle size
         id: bundle
         run: |
-          BUNDLE_SIZE=$(du -sh dist/lario-income-tax/browser | cut -f1)
+          BUNDLE_SIZE=$(du -sh dist/larios-income-tax/browser | cut -f1)
           echo "bundle_size=$BUNDLE_SIZE" >> "$GITHUB_OUTPUT"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
-          path: dist/lario-income-tax/
+          path: dist/larios-income-tax/
           retention-days: 7
 
   test:

@@ -1,11 +1,11 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: lario-income-tax-website
+  name: larios-income-tax-website
   description: Angular-based web application for Larios Income Tax services
   annotations:
     backstage.io/techdocs-ref: dir:.
-    github.com/project-slug: your-org/lario-income-tax-website
+    github.com/project-slug: bit-and-byte-ideas/larios-income-tax-website
   tags:
     - angular
     - typescript
@@ -15,7 +15,7 @@ metadata:
     - url: https://www.lariosincometax.com
       title: Production Website
       icon: dashboard
-    - url: https://github.com/your-org/lario-income-tax-website
+    - url: https://github.com/bit-and-byte-ideas/larios-income-tax-website
       title: GitHub Repository
       icon: github
 spec:

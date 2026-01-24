@@ -102,7 +102,7 @@ ls site/
      -H "Content-Type: application/json" \
      -d '{
        "type": "url",
-       "target": "https://github.com/your-org/lario-income-tax-website/blob/main/catalog-info.yaml"
+       "target": "https://github.com/bit-and-byte-ideas/larios-income-tax-website/blob/main/catalog-info.yaml"
      }'
    ```
 
@@ -111,7 +111,7 @@ ls site/
 Once registered, documentation is available at:
 
 ```text
-https://backstage.example.com/docs/default/component/lario-income-tax-website
+https://backstage.example.com/docs/default/component/larios-income-tax-website
 ```
 
 ## TechDocs Features

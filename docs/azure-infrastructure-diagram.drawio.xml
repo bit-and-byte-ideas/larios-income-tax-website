@@ -79,7 +79,7 @@
         </mxCell>
 
         <!-- GitHub -->
-        <mxCell id="github-details" value="Repository:&#xa;lario-income-tax-website&#xa;&#xa;Secrets:&#xa;• AZURE_CLIENT_ID&#xa;• AZURE_CLIENT_SECRET&#xa;• AZURE_SUBSCRIPTION_ID&#xa;• AZURE_TENANT_ID&#xa;• TF_BACKEND_RESOURCE_GROUP&#xa;• TF_BACKEND_STORAGE_ACCOUNT&#xa;• TF_BACKEND_CONTAINER&#xa;• AZURE_STATIC_WEB_APPS_API_TOKEN_DEV&#xa;• AZURE_STATIC_WEB_APPS_API_TOKEN_PROD" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;" vertex="1" parent="external-services">
+        <mxCell id="github-details" value="Repository:&#xa;larios-income-tax-website&#xa;&#xa;Secrets:&#xa;• AZURE_CLIENT_ID&#xa;• AZURE_CLIENT_SECRET&#xa;• AZURE_SUBSCRIPTION_ID&#xa;• AZURE_TENANT_ID&#xa;• TF_BACKEND_RESOURCE_GROUP&#xa;• TF_BACKEND_STORAGE_ACCOUNT&#xa;• TF_BACKEND_CONTAINER&#xa;• AZURE_STATIC_WEB_APPS_API_TOKEN_DEV&#xa;• AZURE_STATIC_WEB_APPS_API_TOKEN_PROD" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;" vertex="1" parent="external-services">
           <mxGeometry x="10" y="40" width="380" height="145" as="geometry" />
         </mxCell>
 

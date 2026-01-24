@@ -158,8 +158,6 @@ jobs:
         with:
           name: dist
           path: dist/
-      - name: Display structure of downloaded files
-        run: pwd && ls -R dist/
 
       - name: Get deployment token from Terraform
         id: get_token

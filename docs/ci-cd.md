@@ -289,9 +289,9 @@ jobs:
 Add to README.md:
 
 ```markdown
-![PR Validation](https://github.com/your-org/lario-income-tax-website/actions/workflows/pr-validation.yml/badge.svg)
-![Deploy to Dev](https://github.com/your-org/lario-income-tax-website/actions/workflows/deploy-dev.yml/badge.svg)
-![Deploy to Prod](https://github.com/your-org/lario-income-tax-website/actions/workflows/deploy-prod.yml/badge.svg)
+![PR Validation](https://github.com/your-org/larios-income-tax-website/actions/workflows/pr-validation.yml/badge.svg)
+![Deploy to Dev](https://github.com/your-org/larios-income-tax-website/actions/workflows/deploy-dev.yml/badge.svg)
+![Deploy to Prod](https://github.com/your-org/larios-income-tax-website/actions/workflows/deploy-prod.yml/badge.svg)
 ```
 
 ## Deployment Process
