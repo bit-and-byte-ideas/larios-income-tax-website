@@ -47,6 +47,12 @@ variable "enable_application_insights" {
   default     = true
 }
 
+variable "enable_managed_identity" {
+  description = "Enable managed identities"
+  type        = bool
+  default     = false
+}
+
 variable "custom_domain" {
   description = "Custom domain name (optional)"
   type        = string

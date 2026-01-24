@@ -22,6 +22,7 @@ module "static_web_app" {
   sku_tier                    = var.sku_tier
   sku_size                    = var.sku_size
   enable_application_insights = var.enable_application_insights
+  enable_managed_identity     = true
   custom_domain               = var.custom_domain
   app_settings                = var.app_settings
 
