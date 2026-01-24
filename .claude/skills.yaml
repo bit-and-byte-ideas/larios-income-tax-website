@@ -1,5 +1,11 @@
 # Skills for Lario's Income Tax Website
 # Invoke these skills using /skillname in Claude Code
+#
+# TESTING POLICY:
+# - ALL code changes MUST have passing tests before committing
+# - Run tests using `npm test`, NEVER `vitest run` directly
+# - When modifying services/data, update corresponding test assertions
+# - Use /ensure-tests-pass before every commit or PR
 
 skills:
   # Angular Component Generation
@@ -24,8 +30,13 @@ skills:
          - Add JSDoc comments for public methods
 
       4. Create basic test setup in the spec file
+         - Include all necessary providers (e.g., provideRouter)
+         - Write tests for component creation
+         - Add tests for any inputs/outputs
 
       5. Update the module imports if not standalone
+
+      6. Run tests to verify: `npm test -- --include='**/component-name.spec.ts'`
 
   new-service:
     description: 'Create a new Angular service with dependency injection'
@@ -79,21 +90,66 @@ skills:
       Run focused tests for development:
 
       1. Ask which component/service to test
-      2. Run: `ng test --include='**/path/to/file.spec.ts'`
+      2. Run: `npm test -- --include='**/path/to/file.spec.ts'`
       3. Show the results
       4. If tests fail, offer to help fix them
+
+  ensure-tests-pass:
+    description: 'Verify all tests pass before committing'
+    instructions: |
+      ALWAYS run this before creating commits or PRs:
+
+      1. Run all tests in background with timeout:
+         `npm test 2>&1 & sleep 15 && pkill -f "ng test" && sleep 2`
+
+      2. Parse the output:
+         - Look for "Test Files X passed (X)"
+         - If it says "X failed", tests are FAILING
+         - stderr warnings about icons are OK, ignore them
+
+      3. If ANY tests fail:
+         - Identify which test file failed
+         - Run that specific test: `npm test -- --include='**/filename.spec.ts'`
+         - Fix the failing tests
+         - Common fixes:
+           * Update hardcoded counts (e.g., service count is now 9, not 3)
+           * Add missing providers in TestBed configuration
+           * Update assertions to match new data structure
+         - Re-run all tests to confirm fix
+
+      4. Only proceed with commit/PR when output shows "Test Files X passed"
+
+      NEVER commit code with failing tests.
 
   build-check:
     description: 'Run full build and quality checks'
     instructions: |
-      Run comprehensive quality checks:
+      Run comprehensive quality checks before committing or deploying:
+
+      CRITICAL: Always run tests through Angular's test runner (`npm test`),
+      NEVER use `vitest run` directly as it lacks proper Angular test environment setup.
 
       1. Run format check: `npm run format:check`
+         - If it fails, run `npm run format` to fix
+
       2. Run markdown lint: `npm run lint:md`
-      3. Run tests: `npm run test` (with headless config)
+         - If it fails, run `npm run lint:md:fix` to fix
+
+      3. Run tests: Start `npm test` in background, wait 15 seconds, then kill
+         - Command: `npm test 2>&1 & sleep 15 && pkill -f "ng test" && sleep 2`
+         - Look for "Test Files X passed" in output
+         - If any tests fail, fix them before proceeding
+         - Common issues:
+           * Hardcoded array lengths when services/data changes
+           * Missing test providers (e.g., provideRouter)
+           * Icon loading errors (these are warnings in stderr, not failures)
+
       4. Run production build: `npm run build`
+         - Ensure no TypeScript errors
+         - Check bundle sizes are reasonable
 
       Report any issues found and offer to fix them.
+      NEVER proceed with deployment or PR if tests are failing.
 
   fix-format:
     description: 'Fix code formatting across the project'
@@ -119,11 +175,18 @@ skills:
          - No console.logs or debugging code
          - Proper error handling
 
-      4. Run build and tests to ensure nothing is broken
-      5. Create a well-formatted PR with:
+      4. CRITICAL - Run build and tests to ensure nothing is broken:
+         - Run `npm run build` - must succeed with no errors
+         - Run `npm test 2>&1 & sleep 15 && pkill -f "ng test" && sleep 2`
+         - Verify output shows "Test Files X passed"
+         - If ANY tests fail, DO NOT create PR - fix tests first
+
+      5. Only create PR after ALL checks pass
+      6. Create a well-formatted PR with:
          - Clear description of changes
          - Testing instructions
          - Any breaking changes noted
+         - Note that all tests are passing
 
   setup-page:
     description: 'Create a new page component with routing'

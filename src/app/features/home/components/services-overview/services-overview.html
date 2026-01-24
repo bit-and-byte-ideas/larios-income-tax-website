@@ -1,33 +1,14 @@
 <section id="services-section" class="services section">
   <div class="container">
     <div class="services-grid">
-      <!-- Tax Preparation -->
-      <mat-card class="service-card" appearance="outlined">
-        <img mat-card-image src="/assets/images/tax-preparation.avif" alt="Tax Preparation" />
-        <mat-card-content>
-          <h3 class="service-title">TAX PREPARATION</h3>
-        </mat-card-content>
-      </mat-card>
-
-      <!-- Immigration Services -->
-      <mat-card class="service-card" appearance="outlined">
-        <img
-          mat-card-image
-          src="/assets/images/immigration-services.avif"
-          alt="Immigration Services"
-        />
-        <mat-card-content>
-          <h3 class="service-title">IMMIGRATION SERVICES</h3>
-        </mat-card-content>
-      </mat-card>
-
-      <!-- Translations -->
-      <mat-card class="service-card" appearance="outlined">
-        <img mat-card-image src="/assets/images/transaltion-services.avif" alt="Translations" />
-        <mat-card-content>
-          <h3 class="service-title">TRANSLATIONS</h3>
-        </mat-card-content>
-      </mat-card>
+      @for (service of featuredServices; track service.id) {
+        <mat-card class="service-card" appearance="outlined">
+          <img mat-card-image [src]="service.image" [alt]="service.title" />
+          <mat-card-content>
+            <h3 class="service-title">{{ service.title.toUpperCase() }}</h3>
+          </mat-card-content>
+        </mat-card>
+      }
     </div>
 
     <div class="services-description">

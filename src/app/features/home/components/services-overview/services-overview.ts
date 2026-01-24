@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { getFeaturedServices } from '../../../../shared/constants/services.constants';
+import { Service } from '../../../../shared/models/service.model';
 
 @Component({
   selector: 'app-services-overview',
@@ -10,4 +12,6 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './services-overview.html',
   styleUrl: './services-overview.css',
 })
-export class ServicesOverview {}
+export class ServicesOverview {
+  readonly featuredServices: Service[] = getFeaturedServices();
+}
