@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-01-23T00:00:00.000Z" agent="Claude Code" etag="cicd-flow" version="22.1.11" type="device">
-  <diagram name="CI/CD Flow" id="cicd-flow-diagram">
-    <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="2000" math="0" shadow="0">
+<mxfile host="app.diagrams.net" modified="2026-01-24T00:00:00.000Z" agent="Claude Code" etag="cicd-flow-swa" version="22.1.11" type="device">
+  <diagram name="CI/CD Flow - Static Web Apps" id="cicd-flow-diagram-swa">
+    <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1200" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -21,139 +21,115 @@
 
         <!-- PR Validation Workflow -->
         <mxCell id="pr-workflow" value="PR Validation Workflow" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
-          <mxGeometry x="40" y="280" width="200" height="220" as="geometry" />
+          <mxGeometry x="40" y="280" width="200" height="160" as="geometry" />
         </mxCell>
         <mxCell id="pr-lint" value="Lint" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="pr-workflow">
-          <mxGeometry x="20" y="40" width="160" height="30" as="geometry" />
+          <mxGeometry x="20" y="40" width="160" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="pr-build" value="Build" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="pr-workflow">
-          <mxGeometry x="20" y="80" width="160" height="30" as="geometry" />
+        <mxCell id="pr-build" value="Build Angular App" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="pr-workflow">
+          <mxGeometry x="20" y="75" width="160" height="25" as="geometry" />
         </mxCell>
         <mxCell id="pr-test" value="Test" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="pr-workflow">
-          <mxGeometry x="20" y="120" width="160" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="pr-docker" value="Docker Build Test" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="pr-workflow">
-          <mxGeometry x="20" y="160" width="160" height="30" as="geometry" />
+          <mxGeometry x="20" y="110" width="160" height="25" as="geometry" />
         </mxCell>
 
         <!-- Development Pipeline -->
-        <mxCell id="dev-pipeline" value="Development Pipeline (docker-publish.yml)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="400" y="40" width="280" height="460" as="geometry" />
+        <mxCell id="dev-pipeline" value="Development Pipeline (deploy-dev.yml)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="400" y="40" width="280" height="480" as="geometry" />
         </mxCell>
-        <mxCell id="dev-build-docker" value="Build Docker Image" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="dev-pipeline">
+        <mxCell id="dev-build" value="Build Angular App" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="dev-pipeline">
           <mxGeometry x="20" y="40" width="240" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="dev-push-docker" value="Push to Docker Hub&#xa;(latest tag)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="dev-pipeline">
-          <mxGeometry x="20" y="80" width="240" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="dev-test-image" value="Test Docker Image" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="dev-pipeline">
-          <mxGeometry x="20" y="130" width="240" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="dev-update-dockerhub" value="Update Docker Hub&#xa;Description" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="dev-pipeline">
-          <mxGeometry x="20" y="170" width="240" height="40" as="geometry" />
+        <mxCell id="dev-test" value="Run Tests" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="dev-pipeline">
+          <mxGeometry x="20" y="80" width="240" height="25" as="geometry" />
         </mxCell>
         <mxCell id="dev-validate-tf" value="Validate Terraform" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="dev-pipeline">
-          <mxGeometry x="20" y="220" width="240" height="30" as="geometry" />
+          <mxGeometry x="20" y="115" width="240" height="25" as="geometry" />
         </mxCell>
         <mxCell id="dev-approval" value="⚠️ Approval Required ⚠️" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1" vertex="1" parent="dev-pipeline">
-          <mxGeometry x="20" y="260" width="240" height="30" as="geometry" />
+          <mxGeometry x="20" y="150" width="240" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="dev-tf-init" value="Terraform Init" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="dev-pipeline">
-          <mxGeometry x="20" y="300" width="240" height="30" as="geometry" />
+        <mxCell id="dev-tf-group" value="Terraform Infrastructure" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="dev-pipeline">
+          <mxGeometry x="20" y="185" width="240" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="dev-tf-plan" value="Terraform Plan" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="dev-pipeline">
-          <mxGeometry x="20" y="340" width="240" height="30" as="geometry" />
+        <mxCell id="dev-tf-init" value="Init" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="dev-tf-group">
+          <mxGeometry x="10" y="30" width="220" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="dev-tf-apply" value="Terraform Apply" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="dev-pipeline">
-          <mxGeometry x="20" y="380" width="240" height="30" as="geometry" />
+        <mxCell id="dev-tf-plan" value="Plan" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="dev-tf-group">
+          <mxGeometry x="10" y="55" width="220" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="dev-deployed" value="✅ Deployed to Dev" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="dev-pipeline">
-          <mxGeometry x="20" y="420" width="240" height="30" as="geometry" />
+        <mxCell id="dev-tf-apply" value="Apply (Create Static Web App)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="dev-tf-group">
+          <mxGeometry x="10" y="80" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="dev-get-token" value="Get Deployment Token" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="dev-tf-group">
+          <mxGeometry x="10" y="105" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="dev-deploy-swa" value="Deploy to Static Web Apps&#xa;(Azure/static-web-apps-deploy)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="dev-pipeline">
+          <mxGeometry x="20" y="325" width="240" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="dev-deployed" value="✅ Deployed to Dev&#xa;Free Tier • Global CDN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="dev-pipeline">
+          <mxGeometry x="20" y="370" width="240" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="dev-url" value="https://swa-xxx-dev.azurestaticapps.net" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontStyle=2;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="dev-pipeline">
+          <mxGeometry x="20" y="415" width="240" height="25" as="geometry" />
         </mxCell>
 
         <!-- Production Pipeline -->
-        <mxCell id="prod-pipeline" value="Production Pipeline (release-publish.yml)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="740" y="40" width="280" height="460" as="geometry" />
+        <mxCell id="prod-pipeline" value="Production Pipeline (deploy-prod.yml)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="740" y="40" width="280" height="520" as="geometry" />
         </mxCell>
-        <mxCell id="prod-build-docker" value="Build Docker Image" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="prod-pipeline">
-          <mxGeometry x="20" y="40" width="240" height="30" as="geometry" />
+        <mxCell id="prod-extract-version" value="Extract Release Version" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="prod-pipeline">
+          <mxGeometry x="20" y="40" width="240" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="prod-push-docker" value="Push to Docker Hub&#xa;(version tags: v1.0.0, v1.0, v1)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="prod-pipeline">
-          <mxGeometry x="20" y="80" width="240" height="40" as="geometry" />
+        <mxCell id="prod-build" value="Build Angular App" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="prod-pipeline">
+          <mxGeometry x="20" y="75" width="240" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="prod-test-image" value="Test Docker Image" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="prod-pipeline">
-          <mxGeometry x="20" y="130" width="240" height="30" as="geometry" />
+        <mxCell id="prod-test" value="Run Tests" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="prod-pipeline">
+          <mxGeometry x="20" y="115" width="240" height="25" as="geometry" />
         </mxCell>
         <mxCell id="prod-validate-tf" value="Validate Terraform" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="prod-pipeline">
-          <mxGeometry x="20" y="170" width="240" height="30" as="geometry" />
+          <mxGeometry x="20" y="150" width="240" height="25" as="geometry" />
         </mxCell>
         <mxCell id="prod-approval" value="⚠️ Approval Required (2+) ⚠️" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1" vertex="1" parent="prod-pipeline">
-          <mxGeometry x="20" y="210" width="240" height="30" as="geometry" />
+          <mxGeometry x="20" y="185" width="240" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="prod-tf-init" value="Terraform Init" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="prod-pipeline">
-          <mxGeometry x="20" y="250" width="240" height="30" as="geometry" />
+        <mxCell id="prod-tf-group" value="Terraform Infrastructure" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="prod-pipeline">
+          <mxGeometry x="20" y="220" width="240" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="prod-tf-plan" value="Terraform Plan" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="prod-pipeline">
-          <mxGeometry x="20" y="290" width="240" height="30" as="geometry" />
+        <mxCell id="prod-tf-init" value="Init" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="prod-tf-group">
+          <mxGeometry x="10" y="30" width="220" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="prod-tf-apply" value="Terraform Apply" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="prod-pipeline">
-          <mxGeometry x="20" y="330" width="240" height="30" as="geometry" />
+        <mxCell id="prod-tf-plan" value="Plan" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="prod-tf-group">
+          <mxGeometry x="10" y="55" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="prod-tf-apply" value="Apply (Create Static Web App)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="prod-tf-group">
+          <mxGeometry x="10" y="80" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="prod-get-token" value="Get Deployment Token" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="prod-tf-group">
+          <mxGeometry x="10" y="105" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="prod-deploy-swa" value="Deploy to Static Web Apps&#xa;(Azure/static-web-apps-deploy)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="prod-pipeline">
+          <mxGeometry x="20" y="360" width="240" height="35" as="geometry" />
         </mxCell>
         <mxCell id="prod-create-deployment" value="Create Deployment Record" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="prod-pipeline">
-          <mxGeometry x="20" y="370" width="240" height="30" as="geometry" />
+          <mxGeometry x="20" y="405" width="240" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="prod-deployed" value="✅ Deployed to Production" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="prod-pipeline">
-          <mxGeometry x="20" y="410" width="240" height="30" as="geometry" />
+        <mxCell id="prod-deployed" value="✅ Deployed to Production&#xa;Standard Tier • Global CDN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="prod-pipeline">
+          <mxGeometry x="20" y="440" width="240" height="35" as="geometry" />
         </mxCell>
-
-        <!-- Docker Hub -->
-        <mxCell id="docker-hub" value="Docker Hub" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="400" y="560" width="620" height="120" as="geometry" />
-        </mxCell>
-        <mxCell id="docker-dev-image" value="lariosincometax-website:latest" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="docker-hub">
-          <mxGeometry x="20" y="40" width="280" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="docker-prod-image" value="lariosincometax-website:v1.0.0&#xa;lariosincometax-website:v1.0&#xa;lariosincometax-website:v1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="docker-hub">
-          <mxGeometry x="320" y="40" width="280" height="60" as="geometry" />
+        <mxCell id="prod-url" value="https://swa-xxx-prod.azurestaticapps.net" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontStyle=2;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="prod-pipeline">
+          <mxGeometry x="20" y="485" width="240" height="25" as="geometry" />
         </mxCell>
 
-        <!-- Azure Environments -->
-        <mxCell id="azure-envs" value="Azure App Services" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
-          <mxGeometry x="400" y="740" width="620" height="280" as="geometry" />
+        <!-- Azure Static Web Apps Summary -->
+        <mxCell id="azure-summary" value="Azure Static Web Apps" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="400" y="600" width="620" height="180" as="geometry" />
         </mxCell>
-
-        <!-- Dev Environment -->
-        <mxCell id="azure-dev" value="Development Environment" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="azure-envs">
-          <mxGeometry x="20" y="40" width="280" height="220" as="geometry" />
+        <mxCell id="swa-dev" value="Development&#xa;swa-larios-income-tax-dev&#xa;Free Tier ($0/mo) • Global CDN&#xa;Preview Environments" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=center;verticalAlign=middle;" vertex="1" parent="azure-summary">
+          <mxGeometry x="20" y="40" width="280" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="azure-dev-rg" value="Resource Group&#xa;rg-larios-income-tax-dev" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="azure-dev">
-          <mxGeometry x="10" y="40" width="260" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="azure-dev-plan" value="App Service Plan (B1)&#xa;asp-larios-income-tax-dev" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="azure-dev">
-          <mxGeometry x="10" y="80" width="260" height="35" as="geometry" />
-        </mxCell>
-        <mxCell id="azure-dev-app" value="App Service&#xa;app-larios-income-tax-dev" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="azure-dev">
-          <mxGeometry x="10" y="125" width="260" height="35" as="geometry" />
-        </mxCell>
-        <mxCell id="azure-dev-insights" value="Application Insights&#xa;appi-larios-income-tax-dev" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="azure-dev">
-          <mxGeometry x="10" y="170" width="260" height="35" as="geometry" />
-        </mxCell>
-
-        <!-- Prod Environment -->
-        <mxCell id="azure-prod" value="Production Environment" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="azure-envs">
-          <mxGeometry x="320" y="40" width="280" height="220" as="geometry" />
-        </mxCell>
-        <mxCell id="azure-prod-rg" value="Resource Group&#xa;rg-larios-income-tax-prod" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="azure-prod">
-          <mxGeometry x="10" y="40" width="260" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="azure-prod-plan" value="App Service Plan (P1v2)&#xa;asp-larios-income-tax-prod" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="azure-prod">
-          <mxGeometry x="10" y="80" width="260" height="35" as="geometry" />
-        </mxCell>
-        <mxCell id="azure-prod-app" value="App Service&#xa;app-larios-income-tax-prod" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="azure-prod">
-          <mxGeometry x="10" y="125" width="260" height="35" as="geometry" />
-        </mxCell>
-        <mxCell id="azure-prod-insights" value="Application Insights&#xa;appi-larios-income-tax-prod" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="azure-prod">
-          <mxGeometry x="10" y="170" width="260" height="35" as="geometry" />
+        <mxCell id="swa-prod" value="Production&#xa;swa-larios-income-tax-prod&#xa;Standard Tier (~$9/mo) • Global CDN&#xa;99.95% SLA • Unlimited Bandwidth" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=center;verticalAlign=middle;" vertex="1" parent="azure-summary">
+          <mxGeometry x="320" y="40" width="280" height="120" as="geometry" />
         </mxCell>
 
         <!-- Arrows from GitHub Events to Workflows -->
@@ -167,22 +143,17 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
-        <!-- Arrows from Pipelines to Docker Hub -->
-        <mxCell id="arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;strokeColor=#82b366;strokeWidth=2" edge="1" parent="1" source="dev-pipeline" target="docker-hub">
+        <!-- Arrows from Pipelines to Azure -->
+        <mxCell id="arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;strokeColor=#82b366;strokeWidth=2" edge="1" parent="1" source="dev-pipeline" target="azure-summary">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="arrow5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;strokeColor=#d6b656;strokeWidth=2" edge="1" parent="1" source="prod-pipeline" target="docker-hub">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <!-- Arrows from Docker Hub to Azure -->
-        <mxCell id="arrow6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;strokeColor=#82b366;strokeWidth=2" edge="1" parent="1" source="docker-hub" target="azure-envs">
+        <mxCell id="arrow5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;strokeColor=#d6b656;strokeWidth=2" edge="1" parent="1" source="prod-pipeline" target="azure-summary">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
         <!-- Legend -->
         <mxCell id="legend" value="Legend" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
-          <mxGeometry x="40" y="560" width="300" height="200" as="geometry" />
+          <mxGeometry x="40" y="500" width="300" height="280" as="geometry" />
         </mxCell>
         <mxCell id="legend-dev" value="Development (main branch)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="legend">
           <mxGeometry x="20" y="40" width="260" height="25" as="geometry" />
@@ -196,10 +167,19 @@
         <mxCell id="legend-tf" value="Terraform Operations" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="legend">
           <mxGeometry x="20" y="145" width="260" height="25" as="geometry" />
         </mxCell>
+        <mxCell id="legend-swa" value="Static Web Apps Deployment" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="legend">
+          <mxGeometry x="20" y="180" width="260" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-note" value="📝 Migrated from Docker + App Services&#xa;💰 Cost: $86/mo → $9/mo (90% savings)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontStyle=2;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="legend">
+          <mxGeometry x="20" y="215" width="260" height="50" as="geometry" />
+        </mxCell>
 
         <!-- Title -->
         <mxCell id="title" value="Larios Income Tax Website - CI/CD Pipeline Flow" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="400" y="1060" width="620" height="40" as="geometry" />
+          <mxGeometry x="400" y="820" width="620" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Azure Static Web Apps Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=2" vertex="1" parent="1">
+          <mxGeometry x="400" y="860" width="620" height="30" as="geometry" />
         </mxCell>
 
       </root>

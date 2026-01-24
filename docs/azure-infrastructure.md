@@ -3,7 +3,7 @@
 ## Overview
 
 This document describes the complete infrastructure architecture for deploying the Larios Income Tax website to Azure
-App Services using Terraform and GitHub Actions.
+Static Web Apps using Terraform and GitHub Actions.
 
 ## Architecture Diagram
 
@@ -20,16 +20,8 @@ infrastructure diagram that can be imported into Draw.IO.
 │         │                                     │                 │
 │         v                                     v                 │
 │  ┌──────────────────────┐          ┌──────────────────────┐   │
-│  │ docker-publish.yml   │          │ release-publish.yml  │   │
+│  │   deploy-dev.yml     │          │   deploy-prod.yml    │   │
 │  └──────────────────────┘          └──────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
-         │                                     │
-         v                                     v
-┌─────────────────────────────────────────────────────────────────┐
-│                         Docker Hub                               │
-├─────────────────────────────────────────────────────────────────┤
-│  USERNAME/lariosincometax-website:latest  (dev)                 │
-│  USERNAME/lariosincometax-website:v1.0.0  (prod)                │
 └─────────────────────────────────────────────────────────────────┘
          │                                     │
          v                                     v
@@ -37,6 +29,15 @@ infrastructure diagram that can be imported into Draw.IO.
 │                         Terraform                                │
 ├─────────────────────────────────────────────────────────────────┤
 │  Validate → Plan → Apply (with approval)                        │
+│  Creates: Resource Groups, Static Web Apps, App Insights        │
+└─────────────────────────────────────────────────────────────────┘
+         │                                     │
+         v                                     v
+┌─────────────────────────────────────────────────────────────────┐
+│              Azure Static Web Apps Deployment                    │
+├─────────────────────────────────────────────────────────────────┤
+│  Native deployment via Azure/static-web-apps-deploy action      │
+│  Uploads: dist/browser/ → Global CDN                            │
 └─────────────────────────────────────────────────────────────────┘
          │                                     │
          v                                     v
@@ -49,11 +50,11 @@ infrastructure diagram that can be imported into Draw.IO.
 │  Azure Dev Env      │              │  Azure Prod Env     │
 ├─────────────────────┤              ├─────────────────────┤
 │ Resource Group      │              │ Resource Group      │
-│ App Service Plan    │              │ App Service Plan    │
-│ (B1 SKU)            │              │ (P1v2 SKU)          │
-│ App Service         │              │ App Service         │
+│ Static Web App      │              │ Static Web App      │
+│ (Free SKU)          │              │ (Standard SKU)      │
 │ App Insights        │              │ App Insights        │
 │ Managed Identity    │              │ Managed Identity    │
+│ Global CDN          │              │ Global CDN          │
 └─────────────────────┘              └─────────────────────┘
 ```
 
@@ -72,28 +73,37 @@ infrastructure diagram that can be imported into Draw.IO.
 See [ci-cd.md](ci-cd.md) and [cicd-flow-diagram.drawio.xml](cicd-flow-diagram.drawio.xml) for detailed CI/CD pipeline
 documentation and visual flow diagram.
 
-#### Docker Build Pipeline
+#### Deployment Pipeline
 
-**Trigger**: Push to main or release creation
+**Development Trigger**: Push to main
 
-**Steps**:
+**Production Trigger**: Release creation
 
-1. Build Docker image with multi-stage build
-1. Push to Docker Hub with appropriate tags
-1. Test image by pulling and running
-1. Update Docker Hub repository description
+**Deployment Steps**:
 
-#### Terraform Pipeline
+1. **Build and Validate**:
+   - Install dependencies
+   - Run linters (format check, markdown lint)
+   - Run tests
+   - Build Angular application
+   - Upload build artifact
 
-**Trigger**: After successful Docker build
+1. **Terraform Validate**:
+   - Format check
+   - Initialize (no backend)
+   - Validate configuration
 
-**Steps**:
+1. **Deploy Infrastructure** (Terraform):
+   - Initialize with Azure backend
+   - Plan infrastructure changes
+   - Apply changes (creates/updates Static Web App, App Insights)
+   - Extract deployment token
 
-1. Validate Terraform configuration
-1. Initialize with Azure backend (state storage)
-1. Plan infrastructure changes
-1. Wait for manual approval
-1. Apply changes to target environment
+1. **Deploy Application** (Static Web Apps):
+   - Download build artifact
+   - Deploy to Azure Static Web Apps using native deployment
+   - Upload dist/browser/ to global CDN
+   - Automatic routing configuration
 
 ### Infrastructure as Code
 
@@ -102,18 +112,20 @@ documentation and visual flow diagram.
 ```text
 deploy/
 ├── modules/
-│   └── app-service/           # Reusable module
-│       ├── main.tf            # Resource definitions
-│       ├── variables.tf       # Input variables
-│       └── outputs.tf         # Output values
+│   └── static-web-app/      # Reusable module
+│       ├── main.tf          # Resource definitions
+│       ├── variables.tf     # Input variables
+│       ├── outputs.tf       # Output values
+│       └── README.md        # Module documentation
 ├── environments/
-│   ├── dev/                   # Development environment
-│   │   ├── main.tf           # Environment configuration
-│   │   ├── variables.tf      # Environment variables
-│   │   ├── backend.tf        # State configuration
-│   │   └── outputs.tf        # Environment outputs
-│   └── prod/                  # Production environment
+│   ├── dev/                 # Development environment
+│   │   ├── main.tf         # Environment configuration
+│   │   ├── variables.tf    # Environment variables
+│   │   ├── backend.tf      # State configuration
+│   │   └── outputs.tf      # Environment outputs
+│   └── prod/                # Production environment
 │       └── (same structure)
+├── MIGRATION.md
 └── README.md
 ```
 
@@ -132,21 +144,24 @@ deploy/
 
 **Resource Group**: `rg-larios-income-tax-dev`
 
-**App Service Plan**:
+**Static Web App**:
 
-- Name: `asp-larios-income-tax-dev`
-- SKU: B1 (Basic)
-- OS: Linux
-- Cost: ~$13/month
+- Name: `swa-larios-income-tax-dev`
+- SKU: Free
+- Cost: $0/month
+- Region: East US 2
+- HTTPS Only: Yes (enforced)
+- Global CDN: Built-in
+- URL: `https://swa-larios-income-tax-dev-*.azurestaticapps.net`
 
-**App Service**:
+**Features**:
 
-- Name: `app-larios-income-tax-dev`
-- Runtime: Docker Container
-- HTTPS Only: Yes
-- Minimum TLS: 1.2
-- Always On: No (cost savings)
-- URL: `https://app-larios-income-tax-dev.azurewebsites.net`
+- Automatic SSL certificates
+- Global CDN distribution
+- Native Angular SPA support
+- CI/CD integration via GitHub Actions
+- Deployment tokens managed by Terraform
+- SPA routing with staticwebapp.config.json
 
 **Application Insights**:
 
@@ -163,21 +178,25 @@ deploy/
 
 **Resource Group**: `rg-larios-income-tax-prod`
 
-**App Service Plan**:
+**Static Web App**:
 
-- Name: `asp-larios-income-tax-prod`
-- SKU: P1v2 (Premium)
-- OS: Linux
-- Cost: ~$73/month
+- Name: `swa-larios-income-tax-prod`
+- SKU: Standard
+- Cost: ~$9/month
+- Region: East US 2
+- HTTPS Only: Yes (enforced)
+- Global CDN: Built-in
+- URL: `https://swa-larios-income-tax-prod-*.azurestaticapps.net`
 
-**App Service**:
+**Features**:
 
-- Name: `app-larios-income-tax-prod`
-- Runtime: Docker Container
-- HTTPS Only: Yes
-- Minimum TLS: 1.2
-- Always On: Yes
-- URL: `https://app-larios-income-tax-prod.azurewebsites.net`
+- Automatic SSL certificates
+- Global CDN distribution
+- Custom domains with SSL
+- SLA-backed uptime guarantee (99.95%)
+- Native Angular SPA support
+- Deployment tokens managed by Terraform
+- SPA routing with staticwebapp.config.json
 
 **Application Insights**:
 
@@ -190,18 +209,23 @@ deploy/
 - Type: System-assigned
 - Used for secure Azure resource access
 
-### Container Registry
+### Deployment Mechanism
 
-**Docker Hub**:
+**Static Web Apps Native Deployment**:
 
-- Repository: `USERNAME/lariosincometax-website`
-- Public repository
-- Platforms: linux/amd64, linux/arm64
+- **Action**: `Azure/static-web-apps-deploy@v1`
+- **Authentication**: Deployment tokens from Terraform output
+- **Build**: Pre-built Angular application (dist/browser/)
+- **Upload**: Automatic upload to global CDN
+- **Configuration**: staticwebapp.config.json for routing and headers
 
-**Image Tags**:
+**Configuration File** (`staticwebapp.config.json`):
 
-- Development: `latest`
-- Production: Semantic version (e.g., `v1.0.0`)
+- Navigation fallback for SPA routing
+- 404 override to serve index.html
+- Global security headers (X-Frame-Options, X-Content-Type-Options, etc.)
+- MIME type definitions
+- Asset exclusions from SPA routing
 
 ### Security
 
@@ -216,29 +240,36 @@ deploy/
 **Managed Identity**:
 
 - Type: System-assigned
-- Scope: App Service resources
+- Scope: Static Web App resources
 - Purpose: Secure access to Azure services
 
 #### Secrets Management
 
 **GitHub Secrets** (encrypted at rest):
 
-- Azure credentials
-- Terraform backend configuration
-- Docker Hub credentials
+- `AZURE_CLIENT_ID`: Service Principal client ID
+- `AZURE_CLIENT_SECRET`: Service Principal client secret
+- `AZURE_SUBSCRIPTION_ID`: Azure subscription ID
+- `AZURE_TENANT_ID`: Azure tenant ID
+- `TF_BACKEND_RESOURCE_GROUP`: Terraform state resource group
+- `TF_BACKEND_STORAGE_ACCOUNT`: Terraform state storage account
+- `TF_BACKEND_CONTAINER`: Terraform state container
+- `AZURE_STATIC_WEB_APPS_API_TOKEN_DEV`: Dev deployment token
+- `AZURE_STATIC_WEB_APPS_API_TOKEN_PROD`: Prod deployment token
 
-**App Service Configuration** (encrypted at rest):
+**Static Web App Configuration** (via staticwebapp.config.json):
 
-- Application settings
-- Connection strings
-- Secrets from Key Vault (future enhancement)
+- Global security headers
+- HTTPS enforcement (automatic)
+- Security policies
 
 #### Network Security
 
-- HTTPS enforcement
-- Minimum TLS 1.2
-- FTPS disabled
-- Public network access (can be restricted)
+- **HTTPS enforcement**: Automatic (cannot be disabled)
+- **TLS version**: 1.2+ (enforced)
+- **SSL certificates**: Automatic and free
+- **Global CDN**: Built-in protection
+- **DDoS protection**: Included
 
 ### Monitoring & Logging
 
@@ -251,28 +282,29 @@ deploy/
 - Exceptions and traces
 - Dependencies (outgoing requests)
 - Custom events and metrics
+- Client-side performance
+- User analytics
 
 **Availability**:
 
 - Health check monitoring
 - Endpoint availability tests
 - Alert on downtime
+- Global test locations
 
-#### App Service Logs
+#### Static Web App Logs
 
-**Application Logging**:
+**Deployment Logs**:
 
-- File system (retention: 7 days)
-- Size limit: 35 MB
+- Build and deployment history
+- Deployment status and errors
+- Available in Azure Portal
 
-**Web Server Logging**:
+**Application Logs**:
 
-- File system (retention: 7 days)
-
-**Diagnostic Logs**:
-
-- Detailed error messages
-- Failed request tracing
+- Integrated with Application Insights
+- Custom logging from application
+- Real-time log streaming
 
 ### Deployment Strategy
 
@@ -282,23 +314,41 @@ deploy/
    - Triggered by push to main
    - Automatic with approval gate
    - Latest code and features
+   - Free tier (no cost)
 
 1. **Approval Required**:
    - Prevents accidental deployments
    - Single reviewer sufficient
    - Fast iteration cycle
 
+1. **Deployment Steps**:
+   - Build validation (tests, linters)
+   - Terraform validation
+   - Infrastructure deployment
+   - Application deployment
+   - Automatic CDN distribution
+
 #### Production Workflow
 
 1. **Release-Based Deployment**:
    - Triggered by GitHub release
-   - Specific version tags
+   - Specific version tags (v1.0.0)
    - Controlled releases
+   - Standard tier with SLA
 
 1. **Approval Required**:
    - Multiple reviewers recommended
    - Change management process
    - Rollback capability
+
+1. **Deployment Steps**:
+   - Extract release version
+   - Build validation (tests, linters)
+   - Terraform validation
+   - Infrastructure deployment
+   - Application deployment
+   - Deployment record creation
+   - Summary with version and URL
 
 ### Disaster Recovery
 
@@ -312,14 +362,16 @@ deploy/
 
 **Application Data**:
 
-- No persistent data in containers
+- No persistent data in Static Web Apps
 - Stateless application design
+- CDN caching for performance
 
 **Configuration**:
 
 - Infrastructure as Code (Terraform)
 - Version controlled in Git
 - Can recreate from scratch
+- staticwebapp.config.json in source control
 
 #### Recovery Procedures
 
@@ -334,88 +386,156 @@ deploy/
 1. Verify Terraform state intact
 1. Run `terraform apply`
 1. Resources recreated automatically
+1. Redeploy application
 
 **Application Issues**:
 
-1. Rollback to previous Docker image
+1. Rollback to previous GitHub release
 1. Redeploy through CI/CD
-1. Or manual deployment through Azure Portal
+1. Or deploy previous build artifact
 
 ### Scalability
 
-#### Horizontal Scaling
+#### Automatic Scaling
 
-**App Service Plan**:
+**Global CDN**:
 
-- Manual scaling: Increase instance count
-- Auto-scaling: Configure rules based on metrics
-- Maximum instances: Depends on SKU
+- Automatic worldwide distribution
+- No configuration required
+- Scales to handle traffic spikes
+- Edge caching for performance
 
-**Azure Front Door** (future):
+**Static Web Apps**:
 
-- Global load balancing
-- CDN capabilities
-- DDoS protection
+- Serverless architecture
+- Automatic scaling built-in
+- No instance management
+- Pay only for usage (Standard tier)
 
-#### Vertical Scaling
+**No Manual Scaling Required**:
 
-**SKU Upgrade**:
+- Unlike App Services, no SKU upgrades needed
+- No instance count management
+- Handles traffic automatically
+- Global presence out of the box
 
-- Dev: B1 → B2/B3
-- Prod: P1v2 → P2v2/P3v2
-- Zero downtime upgrade
+#### Performance Optimization
+
+**CDN Caching**:
+
+- Static assets cached at edge
+- Reduced latency globally
+- Automatic cache invalidation on deployment
+
+**Compression**:
+
+- Automatic gzip/brotli compression
+- Reduced bandwidth usage
+- Faster page loads
 
 ### Cost Optimization
 
 #### Development
 
-**Current**: ~$13/month
+**Current**: $0/month (Free tier)
 
-**Optimization**:
+**Features Included**:
 
-- Deallocate when not in use
-- Use B1 SKU
-- Disable Always On
-- Single instance
+- 100 GB bandwidth/month
+- 0.5 GB storage
+- Free SSL certificates
+- Global CDN
+- Custom domains (2 per app)
+- No commitment required
+
+**Cost Savings**:
+
+- Previous (App Service B1): ~$13/month
+- Current (Static Web Apps Free): $0/month
+- **Savings**: 100% ($13/month)
 
 #### Production
 
-**Current**: ~$73/month
+**Current**: ~$9/month (Standard tier)
 
-**Optimization**:
+**Features Included**:
 
-- Right-size based on traffic
-- Enable auto-scaling
-- Reserved instances (40% savings)
-- Monitor and adjust
+- 100 GB bandwidth/month (additional $0.15/GB)
+- 0.5 GB storage
+- Free SSL certificates
+- Global CDN
+- Custom domains (unlimited)
+- SLA: 99.95% uptime
+- No commitment required
+
+**Cost Savings**:
+
+- Previous (App Service P1v2): ~$73/month
+- Current (Static Web Apps Standard): ~$9/month
+- **Savings**: 88% ($64/month)
+
+#### Total Infrastructure Cost
+
+**Previous (App Services)**:
+
+- Dev: ~$13/month
+- Prod: ~$73/month
+- **Total**: ~$86/month
+
+**Current (Static Web Apps)**:
+
+- Dev: $0/month
+- Prod: ~$9/month
+- **Total**: ~$9/month
+
+**Overall Savings**: 90% (~$77/month or ~$924/year)
+
+### Migration from App Services
+
+See [MIGRATION.md](../deploy/MIGRATION.md) for complete migration documentation including:
+
+- Why we migrated (cost, performance, features)
+- What changed (infrastructure, deployment, files)
+- Terraform changes comparison
+- GitHub Actions workflow changes
+- Deployment token management
+- Migration steps and rollback plan
 
 ### Future Enhancements
 
+#### Immediate Capabilities (Already Supported)
+
+- Custom domains and SSL certificates (built-in)
+- Automatic SSL renewal
+- Global CDN (built-in)
+- HTTPS enforcement (automatic)
+
 #### Short Term
 
-- Custom domains and SSL certificates
-- Azure Key Vault for secrets
-- Automated backup configuration
+- Custom domain configuration for lariosincometax.com
 - Enhanced monitoring alerts
+- A/B testing with staging environments
+- API integration (Azure Functions)
 
 #### Medium Term
 
-- Blue-green deployment
-- Canary releases
-- Integration tests in pipeline
-- Performance testing
+- Authentication and authorization (built-in providers)
+- Preview environments for pull requests
+- Advanced routing rules
+- Geographic routing
 
 #### Long Term
 
-- Multi-region deployment
-- Azure Front Door
-- CDN integration
-- Container registry migration
+- API backend with Azure Functions
+- Database integration for dynamic content
+- User authentication system
+- Form submission handling
 
 ## References
 
 - [Azure Deployment Setup Guide](azure-deployment-setup.md): Complete setup instructions
 - [Azure Deployment Checklist](azure-deployment-checklist.md): Pre and post-deployment checklists
 - [CI/CD Pipeline](ci-cd.md): Pipeline documentation
+- [Migration Guide](../deploy/MIGRATION.md): App Services to Static Web Apps migration
 - [Terraform Code](../deploy/): Infrastructure code
-- [Azure App Service Docs](https://docs.microsoft.com/azure/app-service/)
+- [Azure Static Web Apps Docs](https://docs.microsoft.com/azure/static-web-apps/)
