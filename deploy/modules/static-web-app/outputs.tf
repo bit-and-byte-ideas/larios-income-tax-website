@@ -36,7 +36,7 @@ output "static_web_app_api_key" {
 
 output "static_web_app_principal_id" {
   description = "Principal ID of the Static Web App managed identity"
-  value       = azurerm_static_web_app.main.identity[0].principal_id
+  value       = try(azurerm_static_web_app.main.identity[0].principal_id, null)
 }
 
 output "application_insights_instrumentation_key" {
