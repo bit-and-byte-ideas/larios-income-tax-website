@@ -37,7 +37,7 @@ variable "sku_size" {
 variable "enable_application_insights" {
   description = "Enable Application Insights monitoring"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "custom_domain" {

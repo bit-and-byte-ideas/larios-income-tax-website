@@ -25,8 +25,11 @@ resource "azurerm_static_web_app" "main" {
   tags                = var.tags
 
   # Identity for accessing other Azure resources
-  identity {
-    type = "SystemAssigned"
+  dynamic "identity" {
+    for_each = var.enable_managed_identity ? [1] : []
+    content {
+      type = "SystemAssigned"
+    }
   }
 
   # App settings
@@ -45,8 +48,8 @@ resource "azurerm_application_insights" "main" {
 
 # Custom Domain (optional)
 resource "azurerm_static_web_app_custom_domain" "main" {
-  count               = var.custom_domain != "" ? 1 : 0
-  static_web_app_id   = azurerm_static_web_app.main.id
-  domain_name         = var.custom_domain
-  validation_type     = "cname-delegation"
+  count             = var.custom_domain != "" ? 1 : 0
+  static_web_app_id = azurerm_static_web_app.main.id
+  domain_name       = var.custom_domain
+  validation_type   = "cname-delegation"
 }
