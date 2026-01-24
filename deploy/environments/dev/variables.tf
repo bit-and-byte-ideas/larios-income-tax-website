@@ -7,19 +7,13 @@ variable "resource_group_name" {
 variable "location" {
   description = "Azure region for resources"
   type        = string
-  default     = "East US"
+  default     = "East US 2"
 }
 
-variable "app_service_plan_name" {
-  description = "Name of the App Service Plan"
+variable "static_web_app_name" {
+  description = "Name of the Static Web App"
   type        = string
-  default     = "asp-larios-income-tax-dev"
-}
-
-variable "app_service_name" {
-  description = "Name of the App Service"
-  type        = string
-  default     = "app-larios-income-tax-dev"
+  default     = "swa-larios-income-tax-dev"
 }
 
 variable "app_insights_name" {
@@ -28,27 +22,16 @@ variable "app_insights_name" {
   default     = "appi-larios-income-tax-dev"
 }
 
-variable "sku_name" {
-  description = "SKU name for App Service Plan"
+variable "sku_tier" {
+  description = "SKU tier for Static Web App (Free or Standard)"
   type        = string
-  default     = "F1"
+  default     = "Free"
 }
 
-variable "always_on" {
-  description = "Should the app be always on"
-  type        = bool
-  default     = false
-}
-
-variable "docker_registry_url" {
-  description = "Docker registry URL"
+variable "sku_size" {
+  description = "SKU size for Static Web App (Free or Standard)"
   type        = string
-  default     = "index.docker.io"
-}
-
-variable "docker_image_tag" {
-  description = "Docker image with tag"
-  type        = string
+  default     = "Free"
 }
 
 variable "enable_application_insights" {
@@ -64,7 +47,7 @@ variable "custom_domain" {
 }
 
 variable "app_settings" {
-  description = "Additional app settings"
+  description = "Application settings for the Static Web App"
   type        = map(string)
   default     = {}
 }
