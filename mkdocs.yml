@@ -1,7 +1,7 @@
 site_name: Larios Income Tax Website
 site_description: Angular-based web application for Larios Income Tax services
 site_author: Larios Income Tax Team
-repo_url: https://github.com/your-org/lario-income-tax-website
+repo_url: https://github.com/bit-and-byte-ideas/larios-income-tax-website
 edit_uri: edit/main/docs/
 
 nav:

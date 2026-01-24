@@ -445,7 +445,7 @@ export function validateEnvironment(env: Environment): void {
 ng build --configuration production
 
 # Verify environment
-cat dist/lario-income-tax/browser/main-*.js | grep "production"
+cat dist/larios-income-tax/browser/main-*.js | grep "production"
 ```
 
 ### Missing Environment Variable

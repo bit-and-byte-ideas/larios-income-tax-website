@@ -11,5 +11,5 @@ import { Footer } from './shared/components/footer/footer';
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('lario-income-tax');
+  protected readonly title = signal('larios-income-tax');
 }

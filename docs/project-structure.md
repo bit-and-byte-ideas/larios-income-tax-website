@@ -3,7 +3,7 @@
 ## Directory Layout
 
 ```text
-lario-income-tax-website/
+larios-income-tax-website/
 ├── .devcontainer/          # VS Code devcontainer configuration
 ├── .github/                # GitHub workflows and configuration
 ├── .husky/                 # Git hooks (not used, using pre-commit)
@@ -169,14 +169,14 @@ Static assets served directly without processing.
 
 ## Build Outputs
 
-### `/dist/lario-income-tax/`
+### `/dist/larios-income-tax/`
 
 Production build output (not in version control).
 
 **Structure:**
 
 ```text
-dist/lario-income-tax/
+dist/larios-income-tax/
 ├── browser/                # Browser bundle
 │   ├── index.html
 │   ├── main-[hash].js

@@ -45,12 +45,12 @@ npm run build
 
 ## Build Output
 
-**Location:** `/dist/lario-income-tax/browser/`
+**Location:** `/dist/larios-income-tax/browser/`
 
 **Contents:**
 
 ```text
-dist/lario-income-tax/browser/
+dist/larios-income-tax/browser/
 ├── index.html              # Main HTML file
 ├── main-[hash].js          # Application bundle (~57.68 kB gzipped)
 ├── polyfills-[hash].js     # Polyfills bundle
@@ -127,17 +127,17 @@ export const environment = {
 
 ```bash
 # List build files
-ls -lh dist/lario-income-tax/browser/
+ls -lh dist/larios-income-tax/browser/
 
 # Check file sizes
-du -sh dist/lario-income-tax/browser/*
+du -sh dist/larios-income-tax/browser/*
 ```
 
 ### Test Locally
 
 ```bash
 # Serve production build
-npx http-server dist/lario-income-tax/browser -p 8080
+npx http-server dist/larios-income-tax/browser -p 8080
 
 # Open browser
 open http://localhost:8080
@@ -150,7 +150,7 @@ open http://localhost:8080
 ng build --configuration production --stats-json
 
 # Analyze bundle
-npx webpack-bundle-analyzer dist/lario-income-tax/browser/stats.json
+npx webpack-bundle-analyzer dist/larios-income-tax/browser/stats.json
 ```
 
 ## Deployment Methods

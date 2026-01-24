@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "lario-income-tax": {
+    "larios-income-tax": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -26,7 +26,7 @@
               }
             ],
             "styles": ["src/material-theme.scss", "src/styles.css"],
-            "outputPath": "dist/lario-income-tax"
+            "outputPath": "dist/larios-income-tax"
           },
           "configurations": {
             "production": {
@@ -56,10 +56,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "lario-income-tax:build:production"
+              "buildTarget": "larios-income-tax:build:production"
             },
             "development": {
-              "buildTarget": "lario-income-tax:build:development"
+              "buildTarget": "larios-income-tax:build:development"
             }
           },
           "defaultConfiguration": "development"

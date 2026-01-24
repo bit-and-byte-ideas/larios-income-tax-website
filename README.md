@@ -16,7 +16,7 @@ An Angular-based web application for Larios Income Tax services, migrated from t
 ```bash
 # Clone and install
 git clone <repository-url>
-cd lario-income-tax-website
+cd larios-income-tax-website
 npm install
 
 # Start development server
