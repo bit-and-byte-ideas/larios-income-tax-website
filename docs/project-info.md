@@ -4,7 +4,7 @@
 
 **Original Website:** <https://www.lariosincometax.com/>
 **Current Platform:** Wix Thunderbolt
-**Target Platform:** Angular + Docker
+**Target Platform:** Angular + Azure Static Web Apps
 
 ## Business Information
 
