@@ -657,4 +657,4 @@ If deployment fails or issues are found:
 - [Azure Infrastructure Architecture](azure-infrastructure.md)
 - [Azure Deployment Setup Guide](azure-deployment-setup.md)
 - [Azure Deployment Checklist](azure-deployment-checklist.md)
-- [Workflow Files](.github/workflows/)
+- Workflow Files: See `.github/workflows/` directory in repository root

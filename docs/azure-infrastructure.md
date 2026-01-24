@@ -492,7 +492,7 @@ deploy/
 
 ### Migration from App Services
 
-See [MIGRATION.md](../deploy/MIGRATION.md) for complete migration documentation including:
+See `deploy/MIGRATION.md` in the repository root for complete migration documentation including:
 
 - Why we migrated (cost, performance, features)
 - What changed (infrastructure, deployment, files)
@@ -536,6 +536,6 @@ See [MIGRATION.md](../deploy/MIGRATION.md) for complete migration documentation 
 - [Azure Deployment Setup Guide](azure-deployment-setup.md): Complete setup instructions
 - [Azure Deployment Checklist](azure-deployment-checklist.md): Pre and post-deployment checklists
 - [CI/CD Pipeline](ci-cd.md): Pipeline documentation
-- [Migration Guide](../deploy/MIGRATION.md): App Services to Static Web Apps migration
-- [Terraform Code](../deploy/): Infrastructure code
+- Migration Guide: See `deploy/MIGRATION.md` in repository root for App Services to Static Web Apps migration
+- Terraform Code: See `deploy/` directory in repository root for infrastructure code
 - [Azure Static Web Apps Docs](https://docs.microsoft.com/azure/static-web-apps/)

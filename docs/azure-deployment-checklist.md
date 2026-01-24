@@ -322,7 +322,7 @@ Step 3 - Complete Deployment:
 
 If migrating from Docker-based App Services:
 
-- [ ] Review [MIGRATION.md](../deploy/MIGRATION.md) documentation
+- [ ] Review migration documentation (`deploy/MIGRATION.md` in repository root)
 - [ ] Backup current App Service configuration
 - [ ] Archive old Docker files (.old extension)
 - [ ] Update GitHub workflows

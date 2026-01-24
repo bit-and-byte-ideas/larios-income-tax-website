@@ -525,4 +525,4 @@ For issues:
 - [Terraform Azure Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
 - [GitHub Actions Documentation](https://docs.github.com/actions)
 - [Static Web Apps Configuration](https://docs.microsoft.com/azure/static-web-apps/configuration)
-- [Migration Guide](../deploy/MIGRATION.md): App Services to Static Web Apps migration details
+- Migration Guide: See `deploy/MIGRATION.md` in repository root for App Services to Static Web Apps migration details
