@@ -1,52 +1,23 @@
 <div class="services-page">
   <!-- Services List -->
   <div class="services-list">
-    <!-- Tax Preparation - Title Left, Image Right -->
-    <mat-card class="service-card" appearance="raised">
-      <div class="service-row">
-        <div class="service-content">
-          <h2>TAX PREPARATION</h2>
-        </div>
+    @for (service of services; track service.id; let i = $index) {
+      <mat-card
+        class="service-card"
+        appearance="raised"
+        (click)="navigateToService(service.id)"
+        tabindex="0"
+        role="button"
+        [attr.aria-label]="'View details and book ' + service.title"
+      >
         <div class="service-image">
-          <img src="/assets/images/tax-preparation.avif" alt="Tax Preparation" />
-        </div>
-      </div>
-    </mat-card>
-
-    <!-- Immigration Services - Image Left, Title Right -->
-    <mat-card class="service-card" appearance="raised">
-      <div class="service-row reverse">
-        <div class="service-image">
-          <img src="/assets/images/immigration-services.avif" alt="Immigration Services" />
+          <img [src]="service.image" [alt]="service.title" />
         </div>
         <div class="service-content">
-          <h2>IMMIGRATION SERVICES</h2>
+          <h2>{{ service.title.toUpperCase() }}</h2>
+          <p class="service-brief-description">{{ service.briefDescription }}</p>
         </div>
-      </div>
-    </mat-card>
-
-    <!-- Translations - Title Left, Image Right -->
-    <mat-card class="service-card" appearance="raised">
-      <div class="service-row">
-        <div class="service-content">
-          <h2>TRANSLATIONS</h2>
-        </div>
-        <div class="service-image">
-          <img src="/assets/images/transaltion-services.avif" alt="Translations" />
-        </div>
-      </div>
-    </mat-card>
-
-    <!-- E-File & Rapid Refund - Image Left, Title Right -->
-    <mat-card class="service-card" appearance="raised">
-      <div class="service-row reverse">
-        <div class="service-image">
-          <img src="/assets/images/e-file-rapid-refund.avif" alt="E-File & Rapid Refund" />
-        </div>
-        <div class="service-content">
-          <h2>E-FILE & RAPID REFUND</h2>
-        </div>
-      </div>
-    </mat-card>
+      </mat-card>
+    }
   </div>
 </div>

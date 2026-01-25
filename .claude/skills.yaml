@@ -1,0 +1,284 @@
+# Skills for Lario's Income Tax Website
+# Invoke these skills using /skillname in Claude Code
+#
+# TESTING POLICY:
+# - ALL code changes MUST have passing tests before committing
+# - Run tests using `npm test`, NEVER `vitest run` directly
+# - When modifying services/data, update corresponding test assertions
+# - Use /ensure-tests-pass before every commit or PR
+
+skills:
+  # Angular Component Generation
+  new-component:
+    description: 'Create a new Angular component with tests and styles'
+    instructions: |
+      Create a new Angular component following project conventions:
+
+      1. Ask the user for:
+         - Component name
+         - Which module it belongs to (or create standalone)
+         - Whether to include routing
+
+      2. Generate the component using Angular CLI:
+         - Use `ng generate component` with appropriate flags
+         - Include component.spec.ts file
+         - Use SCSS for styles
+
+      3. Follow Angular best practices:
+         - Use OnPush change detection if applicable
+         - Implement proper lifecycle hooks
+         - Add JSDoc comments for public methods
+
+      4. Create basic test setup in the spec file
+         - Include all necessary providers (e.g., provideRouter)
+         - Write tests for component creation
+         - Add tests for any inputs/outputs
+
+      5. Update the module imports if not standalone
+
+      6. Run tests to verify: `npm test -- --include='**/component-name.spec.ts'`
+
+  new-service:
+    description: 'Create a new Angular service with dependency injection'
+    instructions: |
+      Create a new Angular service following project conventions:
+
+      1. Ask the user for:
+         - Service name
+         - Where it should be located (shared/, core/, or feature-specific)
+         - Whether it should be providedIn: 'root' or module-specific
+
+      2. Generate using `ng generate service`
+
+      3. Add:
+         - Proper TypeScript types
+         - JSDoc comments
+         - Error handling patterns
+         - Unit test setup
+
+      4. If it's a singleton service, place it in core/
+      5. If it's shared across features, place it in shared/services/
+
+  new-feature:
+    description: 'Scaffold a new feature module with routing'
+    instructions: |
+      Create a complete feature module structure:
+
+      1. Ask the user for:
+         - Feature name
+         - Whether it should be lazy-loaded
+         - Main components needed
+
+      2. Create the following structure:
+         ```
+         src/app/features/<feature-name>/
+           ├── components/
+           ├── services/
+           ├── models/
+           ├── <feature-name>.module.ts
+           ├── <feature-name>-routing.module.ts
+           └── <feature-name>.component.ts
+         ```
+
+      3. Set up lazy loading in app-routing.module.ts if requested
+
+      4. Create barrel exports (index.ts) for clean imports
+
+  test-component:
+    description: 'Run tests for a specific component or service'
+    instructions: |
+      Run focused tests for development:
+
+      1. Ask which component/service to test
+      2. Run: `npm test -- --include='**/path/to/file.spec.ts'`
+      3. Show the results
+      4. If tests fail, offer to help fix them
+
+  ensure-tests-pass:
+    description: 'Verify all tests pass before committing'
+    instructions: |
+      ALWAYS run this before creating commits or PRs:
+
+      1. Run all tests in background with timeout:
+         `npm test 2>&1 & sleep 15 && pkill -f "ng test" && sleep 2`
+
+      2. Parse the output:
+         - Look for "Test Files X passed (X)"
+         - If it says "X failed", tests are FAILING
+         - stderr warnings about icons are OK, ignore them
+
+      3. If ANY tests fail:
+         - Identify which test file failed
+         - Run that specific test: `npm test -- --include='**/filename.spec.ts'`
+         - Fix the failing tests
+         - Common fixes:
+           * Update hardcoded counts (e.g., service count is now 9, not 3)
+           * Add missing providers in TestBed configuration
+           * Update assertions to match new data structure
+         - Re-run all tests to confirm fix
+
+      4. Only proceed with commit/PR when output shows "Test Files X passed"
+
+      NEVER commit code with failing tests.
+
+  build-check:
+    description: 'Run full build and quality checks'
+    instructions: |
+      Run comprehensive quality checks before committing or deploying:
+
+      CRITICAL: Always run tests through Angular's test runner (`npm test`),
+      NEVER use `vitest run` directly as it lacks proper Angular test environment setup.
+
+      1. Run format check: `npm run format:check`
+         - If it fails, run `npm run format` to fix
+
+      2. Run markdown lint: `npm run lint:md`
+         - If it fails, run `npm run lint:md:fix` to fix
+
+      3. Run tests: Start `npm test` in background, wait 15 seconds, then kill
+         - Command: `npm test 2>&1 & sleep 15 && pkill -f "ng test" && sleep 2`
+         - Look for "Test Files X passed" in output
+         - If any tests fail, fix them before proceeding
+         - Common issues:
+           * Hardcoded array lengths when services/data changes
+           * Missing test providers (e.g., provideRouter)
+           * Icon loading errors (these are warnings in stderr, not failures)
+
+      4. Run production build: `npm run build`
+         - Ensure no TypeScript errors
+         - Check bundle sizes are reasonable
+
+      Report any issues found and offer to fix them.
+      NEVER proceed with deployment or PR if tests are failing.
+
+  fix-format:
+    description: 'Fix code formatting across the project'
+    instructions: |
+      Fix formatting issues:
+
+      1. Run: `npm run format`
+      2. Run: `npm run lint:md:fix`
+      3. Show what files were changed
+      4. Offer to commit the changes if significant
+
+  review-pr:
+    description: 'Review code changes and create a pull request'
+    instructions: |
+      Review and create PR:
+
+      1. Run `git status` to see changes
+      2. Run `git diff` to review the diff
+      3. Check for:
+         - Proper TypeScript types
+         - Test coverage for new code
+         - Angular best practices
+         - No console.logs or debugging code
+         - Proper error handling
+
+      4. CRITICAL - Run build and tests to ensure nothing is broken:
+         - Run `npm run build` - must succeed with no errors
+         - Run `npm test 2>&1 & sleep 15 && pkill -f "ng test" && sleep 2`
+         - Verify output shows "Test Files X passed"
+         - If ANY tests fail, DO NOT create PR - fix tests first
+
+      5. Only create PR after ALL checks pass
+      6. Create a well-formatted PR with:
+         - Clear description of changes
+         - Testing instructions
+         - Any breaking changes noted
+         - Note that all tests are passing
+
+  setup-page:
+    description: 'Create a new page component with routing'
+    instructions: |
+      Set up a complete page:
+
+      1. Ask for:
+         - Page name (e.g., "services", "contact")
+         - Route path
+         - Whether it needs a form or data display
+
+      2. Create the page component in appropriate feature module
+      3. Add route to routing module
+      4. Create basic page structure with:
+         - Header/title
+         - Responsive layout
+         - Angular Material components if needed
+
+      5. Add navigation link if applicable
+
+  add-form:
+    description: 'Create a reactive form with validation'
+    instructions: |
+      Create an Angular reactive form:
+
+      1. Ask for:
+         - Form purpose/name
+         - Fields needed with types
+         - Validation requirements
+
+      2. Set up:
+         - Reactive form with FormBuilder
+         - Validators for each field
+         - Error messages
+         - Submit handler
+
+      3. Use Angular Material form components
+      4. Add proper TypeScript interfaces for form data
+      5. Include unit tests for form validation
+
+  deploy-dev:
+    description: 'Deploy to development environment'
+    instructions: |
+      Deploy the application to development:
+
+      1. Check current branch and git status
+      2. Run build checks (format, lint, test, build)
+      3. If on correct branch, trigger deployment
+      4. Monitor deployment status
+      5. Provide deployment URL when complete
+
+  analyze-bundle:
+    description: 'Analyze bundle size and optimization opportunities'
+    instructions: |
+      Analyze the application bundle:
+
+      1. Run production build: `ng build --configuration production`
+      2. Examine build output for bundle sizes
+      3. Identify:
+         - Largest bundles
+         - Lazy-loading opportunities
+         - Unused dependencies
+         - Heavy third-party libraries
+
+      4. Suggest optimizations:
+         - Code splitting strategies
+         - Tree-shaking improvements
+         - Lazy-load recommendations
+
+  tax-form-helper:
+    description: 'Helper for creating tax-related forms and components'
+    instructions: |
+      Create tax-related components specific to this business:
+
+      1. Ask what type of tax component:
+         - Tax calculator
+         - Document upload form
+         - Client information form
+         - Appointment scheduler
+         - Service pricing display
+
+      2. Create the component with:
+         - Proper form validation for tax data
+         - Currency formatting
+         - SSN/EIN masking and validation
+         - File upload capabilities if needed
+
+      3. Include accessibility features (WCAG compliance)
+      4. Add proper error messages in user-friendly language
+
+metadata:
+  project: "Lario's Income Tax Website"
+  framework: 'Angular 21'
+  language: 'TypeScript'
+  package_manager: 'npm'

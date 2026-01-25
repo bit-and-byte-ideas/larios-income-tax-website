@@ -1,18 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router } from '@angular/router';
 import { ContactSection } from './contact-section';
 import { SOCIAL_MEDIA_LINKS } from '../../../../shared/constants/social-media.constants';
+import { vi } from 'vitest';
 
 describe('ContactSection', () => {
   let component: ContactSection;
   let fixture: ComponentFixture<ContactSection>;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ContactSection],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ContactSection);
     component = fixture.componentInstance;
+    router = TestBed.inject(Router);
     fixture.detectChanges();
   });
 
@@ -24,54 +29,82 @@ describe('ContactSection', () => {
     expect(component.socialMediaLinks).toBe(SOCIAL_MEDIA_LINKS);
   });
 
-  it('should render Facebook link with correct URL', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    const facebookLink = compiled.querySelector('a[aria-label="Facebook"]') as HTMLAnchorElement;
-    expect(facebookLink).toBeTruthy();
-    expect(facebookLink.href).toBe(SOCIAL_MEDIA_LINKS.facebook);
-  });
-
-  it('should render Instagram link with correct URL', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    const instagramLink = compiled.querySelector('a[aria-label="Instagram"]') as HTMLAnchorElement;
-    expect(instagramLink).toBeTruthy();
-    expect(instagramLink.href).toBe(SOCIAL_MEDIA_LINKS.instagram);
-  });
-
-  it('should display contact heading', () => {
+  it('should display "GET IN TOUCH" heading', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const heading = compiled.querySelector('.contact-heading');
-    expect(heading?.textContent).toContain('CONTACT US');
+    expect(heading?.textContent).toContain('GET IN TOUCH');
   });
 
-  it('should have two location blocks', () => {
+  it('should display introduction text', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    const locations = compiled.querySelectorAll('.contact-location');
-    expect(locations.length).toBe(2);
+    const introText = compiled.querySelectorAll('.intro-text');
+    expect(introText.length).toBeGreaterThan(0);
   });
 
-  it('should have contact form with all required fields', () => {
+  it('should have Contact Us button', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    const nameInput = compiled.querySelector('input[name="name"]');
-    const emailInput = compiled.querySelector('input[name="email"]');
-    const phoneInput = compiled.querySelector('input[name="phone"]');
-    const addressInput = compiled.querySelector('input[name="address"]');
-    const subjectInput = compiled.querySelector('input[name="subject"]');
-    const messageTextarea = compiled.querySelector('textarea[name="message"]');
-    const submitButton = compiled.querySelector('.submit-button');
+    const contactButton = compiled.querySelector('.contact-button');
+    expect(contactButton).toBeTruthy();
+    expect(contactButton?.textContent?.trim()).toBe('Contact Us');
+  });
 
-    expect(nameInput).toBeTruthy();
-    expect(emailInput).toBeTruthy();
-    expect(phoneInput).toBeTruthy();
-    expect(addressInput).toBeTruthy();
-    expect(subjectInput).toBeTruthy();
-    expect(messageTextarea).toBeTruthy();
-    expect(submitButton).toBeTruthy();
+  it('should navigate to contact page when button is clicked', () => {
+    const navigateSpy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
+    component.navigateToContact();
+    expect(navigateSpy).toHaveBeenCalledWith(['/contact/united-states']);
+  });
+
+  it('should display "Stay Connected" social heading', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const socialHeading = compiled.querySelector('.social-heading');
+    expect(socialHeading?.textContent).toContain('Stay Connected');
+  });
+
+  it('should display social media description text', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const socialText = compiled.querySelector('.social-text');
+    expect(socialText).toBeTruthy();
+  });
+
+  it('should render Facebook link with correct URL and description', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const facebookLink = compiled.querySelector(
+      'a[aria-label="Follow us on Facebook"]'
+    ) as HTMLAnchorElement;
+    expect(facebookLink).toBeTruthy();
+    expect(facebookLink.href).toBe(SOCIAL_MEDIA_LINKS.facebook);
+
+    const socialName = facebookLink.querySelector('.social-name');
+    expect(socialName?.textContent).toBe('Facebook');
+
+    const socialDescription = facebookLink.querySelector('.social-description');
+    expect(socialDescription?.textContent).toContain('tax tips');
+  });
+
+  it('should render Instagram link with correct URL and description', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const instagramLink = compiled.querySelector(
+      'a[aria-label="Follow us on Instagram"]'
+    ) as HTMLAnchorElement;
+    expect(instagramLink).toBeTruthy();
+    expect(instagramLink.href).toBe(SOCIAL_MEDIA_LINKS.instagram);
+
+    const socialName = instagramLink.querySelector('.social-name');
+    expect(socialName?.textContent).toBe('Instagram');
+
+    const socialDescription = instagramLink.querySelector('.social-description');
+    expect(socialDescription?.textContent).toContain('tax season');
+  });
+
+  it('should have two social media links', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const socialLinks = compiled.querySelectorAll('.social-link');
+    expect(socialLinks.length).toBe(2);
   });
 
   it('should have social media icons', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    const socialLinks = compiled.querySelectorAll('.contact-social a');
-    expect(socialLinks.length).toBe(2);
+    const socialIcons = compiled.querySelectorAll('.social-icon');
+    expect(socialIcons.length).toBe(2);
   });
 });

@@ -21,14 +21,14 @@ describe('BookOnlinePage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have three services', () => {
-    expect(component.services.length).toBe(3);
+  it('should have nine services', () => {
+    expect(component.services.length).toBe(9);
   });
 
-  it('should render three service cards', () => {
+  it('should render nine service cards', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const serviceCards = compiled.querySelectorAll('.service-card');
-    expect(serviceCards.length).toBe(3);
+    expect(serviceCards.length).toBe(9);
   });
 
   it('should display correct service titles', () => {
@@ -36,13 +36,17 @@ describe('BookOnlinePage', () => {
     const titles = Array.from(compiled.querySelectorAll('.service-title')).map(el =>
       el.textContent?.trim()
     );
-    expect(titles).toEqual(['Tax Preparation', 'Immigration Services', 'Translations']);
+    expect(titles).toContain('Tax Preparation');
+    expect(titles).toContain('Immigration Services');
+    expect(titles).toContain('Translations');
+    expect(titles).toContain('E-File & Rapid Refund');
+    expect(titles).toContain('Dual Citizenship');
   });
 
   it('should have Read More links for each service', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const readMoreLinks = compiled.querySelectorAll('.read-more-link');
-    expect(readMoreLinks.length).toBe(3);
+    expect(readMoreLinks.length).toBe(9);
     readMoreLinks.forEach(link => {
       expect(link.textContent?.trim()).toBe('Read More');
     });
@@ -52,12 +56,13 @@ describe('BookOnlinePage', () => {
     expect(component.services[0].id).toBe('tax-preparation');
     expect(component.services[1].id).toBe('immigration-services');
     expect(component.services[2].id).toBe('translations');
+    expect(component.services[3].id).toBe('e-file-rapid-refund');
   });
 
   it('should have Book Now buttons for each service', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const bookNowButtons = compiled.querySelectorAll('.book-now-button');
-    expect(bookNowButtons.length).toBe(3);
+    expect(bookNowButtons.length).toBe(9);
     bookNowButtons.forEach(button => {
       expect(button.textContent?.trim()).toBe('Book Now');
     });
@@ -68,8 +73,8 @@ describe('BookOnlinePage', () => {
     const durations = compiled.querySelectorAll('.service-duration');
     const consultations = compiled.querySelectorAll('.service-consultation');
 
-    expect(durations.length).toBe(3);
-    expect(consultations.length).toBe(3);
+    expect(durations.length).toBe(9);
+    expect(consultations.length).toBe(9);
 
     consultations.forEach(consultation => {
       expect(consultation.textContent?.trim()).toBe('Free Consultation');
@@ -79,7 +84,7 @@ describe('BookOnlinePage', () => {
   it('should have service images', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const images = compiled.querySelectorAll('mat-card img');
-    expect(images.length).toBe(3);
+    expect(images.length).toBe(9);
 
     images.forEach(img => {
       expect((img as HTMLImageElement).src).toBeTruthy();

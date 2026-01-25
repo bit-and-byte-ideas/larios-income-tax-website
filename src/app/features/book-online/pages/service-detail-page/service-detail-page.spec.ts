@@ -41,20 +41,19 @@ describe('ServiceDetailPage', () => {
       expect(title?.textContent).toBe('Tax Preparation');
     });
 
-    it('should display three info boxes', () => {
+    it('should display two info chips', () => {
       const compiled = fixture.nativeElement as HTMLElement;
       const chips = compiled.querySelectorAll('mat-chip');
-      expect(chips.length).toBe(3);
+      expect(chips.length).toBe(2);
     });
 
-    it('should display duration, consultation, and address', () => {
+    it('should display duration and consultation', () => {
       const compiled = fixture.nativeElement as HTMLElement;
       const chips = Array.from(compiled.querySelectorAll('mat-chip')).map(el =>
         el.textContent?.trim()
       );
       expect(chips[0]).toBe('50 min');
       expect(chips[1]).toBe('Free Consultation');
-      expect(chips[2]).toBe('3317 El Cajon Blvd');
     });
 
     it('should have Book Now button', () => {
@@ -70,16 +69,17 @@ describe('ServiceDetailPage', () => {
       expect(img.src).toContain('tax-preparation.avif');
     });
 
-    it('should display contact details section', () => {
+    it('should display service description section', () => {
       const compiled = fixture.nativeElement as HTMLElement;
-      const cardTitle = compiled.querySelector('mat-card-title');
-      const address = compiled.querySelector('.contact-address');
-      expect(cardTitle?.textContent?.trim()).toBe('Contact Details');
-      expect(address?.textContent).toBe('3317 El Cajon Blvd, San Diego, CA 92104, USA');
-    });
+      const descriptionSection = compiled.querySelector('.service-description');
+      expect(descriptionSection).toBeTruthy();
 
-    it('should have correct contact address', () => {
-      expect(component.contactAddress).toBe('3317 El Cajon Blvd, San Diego, CA 92104, USA');
+      const heading = descriptionSection?.querySelector('h2');
+      expect(heading?.textContent?.trim()).toBe('About This Service');
+
+      const description = descriptionSection?.querySelector('p');
+      expect(description?.textContent?.trim()).toBeTruthy();
+      expect(description?.textContent?.trim().length).toBeGreaterThan(50);
     });
   });
 
@@ -160,6 +160,87 @@ describe('ServiceDetailPage', () => {
     it('should load Translations data', () => {
       expect(component.service?.title).toBe('Translations');
       expect(component.service?.duration).toBe('1 hr 50 min');
+    });
+  });
+
+  describe('E-File & Rapid Refund', () => {
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [ServiceDetailPage],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              params: of({ id: 'e-file-rapid-refund' }),
+            },
+          },
+        ],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(ServiceDetailPage);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should load E-File & Rapid Refund data', () => {
+      expect(component.service?.title).toBe('E-File & Rapid Refund');
+      expect(component.service?.duration).toBe('30 min');
+    });
+  });
+
+  describe('Dual Citizenship', () => {
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [ServiceDetailPage],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              params: of({ id: 'dual-citizenship' }),
+            },
+          },
+        ],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(ServiceDetailPage);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should load Dual Citizenship data', () => {
+      expect(component.service?.title).toBe('Dual Citizenship');
+      expect(component.service?.duration).toBe('1 hr');
+    });
+
+    it('should display placeholder image for new services', () => {
+      const compiled = fixture.nativeElement as HTMLElement;
+      const img = compiled.querySelector('mat-card img') as HTMLImageElement;
+      expect(img.src).toContain('larios_tax_logo_transparent.avif');
+    });
+  });
+
+  describe('ITINs', () => {
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [ServiceDetailPage],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              params: of({ id: 'itins' }),
+            },
+          },
+        ],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(ServiceDetailPage);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should load ITINs data', () => {
+      expect(component.service?.title).toBe('ITINs');
+      expect(component.service?.duration).toBe('40 min');
     });
   });
 });
