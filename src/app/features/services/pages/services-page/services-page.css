@@ -26,11 +26,17 @@
     box-shadow 0.3s ease;
   width: 100%;
   max-width: 100%;
+  cursor: pointer;
 }
 
 .service-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+.service-card:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* Service Row - Each service in its own row */

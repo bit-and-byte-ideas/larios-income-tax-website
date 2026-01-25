@@ -2,7 +2,13 @@
   <!-- Services List -->
   <div class="services-list">
     @for (service of services; track service.id; let i = $index) {
-      <mat-card class="service-card" appearance="raised">
+      <mat-card
+        class="service-card"
+        appearance="raised"
+        (click)="navigateToService(service.id)"
+        tabindex="0"
+        role="button"
+        [attr.aria-label]="'View details and book ' + service.title">
         <div class="service-row" [ngClass]="{ reverse: isReverse(i) }">
           <div class="service-content">
             <h2>{{ service.title.toUpperCase() }}</h2>

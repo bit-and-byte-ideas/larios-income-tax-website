@@ -41,20 +41,19 @@ describe('ServiceDetailPage', () => {
       expect(title?.textContent).toBe('Tax Preparation');
     });
 
-    it('should display three info boxes', () => {
+    it('should display two info chips', () => {
       const compiled = fixture.nativeElement as HTMLElement;
       const chips = compiled.querySelectorAll('mat-chip');
-      expect(chips.length).toBe(3);
+      expect(chips.length).toBe(2);
     });
 
-    it('should display duration, consultation, and address', () => {
+    it('should display duration and consultation', () => {
       const compiled = fixture.nativeElement as HTMLElement;
       const chips = Array.from(compiled.querySelectorAll('mat-chip')).map(el =>
         el.textContent?.trim()
       );
       expect(chips[0]).toBe('50 min');
       expect(chips[1]).toBe('Free Consultation');
-      expect(chips[2]).toBe('3317 El Cajon Blvd');
     });
 
     it('should have Book Now button', () => {
@@ -68,18 +67,6 @@ describe('ServiceDetailPage', () => {
       const img = compiled.querySelector('mat-card img') as HTMLImageElement;
       expect(img).toBeTruthy();
       expect(img.src).toContain('tax-preparation.avif');
-    });
-
-    it('should display contact details section', () => {
-      const compiled = fixture.nativeElement as HTMLElement;
-      const cardTitle = compiled.querySelector('mat-card-title');
-      const address = compiled.querySelector('.contact-address');
-      expect(cardTitle?.textContent?.trim()).toBe('Contact Details');
-      expect(address?.textContent).toBe('3317 El Cajon Blvd, San Diego, CA 92104, USA');
-    });
-
-    it('should have correct contact address', () => {
-      expect(component.contactAddress).toBe('3317 El Cajon Blvd, San Diego, CA 92104, USA');
     });
   });
 

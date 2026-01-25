@@ -80,10 +80,17 @@ To add a new service to the application:
    - Or use the placeholder: `/assets/images/larios_tax_logo_transparent.avif`
 
 3. **That's it!** The service will automatically appear on:
-   - **Services Page** (`/services`) - All services are displayed
+   - **Services Page** (`/services`) - All services are displayed with clickable cards
    - **Book Online Page** (`/book-online`) - All services are available for booking
-   - **Service Detail Page** (`/book-online/:id`) - Automatically populated when users click "Read More"
+   - **Service Detail Page** (`/book-online/:id`) - Automatically populated when users click service cards or "Read More"
    - **Home Page** (`/`) - Only if `featured: true`
+
+#### User Navigation Flow
+
+Users can access service details and booking in two ways:
+
+1. **From Services Page**: Click any service card to navigate to its detail page
+2. **From Book Online Page**: Click "Read More" on any service to view details
 
 #### Service Model
 
