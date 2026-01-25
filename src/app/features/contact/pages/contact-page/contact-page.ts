@@ -5,8 +5,10 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { SafePipe } from '../../../../shared/pipes/safe-pipe';
+import { getAllServices } from '../../../../shared/constants/services.constants';
 
 interface LocationData {
   country: string;
@@ -35,6 +37,7 @@ interface LocationData {
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatButtonModule,
   ],
   templateUrl: './contact-page.html',
@@ -43,6 +46,7 @@ interface LocationData {
 export class ContactPage implements OnInit {
   contactForm: FormGroup;
   currentLocation: LocationData | null = null;
+  subjects: string[] = [...getAllServices().map(service => service.title), 'Other'];
 
   private locationData: Record<string, LocationData> = {
     'united-states': {
