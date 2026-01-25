@@ -60,15 +60,16 @@
   opacity: 0.85;
 }
 
-.service-image {
-  max-width: 400px;
+.service-image-card {
+  max-width: 350px;
   margin-bottom: var(--spacing-xl);
 }
 
-.service-image img {
+.service-image-card img {
   width: 100%;
   height: auto;
   display: block;
+  object-fit: cover;
 }
 
 .service-description {
@@ -127,6 +128,12 @@
 }
 
 /* Responsive */
+@media (max-width: 768px) {
+  .service-image-card {
+    max-width: 280px;
+  }
+}
+
 @media (max-width: 640px) {
   .service-title {
     font-size: 2rem;
@@ -141,7 +148,7 @@
     border-top: none;
   }
 
-  .service-image {
+  .service-image-card {
     max-width: 100%;
   }
 }
