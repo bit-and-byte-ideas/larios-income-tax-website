@@ -29,7 +29,11 @@
 
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>{{ currentLocation.labels.subject }}</mat-label>
-              <input matInput type="text" id="subject" formControlName="subject" />
+              <mat-select id="subject" formControlName="subject">
+                @for (subject of subjects; track subject) {
+                  <mat-option [value]="subject">{{ subject }}</mat-option>
+                }
+              </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="form-field">

@@ -275,3 +275,32 @@ label {
 .mat-mdc-menu-item .mdc-list-item__primary-text {
   color: var(--color-primary-text) !important;
 }
+
+/* Angular Material Select Dropdown Overlay Fix */
+.cdk-overlay-container {
+  z-index: 1000;
+}
+
+.cdk-overlay-pane {
+  z-index: 1000;
+}
+
+.mat-mdc-select-panel {
+  background-color: var(--color-background) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid var(--color-accent-beige);
+  max-height: 300px !important;
+}
+
+.mat-mdc-option {
+  font-family: var(--font-primary) !important;
+  color: var(--color-primary-text) !important;
+}
+
+.mat-mdc-option:hover {
+  background-color: var(--color-accent-light) !important;
+}
+
+.mat-mdc-option.mat-mdc-option-active {
+  background-color: var(--color-accent-light) !important;
+}
