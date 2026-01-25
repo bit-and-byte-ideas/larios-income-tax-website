@@ -9,13 +9,12 @@
         tabindex="0"
         role="button"
         [attr.aria-label]="'View details and book ' + service.title">
-        <div class="service-row" [ngClass]="{ reverse: isReverse(i) }">
-          <div class="service-content">
-            <h2>{{ service.title.toUpperCase() }}</h2>
-          </div>
-          <div class="service-image">
-            <img [src]="service.image" [alt]="service.title" />
-          </div>
+        <div class="service-image">
+          <img [src]="service.image" [alt]="service.title" />
+        </div>
+        <div class="service-content">
+          <h2>{{ service.title.toUpperCase() }}</h2>
+          <p class="service-brief-description">{{ service.briefDescription }}</p>
         </div>
       </mat-card>
     }

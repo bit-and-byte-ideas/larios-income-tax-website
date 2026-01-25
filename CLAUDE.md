@@ -71,7 +71,8 @@ To add a new service to the application:
      duration: '1 hr',                // Service duration
      consultation: 'Free Consultation',
      featured: true,                  // Set to true to show on home page
-     description: 'Service description for future use',
+     briefDescription: 'Short 1-2 sentence description for the services list page.',
+     description: 'Comprehensive, detailed description that explains the service thoroughly. This appears on the service detail page and should be 3-5 sentences.',
    }
    ```
 
@@ -80,9 +81,9 @@ To add a new service to the application:
    - Or use the placeholder: `/assets/images/larios_tax_logo_transparent.avif`
 
 3. **That's it!** The service will automatically appear on:
-   - **Services Page** (`/services`) - All services are displayed with clickable cards
-   - **Book Online Page** (`/book-online`) - All services are available for booking
-   - **Service Detail Page** (`/book-online/:id`) - Automatically populated when users click service cards or "Read More"
+   - **Services Page** (`/services`) - All services displayed in a 2-column grid (large screens) with brief descriptions
+   - **Book Online Page** (`/book-online`) - All services available for booking
+   - **Service Detail Page** (`/book-online/:id`) - Full service details with elaborate description
    - **Home Page** (`/`) - Only if `featured: true`
 
 #### User Navigation Flow
@@ -91,6 +92,12 @@ Users can access service details and booking in two ways:
 
 1. **From Services Page**: Click any service card to navigate to its detail page
 2. **From Book Online Page**: Click "Read More" on any service to view details
+
+#### Layout Features
+
+- **Services Page**: Displays 2 cards side-by-side on large screens (>1024px), single column on smaller screens
+- **Brief Descriptions**: Shown on services list page to give quick overview
+- **Detailed Descriptions**: Shown on service detail page under "About This Service" section
 
 #### Service Model
 
@@ -104,9 +111,15 @@ interface Service {
   duration: string; // Service duration
   consultation: string; // Consultation info
   featured: boolean; // Show on home page?
-  description?: string; // Optional description
+  briefDescription: string; // Brief description for services list page
+  description: string; // Detailed description for service detail page
 }
 ```
+
+**Description Fields:**
+
+- `briefDescription`: Short, concise description (1-2 sentences) displayed on the services list page
+- `description`: Comprehensive, detailed description displayed on the service detail page
 
 #### Helper Functions
 

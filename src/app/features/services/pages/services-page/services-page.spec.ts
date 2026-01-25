@@ -44,11 +44,14 @@ describe('ServicesPage', () => {
     expect(titles).toContain('DUAL CITIZENSHIP');
   });
 
-  it('should have alternating layout', () => {
-    expect(component.isReverse(0)).toBe(false);
-    expect(component.isReverse(1)).toBe(true);
-    expect(component.isReverse(2)).toBe(false);
-    expect(component.isReverse(3)).toBe(true);
+  it('should display brief descriptions for all services', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const descriptions = compiled.querySelectorAll('.service-brief-description');
+    expect(descriptions.length).toBe(9);
+
+    const firstDescription = descriptions[0].textContent?.trim();
+    expect(firstDescription).toBeTruthy();
+    expect(firstDescription?.length).toBeGreaterThan(20);
   });
 
   it('should have service images', () => {

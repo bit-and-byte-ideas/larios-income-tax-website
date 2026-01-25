@@ -68,6 +68,19 @@ describe('ServiceDetailPage', () => {
       expect(img).toBeTruthy();
       expect(img.src).toContain('tax-preparation.avif');
     });
+
+    it('should display service description section', () => {
+      const compiled = fixture.nativeElement as HTMLElement;
+      const descriptionSection = compiled.querySelector('.service-description');
+      expect(descriptionSection).toBeTruthy();
+
+      const heading = descriptionSection?.querySelector('h2');
+      expect(heading?.textContent?.trim()).toBe('About This Service');
+
+      const description = descriptionSection?.querySelector('p');
+      expect(description?.textContent?.trim()).toBeTruthy();
+      expect(description?.textContent?.trim().length).toBeGreaterThan(50);
+    });
   });
 
   describe('with invalid service', () => {

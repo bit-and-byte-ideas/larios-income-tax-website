@@ -20,6 +20,9 @@ export interface Service {
   /** Whether this service should be featured on the home page */
   featured: boolean;
 
-  /** Optional description for future use */
-  description?: string;
+  /** Brief description displayed on services list page */
+  briefDescription: string;
+
+  /** Detailed description displayed on service detail page */
+  description: string;
 }
