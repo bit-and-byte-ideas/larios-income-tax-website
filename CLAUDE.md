@@ -82,6 +82,7 @@ To add a new service to the application:
 3. **That's it!** The service will automatically appear on:
    - **Services Page** (`/services`) - All services are displayed
    - **Book Online Page** (`/book-online`) - All services are available for booking
+   - **Service Detail Page** (`/book-online/:id`) - Automatically populated when users click "Read More"
    - **Home Page** (`/`) - Only if `featured: true`
 
 #### Service Model

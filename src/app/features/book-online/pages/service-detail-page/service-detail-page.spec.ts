@@ -162,4 +162,85 @@ describe('ServiceDetailPage', () => {
       expect(component.service?.duration).toBe('1 hr 50 min');
     });
   });
+
+  describe('E-File & Rapid Refund', () => {
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [ServiceDetailPage],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              params: of({ id: 'e-file-rapid-refund' }),
+            },
+          },
+        ],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(ServiceDetailPage);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should load E-File & Rapid Refund data', () => {
+      expect(component.service?.title).toBe('E-File & Rapid Refund');
+      expect(component.service?.duration).toBe('30 min');
+    });
+  });
+
+  describe('Dual Citizenship', () => {
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [ServiceDetailPage],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              params: of({ id: 'dual-citizenship' }),
+            },
+          },
+        ],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(ServiceDetailPage);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should load Dual Citizenship data', () => {
+      expect(component.service?.title).toBe('Dual Citizenship');
+      expect(component.service?.duration).toBe('1 hr');
+    });
+
+    it('should display placeholder image for new services', () => {
+      const compiled = fixture.nativeElement as HTMLElement;
+      const img = compiled.querySelector('mat-card img') as HTMLImageElement;
+      expect(img.src).toContain('larios_tax_logo_transparent.avif');
+    });
+  });
+
+  describe('ITINs', () => {
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [ServiceDetailPage],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              params: of({ id: 'itins' }),
+            },
+          },
+        ],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(ServiceDetailPage);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should load ITINs data', () => {
+      expect(component.service?.title).toBe('ITINs');
+      expect(component.service?.duration).toBe('40 min');
+    });
+  });
 });
