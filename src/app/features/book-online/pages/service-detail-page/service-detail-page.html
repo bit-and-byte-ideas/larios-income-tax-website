@@ -6,7 +6,6 @@
       <mat-chip-set class="service-info-chips">
         <mat-chip>{{ service.duration }}</mat-chip>
         <mat-chip>{{ service.consultation }}</mat-chip>
-        <mat-chip>3317 El Cajon Blvd</mat-chip>
       </mat-chip-set>
 
       <button mat-raised-button color="primary" class="book-now-button" (click)="onBookNow()">
@@ -15,15 +14,6 @@
 
       <mat-card class="service-image-card" appearance="outlined">
         <img mat-card-image [src]="service.image" [alt]="service.title" />
-      </mat-card>
-
-      <mat-card class="contact-details-card" appearance="outlined">
-        <mat-card-header>
-          <mat-card-title>Contact Details</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p class="contact-address">{{ contactAddress }}</p>
-        </mat-card-content>
       </mat-card>
     </div>
   </div>
