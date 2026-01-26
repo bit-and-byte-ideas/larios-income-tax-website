@@ -1,7 +1,15 @@
 /* Global Styles - Larios Income Tax with Angular Material */
 
-/* Color Variables */
-:root {
+/* ===========================================
+   THEME SYSTEM
+   Toggle between themes by setting data-theme attribute on <html>
+   Default: data-theme="classic" (or no attribute)
+   Professional: data-theme="professional"
+   =========================================== */
+
+/* Default/Classic Theme - Original warm beige/tan colors */
+:root,
+:root[data-theme='classic'] {
   --color-primary-text: rgb(39, 36, 29);
   --color-background: rgb(255, 255, 255);
   --color-accent-beige: rgb(198, 188, 164);
@@ -15,6 +23,66 @@
   --font-heading: 'brandon-grot-w01-light', sans-serif;
   --font-body: 'brandon-grot-w01-light', sans-serif;
 
+  --max-width-container: 1200px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 4rem;
+}
+
+/* Professional Theme - Modern blue/green financial colors */
+:root[data-theme='professional'] {
+  /* Primary Colors - Deep navy blue for professionalism and trust */
+  --color-primary-text: rgb(25, 42, 70);
+  --color-background: rgb(255, 255, 255);
+
+  /* Accent Colors - Forest green and gold for growth and value */
+  --color-accent-beige: rgb(34, 102, 102); /* Teal green - finance/growth */
+  --color-accent-tan: rgb(46, 125, 50); /* Forest green - money/success */
+  --color-accent-light: rgb(232, 245, 233); /* Light green tint */
+  --color-accent-dark: rgb(21, 67, 96); /* Deep navy */
+
+  /* Link Colors - Accessible blue */
+  --color-link: rgb(13, 71, 161); /* Deep blue */
+  --color-link-hover: rgb(25, 118, 210); /* Lighter blue */
+
+  /* Typography - Same fonts */
+  --font-primary: 'brandon-grot-w01-light', sans-serif;
+  --font-heading: 'brandon-grot-w01-light', sans-serif;
+  --font-body: 'brandon-grot-w01-light', sans-serif;
+
+  /* Layout - Same spacing */
+  --max-width-container: 1200px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 4rem;
+}
+
+/* Luxury Theme - Elegant black and gold colors inspired by logo */
+:root[data-theme='luxury'] {
+  /* Primary Colors - Deep black for elegance and sophistication */
+  --color-primary-text: rgb(26, 26, 26);
+  --color-background: rgb(255, 255, 255);
+
+  /* Accent Colors - Gold tones for luxury and prestige */
+  --color-accent-beige: rgb(212, 175, 55); /* Rich gold - luxury/premium */
+  --color-accent-tan: rgb(184, 134, 11); /* Dark gold - wealth/excellence */
+  --color-accent-light: rgb(255, 250, 240); /* Champagne tint */
+  --color-accent-dark: rgb(33, 33, 33); /* Deep charcoal black */
+
+  /* Link Colors - Accessible gold tones */
+  --color-link: rgb(184, 134, 11); /* Dark gold */
+  --color-link-hover: rgb(212, 175, 55); /* Rich gold */
+
+  /* Typography - Same fonts */
+  --font-primary: 'brandon-grot-w01-light', sans-serif;
+  --font-heading: 'brandon-grot-w01-light', sans-serif;
+  --font-body: 'brandon-grot-w01-light', sans-serif;
+
+  /* Layout - Same spacing */
   --max-width-container: 1200px;
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
