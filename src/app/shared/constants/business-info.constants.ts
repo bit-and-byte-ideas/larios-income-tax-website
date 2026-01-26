@@ -66,9 +66,9 @@ export const BUSINESS_INFO: BusinessInfo = {
         formattedShort: '3317 El Cajon Blvd, San Diego, CA 92104, USA',
       },
       contact: {
-        phone: '6192832828',
-        phoneFormatted: '(619) 283-2828',
-        phoneLink: 'tel:+16192832828',
+        phone: '6199723350',
+        phoneFormatted: '(619) 972-3350',
+        phoneLink: 'tel:+16199723350',
         email: 'lariosincometax@gmail.com',
         emailLink: 'mailto:lariosincometax@gmail.com',
       },
@@ -88,15 +88,15 @@ export const BUSINESS_INFO: BusinessInfo = {
         formattedShort: 'Av. Las Plazas No. 17101-1 Fracc Rinconada De Otay Tijuana, B.C',
       },
       contact: {
-        phone: '6192832828',
-        phoneFormatted: '(619) 283-2828',
-        phoneLink: 'tel:+16192832828',
+        phone: '6199498007',
+        phoneFormatted: '(619) 949-8007',
+        phoneLink: 'tel:+16199498007',
         email: 'alianzalatina18@gmail.com',
         emailLink: 'mailto:alianzalatina18@gmail.com',
       },
       mapEmbed:
         'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3365.0924847384447!2d-116.97138468481978!3d32.520836580643805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d948b8e8f0f9c9%3A0x5c5f5c5f5c5f5c5f!2sAv.%20Las%20Plazas%2017101%2C%20Rinconada%20de%20Otay%2C%2022106%20Tijuana%2C%20B.C.%2C%20Mexico!5e0!3m2!1sen!2sus!4v1625157700000!5m2!1sen!2sus',
-      additionalPhones: ['(664) 623-1817', '(664) 623-8981'],
+      additionalPhones: ['(664) 623-1817'],
     },
   },
 
