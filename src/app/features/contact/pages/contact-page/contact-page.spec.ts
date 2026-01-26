@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { ContactPage } from './contact-page';
+import { BUSINESS_INFO } from '../../../../shared/constants/business-info.constants';
 
 describe('ContactPage', () => {
   let component: ContactPage;
@@ -45,9 +46,7 @@ describe('ContactPage', () => {
     });
 
     it('should display US address', () => {
-      expect(component.currentLocation?.address).toBe(
-        '3317 El Cajon Blvd San Diego CA United States 92104'
-      );
+      expect(component.currentLocation?.address).toBe(BUSINESS_INFO.locations.us.address.formatted);
     });
 
     it('should display contact heading', () => {
@@ -122,8 +121,10 @@ describe('ContactPage', () => {
     });
 
     it('should have correct email and phone links', () => {
-      expect(component.currentLocation?.email).toBe('lariosincometax@gmail.com');
-      expect(component.currentLocation?.phone).toBe('(619) 283-2828');
+      expect(component.currentLocation?.email).toBe(BUSINESS_INFO.locations.us.contact.email);
+      expect(component.currentLocation?.phone).toBe(
+        BUSINESS_INFO.locations.us.contact.phoneFormatted
+      );
     });
   });
 
@@ -162,7 +163,7 @@ describe('ContactPage', () => {
 
     it('should display Mexico address', () => {
       expect(component.currentLocation?.address).toBe(
-        'Av. Las Plazas No. 17101-1 Fracc Rinconada De Otay Tijuana, B.C'
+        BUSINESS_INFO.locations.mexico.address.formatted
       );
     });
 

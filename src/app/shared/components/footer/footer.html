@@ -3,27 +3,30 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-location">
-          <p class="footer-address">3317 El Cajon Blvd San Diego CA United States 92104</p>
+          <p class="footer-address">{{ usLocation.address.formatted }}</p>
           <p class="footer-email">
-            <a href="mailto:lariosincometax@gmail.com">lariosincometax&#64;gmail.com</a>
+            <a [href]="usLocation.contact.emailLink">{{ usLocation.contact.email }}</a>
           </p>
           <p class="footer-phone">
-            <a href="tel:+16192832828">(619) 283-2828</a>
+            <a [href]="usLocation.contact.phoneLink">{{ usLocation.contact.phoneFormatted }}</a>
           </p>
         </div>
 
         <div class="footer-location">
-          <p class="footer-address">
-            Av. Las Plazas No. 17101-1 Fracc Rinconada De Otay<br />Tijuana, B.C
-          </p>
+          <p class="footer-address">{{ mexicoLocation.address.formatted }}</p>
           <p class="footer-email">
-            <a href="mailto:alianzalatina18@gmail.com">alianzalatina18&#64;gmail.com</a>
+            <a [href]="mexicoLocation.contact.emailLink">{{ mexicoLocation.contact.email }}</a>
           </p>
           <p class="footer-phone">
-            <a href="tel:+16646231817">(664) 623-1817</a>
-            <a href="tel:+16646238981">(664) 623-8981</a>
+            @for (phone of mexicoLocation.additionalPhones; track phone; let i = $index) {
+              @if (i < 2) {
+                <a [href]="'tel:+1' + phone.replace(/[^0-9]/g, '')">{{ phone }}</a>
+              }
+            }
           </p>
-          <p class="footer-whatsapp">WhatsApp: (619) 949-8007</p>
+          @if (usLocation.additionalPhones && usLocation.additionalPhones.length > 0) {
+            <p class="footer-whatsapp">WhatsApp: {{ usLocation.additionalPhones[0] }}</p>
+          }
         </div>
       </div>
     </div>
@@ -31,7 +34,7 @@
 
   <div class="footer-bottom">
     <div class="container">
-      <p>&copy;2024 BY LARIOS INCOME TAX AND IMMIGRATION.</p>
+      <p>{{ businessInfo.copyright }}</p>
     </div>
   </div>
 </footer>

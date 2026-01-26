@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, RouterLink } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { Header } from './header';
-import { SOCIAL_MEDIA_LINKS } from '../../constants/social-media.constants';
+import { BUSINESS_INFO } from '../../constants/business-info.constants';
 
 describe('Header', () => {
   let component: Header;
@@ -24,21 +24,21 @@ describe('Header', () => {
   });
 
   it('should have social media links from constants', () => {
-    expect(component.socialMediaLinks).toBe(SOCIAL_MEDIA_LINKS);
+    expect(component.socialMediaLinks).toBe(BUSINESS_INFO.socialMedia);
   });
 
   it('should render Facebook link with correct URL', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const facebookLink = compiled.querySelector('a[aria-label="Facebook"]') as HTMLAnchorElement;
     expect(facebookLink).toBeTruthy();
-    expect(facebookLink.href).toBe(SOCIAL_MEDIA_LINKS.facebook);
+    expect(facebookLink.href).toBe(BUSINESS_INFO.socialMedia.facebook);
   });
 
   it('should render Instagram link with correct URL', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const instagramLink = compiled.querySelector('a[aria-label="Instagram"]') as HTMLAnchorElement;
     expect(instagramLink).toBeTruthy();
-    expect(instagramLink.href).toBe(SOCIAL_MEDIA_LINKS.instagram);
+    expect(instagramLink.href).toBe(BUSINESS_INFO.socialMedia.instagram);
   });
 
   it('should have navigation links', () => {
