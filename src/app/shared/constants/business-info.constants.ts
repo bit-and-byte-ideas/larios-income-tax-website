@@ -105,7 +105,7 @@ export const BUSINESS_INFO: BusinessInfo = {
     instagram: 'https://www.instagram.com/lariosincometaxandimmigration/',
   },
 
-  copyright: '©2024 BY LARIOS INCOME TAX AND IMMIGRATION.',
+  copyright: '© 2024-2026 BY LARIOS INCOME TAX AND IMMIGRATION.',
 };
 
 /**
