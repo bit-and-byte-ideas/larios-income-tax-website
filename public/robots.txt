@@ -1,0 +1,15 @@
+# robots.txt for lariosincometax.com
+
+User-agent: *
+Allow: /
+
+# Allow important directories
+Allow: /services
+Allow: /contact
+Allow: /book-online
+
+# Sitemap location
+Sitemap: https://lariosincometax.com/sitemap.xml
+
+# Crawl delay (be nice to servers)
+Crawl-delay: 1
