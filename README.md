@@ -65,6 +65,7 @@ Comprehensive technical documentation is available using [Backstage TechDocs](ht
 - [Features](docs/features.md) - Detailed feature documentation
 - [Setup Guide](docs/setup-guide.md) - Installation and development workflow
 - [Architecture](docs/architecture.md) - Project structure and design patterns
+- [Theme System](docs/THEMES.md) - Color scheme toggle and customization
 - [Code Quality](docs/code-quality.md) - Standards, linting, and pre-commit hooks
 - [CI/CD Pipeline](docs/ci-cd.md) - GitHub Actions workflows
 - [Production Build](docs/production-build.md) - Building for production
@@ -78,6 +79,23 @@ pip install mkdocs-techdocs-core
 mkdocs serve  # Open http://localhost:8000
 ```
 
+## Theme System
+
+Toggle between color schemes instantly without code changes:
+
+```javascript
+// Switch to Professional Theme (modern blue/green)
+document.documentElement.setAttribute('data-theme', 'professional');
+
+// Switch to Luxury Theme (elegant black/gold)
+document.documentElement.setAttribute('data-theme', 'luxury');
+
+// Switch to Classic Theme (warm beige/tan)
+document.documentElement.setAttribute('data-theme', 'classic');
+```
+
+See [Theme Documentation](docs/THEMES.md) for complete guide and implementation details.
+
 ## Features
 
 - **Landing Page** - Parallax hero section, services overview, contact form
@@ -86,6 +104,8 @@ mkdocs serve  # Open http://localhost:8000
 - **Contact** - Bilingual contact pages (English/Spanish) with Google Maps integration
 - **Responsive Design** - Mobile-first approach with warm, professional aesthetic
 - **Internationalization** - Location-based English/Spanish content
+- **Multi-Theme System** - Toggle between Classic (beige/tan), Professional (blue/green),
+  and Luxury (black/gold) color schemes
 
 ## Project Structure
 
