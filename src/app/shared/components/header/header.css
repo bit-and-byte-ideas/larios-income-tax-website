@@ -5,54 +5,30 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Top Section - White Background with Logo and Title */
+/* Top Section - White Background with Logo */
 .header-top {
   background-color: var(--color-background) !important;
   border-bottom: 1px solid var(--color-accent-beige);
   height: auto !important;
-  padding: var(--spacing-md) 0 !important;
+  padding: 0 !important;
 }
 
 .header-top-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
+  justify-content: center;
   width: 100%;
 }
 
 .header-logo-icon {
-  width: 80px;
-  height: 80px;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
   object-fit: contain;
-  flex-shrink: 0;
-}
-
-.header-title-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.header-title {
-  font-family: var(--font-heading);
-  font-size: 1.75rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  color: var(--color-primary-text);
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.header-subtitle {
-  font-family: var(--font-primary);
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--color-primary-text);
-  margin: 0;
-  opacity: 0.8;
+  display: block;
 }
 
 /* Bottom Section - Dark Background with Nav and Contact */
@@ -170,17 +146,8 @@
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .header-title {
-    font-size: 1.5rem;
-  }
-
-  .header-subtitle {
-    font-size: 0.9rem;
-  }
-
   .header-logo-icon {
-    width: 60px;
-    height: 60px;
+    max-width: 500px;
   }
 
   .contact-link {
@@ -208,28 +175,14 @@
     gap: 0.25rem;
   }
 
-  .header-title {
-    font-size: 1.25rem;
-  }
-
   .header-logo-icon {
-    width: 50px;
-    height: 50px;
+    max-width: 400px;
   }
 }
 
 @media (max-width: 640px) {
-  .header-top-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .header-title {
-    font-size: 1rem;
-  }
-
-  .header-subtitle {
-    font-size: 0.8rem;
+  .header-logo-icon {
+    max-width: 300px;
   }
 
   .main-nav {
