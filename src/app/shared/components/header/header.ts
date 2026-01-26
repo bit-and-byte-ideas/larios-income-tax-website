@@ -4,7 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { SOCIAL_MEDIA_LINKS } from '../../constants/social-media.constants';
+import { BUSINESS_INFO } from '../../constants/business-info.constants';
 
 @Component({
   selector: 'app-header',
@@ -21,5 +21,7 @@ import { SOCIAL_MEDIA_LINKS } from '../../constants/social-media.constants';
   styleUrl: './header.css',
 })
 export class Header {
-  readonly socialMediaLinks = SOCIAL_MEDIA_LINKS;
+  readonly businessInfo = BUSINESS_INFO;
+  readonly usLocation = BUSINESS_INFO.locations.us;
+  readonly socialMediaLinks = BUSINESS_INFO.socialMedia;
 }

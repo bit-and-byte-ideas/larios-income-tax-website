@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { SafePipe } from '../../../../shared/pipes/safe-pipe';
 import { getAllServices } from '../../../../shared/constants/services.constants';
+import { BUSINESS_INFO } from '../../../../shared/constants/business-info.constants';
 
 interface LocationData {
   country: string;
@@ -50,12 +51,11 @@ export class ContactPage implements OnInit {
 
   private locationData: Record<string, LocationData> = {
     'united-states': {
-      country: 'United States',
-      address: '3317 El Cajon Blvd San Diego CA United States 92104',
-      email: 'lariosincometax@gmail.com',
-      phone: '(619) 283-2828',
-      mapSrc:
-        'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3356.9876543210!2d-117.1234567!3d32.7654321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s3317%20El%20Cajon%20Blvd%2C%20San%20Diego%2C%20CA%2092104!5e0!3m2!1sen!2sus!4v1234567890',
+      country: BUSINESS_INFO.locations.us.address.country,
+      address: BUSINESS_INFO.locations.us.address.formatted,
+      email: BUSINESS_INFO.locations.us.contact.email,
+      phone: BUSINESS_INFO.locations.us.contact.phoneFormatted,
+      mapSrc: BUSINESS_INFO.locations.us.mapEmbed,
       labels: {
         heading: 'CONTACT US',
         name: 'Name',
@@ -69,12 +69,11 @@ export class ContactPage implements OnInit {
       },
     },
     mexico: {
-      country: 'Mexico',
-      address: 'Av. Las Plazas No. 17101-1 Fracc Rinconada De Otay Tijuana, B.C',
-      email: 'lariosincometax@gmail.com',
-      phone: '(619) 283-2828',
-      mapSrc:
-        'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3356.9876543210!2d-116.9876543!3d32.5432109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sAv.%20Las%20Plazas%20No.%2017101-1%2C%20Tijuana%2C%20B.C.!5e0!3m2!1sen!2smx!4v1234567890',
+      country: BUSINESS_INFO.locations.mexico.address.country,
+      address: BUSINESS_INFO.locations.mexico.address.formatted,
+      email: BUSINESS_INFO.locations.mexico.contact.email,
+      phone: BUSINESS_INFO.locations.mexico.contact.phoneFormatted,
+      mapSrc: BUSINESS_INFO.locations.mexico.mapEmbed,
       labels: {
         heading: 'CONTÁCTENOS',
         name: 'Nombre',

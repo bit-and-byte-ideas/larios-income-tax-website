@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { Service } from '../../../../shared/models/service.model';
 import { getServiceById } from '../../../../shared/constants/services.constants';
+import { BUSINESS_INFO } from '../../../../shared/constants/business-info.constants';
 
 @Component({
   selector: 'app-service-detail-page',
@@ -15,7 +16,9 @@ import { getServiceById } from '../../../../shared/constants/services.constants'
 })
 export class ServiceDetailPage implements OnInit {
   service: Service | null = null;
-  contactAddress = '3317 El Cajon Blvd, San Diego, CA 92104, USA';
+  contactAddress =
+    BUSINESS_INFO.locations.us.address.formattedShort ||
+    BUSINESS_INFO.locations.us.address.formatted;
 
   constructor(private route: ActivatedRoute) {}
 

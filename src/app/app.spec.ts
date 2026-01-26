@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { App } from './app';
 import { routes } from './app.routes';
+import { BUSINESS_INFO } from './shared/constants/business-info.constants';
 
 describe('App', () => {
   beforeEach(async () => {
@@ -24,6 +25,6 @@ describe('App', () => {
     const logoImg = compiled.querySelector('.header-logo-icon') as HTMLImageElement;
     expect(logoImg).toBeTruthy();
     expect(logoImg.src).toContain('larios_header_logo_transparent.avif');
-    expect(logoImg.alt).toBe('Larios Income Tax Logo');
+    expect(logoImg.alt).toBe(`${BUSINESS_INFO.name} Logo`);
   });
 });

@@ -4,7 +4,7 @@
     <div class="header-top-content">
       <img
         src="/assets/images/larios_header_logo_transparent.avif"
-        alt="Larios Income Tax Logo"
+        [alt]="businessInfo.name + ' Logo'"
         class="header-logo-icon"
       />
     </div>
@@ -52,10 +52,12 @@
 
       <!-- Contact and Social -->
       <div class="header-contact">
-        <a href="mailto:lariosincometax@gmail.com" class="contact-link" mat-button>
-          LARIOSINCOMETAX@GMAIL.COM
+        <a [href]="usLocation.contact.emailLink" class="contact-link" mat-button>
+          {{ usLocation.contact.email.toUpperCase() }}
         </a>
-        <a href="tel:+16192832828" class="contact-link" mat-button>(619) 283-2828</a>
+        <a [href]="usLocation.contact.phoneLink" class="contact-link" mat-button>{{
+          usLocation.contact.phoneFormatted
+        }}</a>
         <a
           [href]="socialMediaLinks.facebook"
           target="_blank"
