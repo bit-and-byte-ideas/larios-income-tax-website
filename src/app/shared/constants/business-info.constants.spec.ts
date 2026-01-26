@@ -30,7 +30,7 @@ describe('BusinessInfoConstants', () => {
       expect(usLocation.address.city).toBe('San Diego');
       expect(usLocation.address.state).toBe('CA');
       expect(usLocation.address.zip).toBe('92104');
-      expect(usLocation.contact.phoneFormatted).toBe('(619) 283-2828');
+      expect(usLocation.contact.phoneFormatted).toBe('(619) 972-3350');
       expect(usLocation.contact.email).toBe('lariosincometax@gmail.com');
     });
 
@@ -38,7 +38,7 @@ describe('BusinessInfoConstants', () => {
       const mexicoLocation = BUSINESS_INFO.locations.mexico;
       expect(mexicoLocation.name).toBe('Mexico Office');
       expect(mexicoLocation.address.formatted).toContain('Tijuana');
-      expect(mexicoLocation.contact.phoneFormatted).toBe('(619) 283-2828');
+      expect(mexicoLocation.contact.phoneFormatted).toBe('(619) 949-8007');
       expect(mexicoLocation.contact.email).toBe('alianzalatina18@gmail.com');
     });
 
@@ -78,7 +78,7 @@ describe('BusinessInfoConstants', () => {
     });
 
     it('getPrimaryPhone should return formatted phone', () => {
-      expect(getPrimaryPhone()).toBe('(619) 283-2828');
+      expect(getPrimaryPhone()).toBe('(619) 972-3350');
     });
 
     it('getPrimaryEmail should return email', () => {
