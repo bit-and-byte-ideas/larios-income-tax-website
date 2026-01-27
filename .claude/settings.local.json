@@ -35,7 +35,8 @@
       "Bash(chmod:*)",
       "Bash(./validate.sh:*)",
       "Bash(grep:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(npm run lint:yaml:*)"
     ]
   }
 }
