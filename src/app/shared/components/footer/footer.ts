@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BUSINESS_INFO } from '../../constants/business-info.constants';
+import { BUSINESS_INFO, getCopyright } from '../../constants/business-info.constants';
 
 @Component({
   selector: 'app-footer',
@@ -12,4 +12,5 @@ export class Footer {
   readonly businessInfo = BUSINESS_INFO;
   readonly usLocation = BUSINESS_INFO.locations.us;
   readonly mexicoLocation = BUSINESS_INFO.locations.mexico;
+  readonly copyright = getCopyright();
 }

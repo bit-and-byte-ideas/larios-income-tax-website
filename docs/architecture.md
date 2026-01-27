@@ -74,7 +74,7 @@ export class FeatureModule { }
   - Sticky positioning for persistent access
 - **Footer** - Two-tier footer with business locations and copyright
   - Top section: Dual location display (San Diego, CA and Tijuana, B.C.)
-  - Bottom section: Copyright notice
+  - Bottom section: Dynamic copyright notice (automatically updates year)
 - **SafePipe** - Custom pipe for sanitizing URLs (Google Maps iframes)
 - **Social Media Constants** - Frozen constants for Facebook and Instagram URLs
 

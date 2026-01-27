@@ -35,9 +35,10 @@ The site footer displays business locations and copyright:
   - Top section: Dual location display
     - San Diego, CA location with address, email, phone
     - Tijuana, B.C. location with address
-  - Bottom section: Copyright notice
+  - Bottom section: Dynamic copyright notice (© 2024-{CurrentYear})
 - **White background** with thin black divider line
 - **Responsive layout:** Stacks vertically on mobile devices
+- **Dynamic copyright:** Copyright year automatically updates to show "2024-{Current Year}"
 
 ## Landing Page
 
