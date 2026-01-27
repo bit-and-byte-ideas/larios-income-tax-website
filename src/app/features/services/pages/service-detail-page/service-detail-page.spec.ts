@@ -56,10 +56,11 @@ describe('ServiceDetailPage', () => {
       expect(chips[1]).toBe('Free Consultation');
     });
 
-    it('should have Book Now button', () => {
+    it('should have Call Us For an Appointment link', () => {
       const compiled = fixture.nativeElement as HTMLElement;
-      const button = compiled.querySelector('.book-now-button');
-      expect(button?.textContent?.trim()).toContain('Book Now');
+      const button = compiled.querySelector('.book-now-button') as HTMLAnchorElement;
+      expect(button?.textContent?.trim()).toContain('Call Us For an Appointment');
+      expect(button?.href).toContain('tel:');
     });
 
     it('should display service image', () => {

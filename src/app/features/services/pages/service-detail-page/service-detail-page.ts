@@ -25,6 +25,7 @@ export class ServiceDetailPage implements OnInit, OnDestroy {
   contactAddress =
     BUSINESS_INFO.locations.us.address.formattedShort ||
     BUSINESS_INFO.locations.us.address.formatted;
+  phoneLink = BUSINESS_INFO.locations.us.contact.phoneLink;
 
   constructor(
     private route: ActivatedRoute,
@@ -45,10 +46,6 @@ export class ServiceDetailPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.seoService.removeStructuredData();
-  }
-
-  onBookNow(): void {
-    // Placeholder for future implementation
   }
 
   /**

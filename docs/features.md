@@ -139,10 +139,10 @@ Dynamic detail page for each service, accessible via service cards on the Servic
 **Content:**
 
 - Service title
-- Three info boxes: Duration, Consultation type, Address
-- "Book Now" button (placeholder for future booking functionality)
+- Two info chips: Duration, Consultation type
+- "Call Us For an Appointment" button (links to US office phone number)
 - Service image
-- Contact details section with full address
+- Service description section with detailed information
 
 **Implementation:**
 
@@ -181,7 +181,7 @@ Bilingual contact pages with location-specific data and Google Maps integration.
 - Contact information:
   - Address: 3317 El Cajon Blvd San Diego CA United States 92104
   - Email: <lariosincometax@gmail.com>
-  - Phone: (619) 283-2828
+  - Phone: (619) 972-3350
 - Google Maps iframe with San Diego location
 
 ### Mexico Contact Page
@@ -203,7 +203,7 @@ Bilingual contact pages with location-specific data and Google Maps integration.
 - Contact information:
   - Address: Av. Las Plazas No. 17101-1 Fracc Rinconada De Otay Tijuana, B.C
   - Email: <lariosincometax@gmail.com>
-  - Phone: (619) 283-2828
+  - Phone: (619) 972-3350
 - Google Maps iframe with Tijuana location
 
 ### Technical Implementation
@@ -307,7 +307,8 @@ All features include comprehensive unit tests:
 
 Placeholder implementations for future development:
 
-- **Book Now functionality:** Currently placeholder buttons
+- **Online booking system:** Service detail pages currently link to phone number; future implementation will include
+  online appointment scheduling
 - **Form submission:** Contact forms ready for backend integration
 - **E2E testing:** Framework to be added (Cypress or Playwright)
 - **Analytics integration:** Google Analytics or similar

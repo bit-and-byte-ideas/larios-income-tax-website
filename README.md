@@ -2,7 +2,7 @@
 
 An Angular-based web application for Larios Income Tax services, migrated from the original Wix site at [lariosincometax.com](https://www.lariosincometax.com/).
 
-**Business:** Larios Income Tax | **Location:** 3317 El Cajon Blvd, San Diego, CA 92104 | **Phone:** +1 (619) 283-2828
+**Business:** Larios Income Tax | **Location:** 3317 El Cajon Blvd, San Diego, CA 92104 | **Phone:** +1 (619) 972-3350
 
 ## Quick Start
 
