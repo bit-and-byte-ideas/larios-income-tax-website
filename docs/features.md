@@ -16,10 +16,10 @@ The site header provides consistent navigation across all pages:
 - **Navigation menu** with dropdown for Contact:
   - Home
   - Services
-  - Book Online
   - Contact (dropdown)
     - United States
     - Mexico
+  - _(Book Online temporarily disabled - will be re-enabled in the future)_
 - **Contact information:** Email and phone displayed in header
 - **Social media icons:** Facebook and Instagram with hover effects
 - **Sticky positioning:** Header remains visible during scroll
@@ -35,9 +35,10 @@ The site footer displays business locations and copyright:
   - Top section: Dual location display
     - San Diego, CA location with address, email, phone
     - Tijuana, B.C. location with address
-  - Bottom section: Copyright notice
+  - Bottom section: Dynamic copyright notice (© 2024-{CurrentYear})
 - **White background** with thin black divider line
 - **Responsive layout:** Stacks vertically on mobile devices
+- **Dynamic copyright:** Copyright year automatically updates to show "2024-{Current Year}"
 
 ## Landing Page
 
@@ -115,53 +116,41 @@ Detailed information about four service offerings in alternating layout:
 - Service descriptions with detailed bullet points
 - Responsive: Stacks vertically on mobile devices
 
-## Book Online
+## Service Detail Pages
 
-### Service Listing Page
+> **Note:** Online booking functionality is temporarily disabled. Service detail pages are currently accessible through
+> the `/services` route. Booking functionality will be re-enabled in a future update.
 
-**Location:** `src/app/features/book-online/pages/book-online-page/`
+**Location:** `src/app/features/services/pages/service-detail-page/`
 
-Displays three services available for online booking:
-
-- **Tax Preparation** - 50 min, Free Consultation
-- **Immigration Services** - 50 min, Free Consultation
-- **Translations** - 1 hr 50 min, Free Consultation
-
-Each service card includes:
-
-- Service image
-- Service title
-- "Read More" link → navigates to service detail page
-- Duration and consultation info
-- "Book Now" button (placeholder for future implementation)
-
-**Layout:** Grid layout with responsive columns
-
-### Service Detail Pages
-
-**Location:** `src/app/features/book-online/pages/service-detail-page/`
-
-Dynamic detail page for each service, accessible via "Read More" links:
+Dynamic detail page for each service, accessible via service cards on the Services page:
 
 **Routes:**
 
-- `/book-online/tax-preparation`
-- `/book-online/immigration-services`
-- `/book-online/translations`
+- `/services/tax-preparation`
+- `/services/immigration-services`
+- `/services/translations`
+- `/services/e-file-rapid-refund`
+- `/services/dual-citizenship`
+- `/services/us-citizenship`
+- `/services/global-entry-sentri`
+- `/services/itins`
+- `/services/tourist-visas`
 
 **Content:**
 
 - Service title
-- Three info boxes: Duration, Consultation type, Address
-- "Book Now" button
+- Two info chips: Duration, Consultation type
+- "Call Us For an Appointment" button (links to US office phone number)
 - Service image
-- Contact details section with full address
+- Service description section with detailed information
 
 **Implementation:**
 
 - Single component template with dynamic data
 - Route parameter determines which service to display
 - Error handling for invalid service IDs
+- Service-specific SEO metadata and structured data
 
 ## Contact Pages
 
@@ -193,7 +182,7 @@ Bilingual contact pages with location-specific data and Google Maps integration.
 - Contact information:
   - Address: 3317 El Cajon Blvd San Diego CA United States 92104
   - Email: <lariosincometax@gmail.com>
-  - Phone: (619) 283-2828
+  - Phone: (619) 972-3350
 - Google Maps iframe with San Diego location
 
 ### Mexico Contact Page
@@ -215,7 +204,7 @@ Bilingual contact pages with location-specific data and Google Maps integration.
 - Contact information:
   - Address: Av. Las Plazas No. 17101-1 Fracc Rinconada De Otay Tijuana, B.C
   - Email: <lariosincometax@gmail.com>
-  - Phone: (619) 283-2828
+  - Phone: (619) 972-3350
 - Google Maps iframe with Tijuana location
 
 ### Technical Implementation
@@ -319,7 +308,8 @@ All features include comprehensive unit tests:
 
 Placeholder implementations for future development:
 
-- **Book Now functionality:** Currently placeholder buttons
+- **Online booking system:** Service detail pages currently link to phone number; future implementation will include
+  online appointment scheduling
 - **Form submission:** Contact forms ready for backend integration
 - **E2E testing:** Framework to be added (Cypress or Playwright)
 - **Analytics integration:** Google Analytics or similar

@@ -79,7 +79,7 @@ describe('ServicesPage', () => {
     const firstCard = compiled.querySelector('.service-card');
     const ariaLabel = firstCard?.getAttribute('aria-label');
 
-    expect(ariaLabel).toContain('View details and book');
+    expect(ariaLabel).toContain('View details for');
   });
 
   it('should navigate to service detail page when card is clicked', () => {
@@ -89,7 +89,7 @@ describe('ServicesPage', () => {
 
     firstCard.click();
 
-    expect(navigateSpy).toHaveBeenCalledWith(['/book-online', 'tax-preparation']);
+    expect(navigateSpy).toHaveBeenCalledWith(['/services', 'tax-preparation']);
   });
 
   it('should navigate to correct service when different cards are clicked', () => {
@@ -99,11 +99,11 @@ describe('ServicesPage', () => {
 
     // Click second card (Immigration Services)
     serviceCards[1].click();
-    expect(navigateSpy).toHaveBeenCalledWith(['/book-online', 'immigration-services']);
+    expect(navigateSpy).toHaveBeenCalledWith(['/services', 'immigration-services']);
 
     // Click third card (Translations)
     serviceCards[2].click();
-    expect(navigateSpy).toHaveBeenCalledWith(['/book-online', 'translations']);
+    expect(navigateSpy).toHaveBeenCalledWith(['/services', 'translations']);
   });
 
   it('should call navigateToService method when card is clicked', () => {

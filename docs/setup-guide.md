@@ -100,7 +100,7 @@ Use the information from [project-info.md](project-info.md):
 
 - Business name: Larios Income Tax
 - Address: 3317 El Cajon Blvd, San Diego, CA 92104
-- Phone: +1 (619) 283-2828
+- Phone: +1 (619) 972-3350
 - Services: Income Tax and Immigration
 
 ## Troubleshooting

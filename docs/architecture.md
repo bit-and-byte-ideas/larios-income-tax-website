@@ -74,7 +74,7 @@ export class FeatureModule { }
   - Sticky positioning for persistent access
 - **Footer** - Two-tier footer with business locations and copyright
   - Top section: Dual location display (San Diego, CA and Tijuana, B.C.)
-  - Bottom section: Copyright notice
+  - Bottom section: Dynamic copyright notice (automatically updates year)
 - **SafePipe** - Custom pipe for sanitizing URLs (Google Maps iframes)
 - **Social Media Constants** - Frozen constants for Facebook and Instagram URLs
 
@@ -90,14 +90,13 @@ Feature modules encapsulate distinct application features with lazy loading for 
   - Hero component with smooth scroll navigation
   - Services overview showcasing three main services
   - Contact section with dual location display and social media integration
-- **services/** - Detailed information about four service offerings
-  - Tax Preparation
-  - Immigration Services
-  - Notary Services
-  - Translations
-- **book-online/** - Service booking interface
-  - Service listing page with "Read More" and "Book Now" actions
-  - Dynamic service detail pages for each service type
+- **services/** - Comprehensive service information and detail pages
+  - Services listing page with all available services
+  - Dynamic service detail pages for each service type (Tax Preparation, Immigration Services, Translations, ITINs, etc.)
+  - Service-specific SEO metadata and structured data
+- **book-online/** - _(Temporarily disabled - will be re-enabled in the future)_
+  - Booking functionality temporarily disabled
+  - Service detail pages moved to `/services/:id` route
 - **contact/** - Bilingual contact pages with location-specific data
   - United States contact page (English)
   - Mexico contact page (Spanish)
@@ -115,11 +114,12 @@ features/
 │       ├── services-overview/
 │       └── contact-section/
 ├── services/
-│   └── pages/services-page/
-├── book-online/
 │   └── pages/
-│       ├── book-online-page/
+│       ├── services-page/
 │       └── service-detail-page/
+├── book-online/  (temporarily disabled)
+│   └── pages/
+│       └── book-online-page/
 └── contact/
     └── pages/contact-page/
 ```
@@ -137,15 +137,16 @@ export const routes: Routes = [
     loadComponent: () => import('./features/services/pages/services-page/services-page').then(m => m.ServicesPage),
   },
   {
-    path: 'book-online',
+    path: 'services/:id',
     loadComponent: () =>
-      import('./features/book-online/pages/book-online-page/book-online-page').then(m => m.BookOnlinePage),
+      import('./features/services/pages/service-detail-page/service-detail-page').then(m => m.ServiceDetailPage),
   },
-  {
-    path: 'book-online/:id',
-    loadComponent: () =>
-      import('./features/book-online/pages/service-detail-page/service-detail-page').then(m => m.ServiceDetailPage),
-  },
+  // Temporarily disabled - booking functionality will be re-enabled in the future
+  // {
+  //   path: 'book-online',
+  //   loadComponent: () =>
+  //     import('./features/book-online/pages/book-online-page/book-online-page').then(m => m.BookOnlinePage),
+  // },
   {
     path: 'contact',
     redirectTo: 'contact/united-states',

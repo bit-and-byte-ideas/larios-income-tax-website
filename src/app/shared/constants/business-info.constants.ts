@@ -41,7 +41,6 @@ export interface BusinessInfo {
     facebook: string;
     instagram: string;
   };
-  copyright: string;
 }
 
 /**
@@ -104,8 +103,6 @@ export const BUSINESS_INFO: BusinessInfo = {
     facebook: 'https://www.facebook.com/Larios-income-tax-and-immigration-1579801562253516/',
     instagram: 'https://www.instagram.com/lariosincometaxandimmigration/',
   },
-
-  copyright: '© 2024-2026 BY LARIOS INCOME TAX AND IMMIGRATION.',
 };
 
 /**
@@ -142,4 +139,9 @@ export function getBusinessNameFull(): string {
 
 export function getSocialMediaLinks() {
   return BUSINESS_INFO.socialMedia;
+}
+
+export function getCopyright(): string {
+  const currentYear = new Date().getFullYear();
+  return `© 2024-${currentYear} BY LARIOS INCOME TAX AND IMMIGRATION.`;
 }

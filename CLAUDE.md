@@ -56,6 +56,9 @@ The application uses a centralized services catalog defined in
 `src/app/shared/constants/services.constants.ts`. This is the **single source of truth** for all
 business services.
 
+> **Note**: Online booking functionality is temporarily disabled. Service detail pages are currently accessible through
+> the `/services` route. Booking functionality will be re-enabled in a future update.
+
 #### Adding a New Service
 
 To add a new service to the application:
@@ -82,16 +85,14 @@ To add a new service to the application:
 
 3. **That's it!** The service will automatically appear on:
    - **Services Page** (`/services`) - All services displayed in a 2-column grid (large screens) with brief descriptions
-   - **Book Online Page** (`/book-online`) - All services available for booking
-   - **Service Detail Page** (`/book-online/:id`) - Full service details with elaborate description
+   - **Service Detail Page** (`/services/:id`) - Full service details with elaborate description
    - **Home Page** (`/`) - Only if `featured: true`
 
 #### User Navigation Flow
 
-Users can access service details and booking in two ways:
+Users can access service details by:
 
-1. **From Services Page**: Click any service card to navigate to its detail page
-2. **From Book Online Page**: Click "Read More" on any service to view details
+1. **From Services Page** (`/services`): Click any service card to navigate to its detail page (`/services/:id`)
 
 #### Layout Features
 

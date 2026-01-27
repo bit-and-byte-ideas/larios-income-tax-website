@@ -9,6 +9,7 @@ import {
   getBusinessName,
   getBusinessNameFull,
   getSocialMediaLinks,
+  getCopyright,
 } from './business-info.constants';
 
 describe('BusinessInfoConstants', () => {
@@ -45,10 +46,6 @@ describe('BusinessInfoConstants', () => {
     it('should have social media links', () => {
       expect(BUSINESS_INFO.socialMedia.facebook).toContain('facebook.com');
       expect(BUSINESS_INFO.socialMedia.instagram).toContain('instagram.com');
-    });
-
-    it('should have copyright information', () => {
-      expect(BUSINESS_INFO.copyright).toContain('LARIOS INCOME TAX');
     });
 
     it('should have map embeds for both locations', () => {
@@ -97,6 +94,14 @@ describe('BusinessInfoConstants', () => {
       const links = getSocialMediaLinks();
       expect(links.facebook).toContain('facebook.com');
       expect(links.instagram).toContain('instagram.com');
+    });
+
+    it('getCopyright should return dynamic copyright with current year', () => {
+      const copyright = getCopyright();
+      const currentYear = new Date().getFullYear();
+      expect(copyright).toBe(`© 2024-${currentYear} BY LARIOS INCOME TAX AND IMMIGRATION.`);
+      expect(copyright).toContain('2024-');
+      expect(copyright).toContain(currentYear.toString());
     });
   });
 });

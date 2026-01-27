@@ -10,7 +10,7 @@ export const environment = {
   apiUrl: 'https://api.lariosincometax.com/api', // Update with actual production API URL
   businessInfo: {
     name: 'Larios Income Tax',
-    phone: '+1 (619) 283-2828',
+    phone: '+1 (619) 972-3350',
     email: 'info@lariosincometax.com',
     address: {
       street: '3317 El Cajon Blvd',
