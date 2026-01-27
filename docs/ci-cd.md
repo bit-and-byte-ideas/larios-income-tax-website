@@ -50,16 +50,24 @@ workflows ensure code quality, run tests, build the Angular application, and dep
    - Initialize (no backend)
    - Validate configuration
 
-1. **Deploy Infrastructure**
+1. **Check Infrastructure Changes** ⚡ _Smart Deployment_
    - Initialize Terraform with Azure backend
-   - Plan infrastructure changes
-   - Apply changes (requires approval)
+   - Run Terraform plan with change detection
+   - Determine if infrastructure changes exist
+   - Upload plan artifact if changes detected
+   - Set output flag for conditional deployment
+
+1. **Deploy Infrastructure** (Conditional)
+   - **Only runs if infrastructure changes detected**
+   - Download Terraform plan
+   - Apply changes (requires approval only when changes exist)
    - Extract deployment token
 
 1. **Deploy Application**
    - Download build artifact
    - Deploy to Azure Static Web Apps
    - Automatic CDN distribution
+   - Deploy summary shows infrastructure status
 
 **Environment:** `dev` (Free tier)
 
@@ -213,8 +221,11 @@ jobs:
     # Build Angular app and run tests
   terraform-validate:
     # Validate Terraform configuration
+  check-infrastructure-changes:
+    # Check if infrastructure has changes
   deploy-infrastructure:
     environment: dev
+    if: infrastructure changes detected
     # Deploy infrastructure with Terraform
   deploy-app:
     environment: dev
@@ -226,11 +237,61 @@ jobs:
 1. Build Angular application
 1. Run linters and tests
 1. Validate Terraform configuration
-1. Deploy infrastructure (requires approval)
+1. **Check for infrastructure changes** ⚡ _New Smart Feature_
+1. Deploy infrastructure (**only if changes detected**, requires approval)
 1. Deploy application to Static Web App
 1. Automatic global CDN distribution
 
+**Smart Infrastructure Deployment:**
+
+The workflow intelligently detects whether infrastructure changes are needed:
+
+- **No Changes**: Infrastructure deployment is skipped, environment approval bypassed
+- **Changes Detected**: Infrastructure deployment runs, requires environment approval
+- Application deployment always runs regardless of infrastructure status
+
 **Environment:** Free tier Static Web App
+
+#### Smart Infrastructure Deployment (Development)
+
+The development workflow includes intelligent infrastructure change detection to optimize deployments:
+
+**How It Works:**
+
+1. **Change Detection Phase** (`check-infrastructure-changes` job)
+   - Runs `terraform plan -detailed-exitcode` against current state
+   - Exit code 0 = No changes needed
+   - Exit code 2 = Changes detected
+   - Exit code 1 = Error (fails workflow)
+
+2. **Conditional Deployment** (`deploy-infrastructure` job)
+   - **Skipped** when no changes detected (exit code 0)
+     - No environment approval required
+     - Workflow continues to application deployment
+   - **Runs** when changes detected (exit code 2)
+     - Requires environment approval
+     - Applies infrastructure changes
+     - Updates Azure resources
+
+3. **Application Deployment** (`deploy-app` job)
+   - Always runs regardless of infrastructure status
+   - Deploys latest application code
+   - Updates Static Web App content
+
+**Benefits:**
+
+- ⚡ **Faster Deployments**: Skip unnecessary infrastructure steps
+- 🔓 **No Approvals Needed**: When only app code changes
+- 💰 **Cost Efficient**: Reduces Terraform API calls
+- 🎯 **Clear Feedback**: Deployment summary shows what was deployed
+
+**Deployment Scenarios:**
+
+| Scenario                    | Infrastructure Job | Approval Required | Application Job |
+| --------------------------- | ------------------ | ----------------- | --------------- |
+| App code changes only       | ⏭️ Skipped         | ❌ No             | ✅ Runs         |
+| Infrastructure changes only | ✅ Runs            | ✅ Yes            | ✅ Runs         |
+| Both app and infrastructure | ✅ Runs            | ✅ Yes            | ✅ Runs         |
 
 ### Production Deployment Workflow
 
@@ -540,6 +601,35 @@ When workflows fail:
 1. Check for environment-specific issues
 1. Review test logs in workflow
 1. Add debug output to tests
+
+### Infrastructure Change Detection Issues
+
+**Issue:** Infrastructure deployment skipped when it shouldn't be
+
+**Solutions:**
+
+1. Check Terraform state is up to date:
+
+   ```bash
+   cd deploy/environments/dev
+   terraform init
+   terraform plan
+   ```
+
+1. Verify Azure credentials in secrets
+1. Check Terraform backend configuration
+1. Review `check-infrastructure-changes` job logs
+1. Manually trigger deployment if needed
+
+**Issue:** Infrastructure deployment runs when no changes needed
+
+**Solutions:**
+
+1. Check for drift in Azure resources
+1. Verify Terraform state file is current
+1. Review recent manual changes in Azure Portal
+1. Check if Terraform configuration was modified
+1. Consider running `terraform refresh`
 
 ## Maintenance
 
