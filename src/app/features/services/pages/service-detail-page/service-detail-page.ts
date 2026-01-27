@@ -64,7 +64,7 @@ export class ServiceDetailPage implements OnInit, OnDestroy {
       getBreadcrumbSchema([
         { name: 'Home', url: 'https://lariosincometax.com/' },
         { name: 'Services', url: 'https://lariosincometax.com/services' },
-        { name: service.title, url: `https://lariosincometax.com/book-online/${service.id}` },
+        { name: service.title, url: `https://lariosincometax.com/services/${service.id}` },
       ]),
     ]);
   }
@@ -74,7 +74,7 @@ export class ServiceDetailPage implements OnInit, OnDestroy {
    */
   private getServiceSeoConfig(service: Service): PageMetadata {
     const baseUrl = 'https://lariosincometax.com';
-    const serviceUrl = `${baseUrl}/book-online/${service.id}`;
+    const serviceUrl = `${baseUrl}/services/${service.id}`;
 
     // Service-specific SEO metadata
     const serviceMetadata: Record<

@@ -11,19 +11,20 @@ export const routes: Routes = [
       import('./features/services/pages/services-page/services-page').then(m => m.ServicesPage),
   },
   {
-    path: 'book-online',
+    path: 'services/:id',
     loadComponent: () =>
-      import('./features/book-online/pages/book-online-page/book-online-page').then(
-        m => m.BookOnlinePage
-      ),
-  },
-  {
-    path: 'book-online/:id',
-    loadComponent: () =>
-      import('./features/book-online/pages/service-detail-page/service-detail-page').then(
+      import('./features/services/pages/service-detail-page/service-detail-page').then(
         m => m.ServiceDetailPage
       ),
   },
+  // Temporarily disabled - booking functionality will be re-enabled in the future
+  // {
+  //   path: 'book-online',
+  //   loadComponent: () =>
+  //     import('./features/book-online/pages/book-online-page/book-online-page').then(
+  //       m => m.BookOnlinePage
+  //     ),
+  // },
   {
     path: 'contact',
     redirectTo: 'contact/united-states',

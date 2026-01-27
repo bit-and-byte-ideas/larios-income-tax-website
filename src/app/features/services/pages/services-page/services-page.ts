@@ -62,9 +62,9 @@ export class ServicesPage implements OnInit, OnDestroy {
   }
 
   /**
-   * Navigates to the service detail page for booking
+   * Navigates to the service detail page
    */
   navigateToService(serviceId: string): void {
-    this.router.navigate(['/book-online', serviceId]);
+    this.router.navigate(['/services', serviceId]);
   }
 }

@@ -180,7 +180,7 @@ export function getServiceSchema(service: Service): any {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    '@id': `https://lariosincometax.com/book-online/${service.id}#service`,
+    '@id': `https://lariosincometax.com/services/${service.id}#service`,
     serviceType: service.title,
     name: service.title,
     description: service.description,
@@ -244,10 +244,10 @@ export function getServicesListSchema(services: Service[]): any {
       position: index + 1,
       item: {
         '@type': 'Service',
-        '@id': `https://lariosincometax.com/book-online/${service.id}#service`,
+        '@id': `https://lariosincometax.com/services/${service.id}#service`,
         name: service.title,
         description: service.briefDescription,
-        url: `https://lariosincometax.com/book-online/${service.id}`,
+        url: `https://lariosincometax.com/services/${service.id}`,
       },
     })),
   };

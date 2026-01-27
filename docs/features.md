@@ -16,10 +16,10 @@ The site header provides consistent navigation across all pages:
 - **Navigation menu** with dropdown for Contact:
   - Home
   - Services
-  - Book Online
   - Contact (dropdown)
     - United States
     - Mexico
+  - _(Book Online temporarily disabled - will be re-enabled in the future)_
 - **Contact information:** Email and phone displayed in header
 - **Social media icons:** Facebook and Instagram with hover effects
 - **Sticky positioning:** Header remains visible during scroll
@@ -115,45 +115,32 @@ Detailed information about four service offerings in alternating layout:
 - Service descriptions with detailed bullet points
 - Responsive: Stacks vertically on mobile devices
 
-## Book Online
+## Service Detail Pages
 
-### Service Listing Page
+> **Note:** Online booking functionality is temporarily disabled. Service detail pages are currently accessible through
+> the `/services` route. Booking functionality will be re-enabled in a future update.
 
-**Location:** `src/app/features/book-online/pages/book-online-page/`
+**Location:** `src/app/features/services/pages/service-detail-page/`
 
-Displays three services available for online booking:
-
-- **Tax Preparation** - 50 min, Free Consultation
-- **Immigration Services** - 50 min, Free Consultation
-- **Translations** - 1 hr 50 min, Free Consultation
-
-Each service card includes:
-
-- Service image
-- Service title
-- "Read More" link → navigates to service detail page
-- Duration and consultation info
-- "Book Now" button (placeholder for future implementation)
-
-**Layout:** Grid layout with responsive columns
-
-### Service Detail Pages
-
-**Location:** `src/app/features/book-online/pages/service-detail-page/`
-
-Dynamic detail page for each service, accessible via "Read More" links:
+Dynamic detail page for each service, accessible via service cards on the Services page:
 
 **Routes:**
 
-- `/book-online/tax-preparation`
-- `/book-online/immigration-services`
-- `/book-online/translations`
+- `/services/tax-preparation`
+- `/services/immigration-services`
+- `/services/translations`
+- `/services/e-file-rapid-refund`
+- `/services/dual-citizenship`
+- `/services/us-citizenship`
+- `/services/global-entry-sentri`
+- `/services/itins`
+- `/services/tourist-visas`
 
 **Content:**
 
 - Service title
 - Three info boxes: Duration, Consultation type, Address
-- "Book Now" button
+- "Book Now" button (placeholder for future booking functionality)
 - Service image
 - Contact details section with full address
 
@@ -162,6 +149,7 @@ Dynamic detail page for each service, accessible via "Read More" links:
 - Single component template with dynamic data
 - Route parameter determines which service to display
 - Error handling for invalid service IDs
+- Service-specific SEO metadata and structured data
 
 ## Contact Pages
 
