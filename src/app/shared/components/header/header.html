@@ -6,6 +6,7 @@
         src="/assets/images/larios_header_logo_transparent.avif"
         [alt]="businessInfo.name + ' Logo'"
         class="header-logo-icon"
+        i18n-alt="Header logo alt text|Alt text for the company logo in the header"
       />
     </div>
   </mat-toolbar>
@@ -22,34 +23,25 @@
           [routerLinkActiveOptions]="{ exact: true }"
           class="nav-button"
         >
-          Home
+          <span i18n="Navigation|Home page navigation link">Home</span>
         </button>
         <button mat-button routerLink="/services" routerLinkActive="active-link" class="nav-button">
-          Services
+          <span i18n="Navigation|Services page navigation link">Services</span>
         </button>
         <!-- Book Online temporarily disabled - will be re-enabled in the future -->
-        <button
-          mat-button
-          [matMenuTriggerFor]="contactMenu"
-          routerLink="/contact"
-          routerLinkActive="active-link"
-          class="nav-button"
-        >
-          Contact
+        <button mat-button routerLink="/contact" routerLinkActive="active-link" class="nav-button">
+          <span i18n="Navigation|Contact page navigation link">Contact</span>
         </button>
-        <mat-menu #contactMenu="matMenu" class="contact-dropdown">
-          <button mat-menu-item routerLink="/contact/united-states">United States</button>
-          <button mat-menu-item routerLink="/contact/mexico">Mexico</button>
-        </mat-menu>
       </nav>
 
       <!-- Contact and Social -->
       <div class="header-contact">
-        <a [href]="usLocation.contact.emailLink" class="contact-link" mat-button>
-          {{ usLocation.contact.email.toUpperCase() }}
+        <app-language-switcher></app-language-switcher>
+        <a [href]="currentLocation.contact.emailLink" class="contact-link" mat-button>
+          {{ currentLocation.contact.email.toUpperCase() }}
         </a>
-        <a [href]="usLocation.contact.phoneLink" class="contact-link" mat-button>{{
-          usLocation.contact.phoneFormatted
+        <a [href]="currentLocation.contact.phoneLink" class="contact-link" mat-button>{{
+          currentLocation.contact.phoneFormatted
         }}</a>
         <a
           [href]="socialMediaLinks.facebook"
@@ -57,6 +49,7 @@
           rel="noopener"
           mat-icon-button
           aria-label="Facebook"
+          i18n-aria-label="Social media|Facebook link aria label"
           class="social-button"
         >
           <mat-icon svgIcon="facebook">
@@ -79,6 +72,7 @@
           rel="noopener"
           mat-icon-button
           aria-label="Instagram"
+          i18n-aria-label="Social media|Instagram link aria label"
           class="social-button"
         >
           <mat-icon svgIcon="instagram">

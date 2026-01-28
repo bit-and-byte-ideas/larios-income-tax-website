@@ -203,6 +203,11 @@ export class ServiceDetailPage implements OnInit, OnDestroy {
       url: serviceUrl,
       image: `${baseUrl}/assets/images/og-image.jpg`,
       type: 'website',
+      locale: 'en_US',
+      alternateLocales: [
+        { hreflang: 'en-US', href: serviceUrl },
+        { hreflang: 'es-MX', href: `${baseUrl}/es/services/${service.id}` },
+      ],
     };
   }
 }

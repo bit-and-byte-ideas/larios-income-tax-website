@@ -45,7 +45,7 @@ export class HomePage implements OnInit, OnDestroy {
       locale: 'en_US',
       alternateLocales: [
         { hreflang: 'en-US', href: 'https://lariosincometax.com/' },
-        { hreflang: 'es-MX', href: 'https://lariosincometax.com/contact/mexico' },
+        { hreflang: 'es-MX', href: 'https://lariosincometax.com/es/' },
       ],
     });
 

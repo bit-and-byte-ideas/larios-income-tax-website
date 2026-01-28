@@ -45,6 +45,11 @@ export class ServicesPage implements OnInit, OnDestroy {
       url: 'https://lariosincometax.com/services',
       image: 'https://lariosincometax.com/assets/images/og-image.jpg',
       type: 'website',
+      locale: 'en_US',
+      alternateLocales: [
+        { hreflang: 'en-US', href: 'https://lariosincometax.com/services' },
+        { hreflang: 'es-MX', href: 'https://lariosincometax.com/es/services' },
+      ],
     });
 
     // Add structured data for services list

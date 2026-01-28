@@ -36,7 +36,12 @@
       "Bash(./validate.sh:*)",
       "Bash(grep:*)",
       "Bash(find:*)",
-      "Bash(npm run lint:yaml:*)"
+      "Bash(npm run lint:yaml:*)",
+      "Bash(ng extract-i18n:*)",
+      "Bash(npm run build:en:*)",
+      "Bash(npm run build:es:*)",
+      "Bash(npm run build:i18n:*)",
+      "Bash(npm run extract-i18n:*)"
     ]
   }
 }

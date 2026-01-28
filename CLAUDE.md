@@ -17,12 +17,23 @@ Frontend website for lariosincometax.com - an Angular-based web application for 
 
 ```bash
 npm install          # Install dependencies
-ng serve            # Start development server
-ng build            # Build for production
+ng serve            # Start development server (default locale: en-US)
+npm run start:en    # Start development server in English
+npm run start:es    # Start development server in Spanish
+ng build            # Build for production (both locales)
+npm run build:i18n  # Build for production (both locales)
+npm run build:en    # Build English locale only
+npm run build:es    # Build Spanish locale only
 ng test             # Run unit tests
 ng test --include='**/path/to/component.spec.ts'  # Run single test file
 ng e2e              # Run end-to-end tests
 ng lint             # Run linter
+```
+
+### Internationalization (i18n)
+
+```bash
+npm run extract-i18n  # Extract translatable text from templates and code
 ```
 
 ### Angular CLI
@@ -153,3 +164,205 @@ export async function getAllServices(): Promise<Service[]> {
 7. Global Entry/Sentri
 8. ITINs
 9. Tourist Visas
+
+## Internationalization (i18n) Architecture
+
+The application is fully bilingual, supporting both **English (en-US)** and **Spanish (es-MX)** using Angular's built-in
+i18n system.
+
+### Overview
+
+- **Primary Market**: United States (English)
+- **Secondary Market**: Mexico (Spanish)
+- **Default Locale**: English (en-US)
+- **URL Structure**:
+  - English: `https://lariosincometax.com/` (root)
+  - Spanish: `https://lariosincometax.com/es/` (under `/es/` path)
+
+### Locale-Aware Features
+
+#### Language Switcher
+
+The header includes a language switcher component with flag buttons:
+
+- **🇺🇸 US Flag**: Switches to English
+- **🇲🇽 Mexico Flag**: Switches to Spanish
+
+The active language is highlighted, and clicking switches the locale by navigating to the appropriate URL path.
+
+#### Contact Page Behavior
+
+The contact page automatically displays the appropriate office based on the current locale:
+
+- **English (en-US)**: Shows United States office (San Diego)
+- **Spanish (es-MX)**: Shows Mexico office (Tijuana)
+
+No URL parameter needed - the locale determines which office information to display.
+
+### Technical Implementation
+
+#### Build Configuration
+
+The project uses Angular's i18n compile-time translation approach:
+
+**angular.json Configuration:**
+
+```json
+{
+  "i18n": {
+    "sourceLocale": "en-US",
+    "locales": {
+      "es-MX": {
+        "translation": "src/locale/messages.es-MX.xlf",
+        "baseHref": "/es/"
+      }
+    }
+  }
+}
+```
+
+**Build Output Structure:**
+
+```text
+dist/larios-income-tax/
+├── browser/
+│   ├── en-US/          # English build
+│   │   └── index.html
+│   └── es-MX/          # Spanish build
+│       └── index.html
+└── ...
+```
+
+#### Translation Files
+
+Translation files are stored in XLIFF 1.2 format:
+
+- **Source**: `src/locale/messages.xlf` (English, auto-generated)
+- **Spanish**: `src/locale/messages.es-MX.xlf` (manually translated)
+
+#### Adding Translations
+
+**1. Mark text for translation in templates:**
+
+```html
+<h1 i18n="Context|Description">Text to translate</h1>
+<img [alt]="dynamicValue" i18n-alt="Context|Description" />
+```
+
+**2. Mark text for translation in TypeScript:**
+
+```typescript
+import { $localize } from '@angular/localize/init';
+
+const text = $localize`:Context|Description:Text to translate`;
+```
+
+**3. Extract messages:**
+
+```bash
+npm run extract-i18n
+```
+
+This updates `src/locale/messages.xlf` with new translation units.
+
+**4. Add Spanish translations:**
+
+Edit `src/locale/messages.es-MX.xlf` and add `<target>` elements:
+
+```xml
+<trans-unit id="..." datatype="html">
+  <source>English text</source>
+  <target>Texto en español</target>
+  <context-group purpose="location">...</context-group>
+  <note priority="1" from="description">Description</note>
+</trans-unit>
+```
+
+**5. Test the translation:**
+
+```bash
+npm run build:es       # Build Spanish version
+npm run start:es       # Test Spanish in development
+```
+
+#### SEO and Hreflang
+
+All pages include proper hreflang links for SEO:
+
+```typescript
+alternateLocales: [
+  { hreflang: 'en-US', href: 'https://lariosincometax.com/' },
+  { hreflang: 'es-MX', href: 'https://lariosincometax.com/es/' },
+];
+```
+
+These are automatically injected into the `<head>` by the `SeoService`.
+
+#### Azure Static Web Apps Configuration
+
+The `staticwebapp.config.json` handles locale routing:
+
+- Requests to `/` serve English content from `/browser/en-US/`
+- Requests to `/es/` serve Spanish content from `/browser/es-MX/`
+- SPA fallback routes work within each locale
+
+### Translation Management
+
+#### Service Descriptions
+
+All service titles, durations, and descriptions in `services.constants.ts` use `$localize`:
+
+```typescript
+{
+  id: 'tax-preparation',
+  title: $localize`:Services|Tax Preparation service title:Tax Preparation`,
+  description: $localize`:Services|Tax Preparation full description:Our professional tax preparation services...`,
+  // ...
+}
+```
+
+#### Current Translation Coverage
+
+- ✅ Header navigation
+- ✅ Footer content
+- ✅ Home page (hero, services overview, contact section)
+- ✅ Services page
+- ✅ Service detail pages (all 9 services)
+- ✅ Contact page (forms, labels, office info)
+- ✅ All service descriptions and metadata
+- ✅ SEO metadata (titles, descriptions, keywords)
+
+### Development Workflow
+
+1. **Add new feature with text**:
+   - Use `i18n` attributes in templates
+   - Use `$localize` in TypeScript code
+
+2. **Extract new translations**:
+
+   ```bash
+   npm run extract-i18n
+   ```
+
+3. **Add Spanish translations** to `messages.es-MX.xlf`
+
+4. **Test both locales**:
+
+   ```bash
+   npm run start:en   # Test English
+   npm run start:es   # Test Spanish
+   ```
+
+5. **Build for production**:
+
+   ```bash
+   npm run build:i18n  # Builds both locales
+   ```
+
+### Notes
+
+- **Compile-time translation**: Translations are embedded at build time, not runtime
+- **No language detection**: Users must manually switch languages via the flag switcher
+- **Separate builds**: Each locale is a completely separate Angular application build
+- **No shared code at runtime**: English and Spanish builds are independent
+- **SEO friendly**: Each locale has its own URL structure and proper hreflang tags

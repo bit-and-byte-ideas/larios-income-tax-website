@@ -1,17 +1,20 @@
 <section class="contact-section">
   <div class="container">
-    <h2 class="contact-heading">GET IN TOUCH</h2>
+    <h2 class="contact-heading" i18n="Contact section|Heading for contact section">GET IN TOUCH</h2>
 
     <div class="contact-content">
       <!-- Main Content -->
       <div class="contact-intro">
-        <p class="intro-text">
+        <p
+          class="intro-text"
+          i18n="Contact section|First paragraph introducing services and locations"
+        >
           We're here to help you navigate your tax needs with confidence and ease. Whether you have
           questions about our services, need assistance with tax preparation, or want to schedule a
           consultation, our experienced team is ready to assist you. With offices conveniently
           located in San Diego and Tijuana, we serve clients on both sides of the border.
         </p>
-        <p class="intro-text">
+        <p class="intro-text" i18n="Contact section|Second paragraph encouraging contact">
           Reach out to us today to discover how we can help maximize your returns and ensure
           compliance with all tax regulations. Your financial peace of mind is our priority.
         </p>
@@ -21,14 +24,16 @@
           class="contact-button"
           (click)="navigateToContact()"
         >
-          Contact Us
+          <span i18n="Contact section|Button to navigate to contact page">Contact Us</span>
         </button>
       </div>
 
       <!-- Social Media Section -->
       <div class="social-section">
-        <h3 class="social-heading">Stay Connected</h3>
-        <p class="social-text">
+        <h3 class="social-heading" i18n="Contact section|Heading for social media section">
+          Stay Connected
+        </h3>
+        <p class="social-text" i18n="Contact section|Description of social media benefits">
           Follow us on social media for the latest tax tips, deadline reminders, and updates on tax
           law changes that may affect you. Join our community to stay informed year-round.
         </p>
@@ -39,6 +44,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Follow us on Facebook"
+            i18n-aria-label="Contact section|Facebook link aria label"
             class="social-link"
           >
             <mat-icon class="social-icon">
@@ -50,8 +56,12 @@
               </svg>
             </mat-icon>
             <div class="social-info">
-              <span class="social-name">Facebook</span>
-              <span class="social-description">Get tax tips and updates on our Facebook page</span>
+              <span class="social-name" i18n="Contact section|Facebook platform name"
+                >Facebook</span
+              >
+              <span class="social-description" i18n="Contact section|Facebook description"
+                >Get tax tips and updates on our Facebook page</span
+              >
             </div>
           </a>
 
@@ -60,6 +70,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Follow us on Instagram"
+            i18n-aria-label="Contact section|Instagram link aria label"
             class="social-link"
           >
             <mat-icon class="social-icon">
@@ -78,8 +89,10 @@
               </svg>
             </mat-icon>
             <div class="social-info">
-              <span class="social-name">Instagram</span>
-              <span class="social-description"
+              <span class="social-name" i18n="Contact section|Instagram platform name"
+                >Instagram</span
+              >
+              <span class="social-description" i18n="Contact section|Instagram description"
                 >Follow us for tax season reminders and insights</span
               >
             </div>

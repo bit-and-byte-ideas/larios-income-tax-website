@@ -6,11 +6,18 @@
       <div class="service-layout">
         <div class="service-left">
           <mat-card class="service-image-card" appearance="outlined">
-            <img mat-card-image [src]="service.image" [alt]="service.title" />
+            <img
+              mat-card-image
+              [src]="service.image"
+              [alt]="service.title"
+              i18n-alt="Service detail|Service image alt text"
+            />
           </mat-card>
 
           <div class="service-description">
-            <h2>About This Service</h2>
+            <h2 i18n="Service detail|Heading for service description section">
+              About This Service
+            </h2>
             <p>{{ service.description }}</p>
           </div>
         </div>
@@ -26,8 +33,9 @@
             class="book-now-button"
             [href]="phoneLink"
             aria-label="Call us to schedule an appointment"
+            i18n-aria-label="Service detail|Aria label for call us button"
           >
-            Call Us For an Appointment
+            <span i18n="Service detail|Call us button text">Call Us For an Appointment</span>
           </a>
         </div>
       </div>
@@ -36,7 +44,9 @@
 } @else {
   <div class="service-detail-page">
     <div class="container">
-      <p class="error-message">Service not found</p>
+      <p class="error-message" i18n="Service detail|Error message when service not found">
+        Service not found
+      </p>
     </div>
   </div>
 }

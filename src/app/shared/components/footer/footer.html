@@ -25,7 +25,10 @@
             }
           </p>
           @if (usLocation.additionalPhones && usLocation.additionalPhones.length > 0) {
-            <p class="footer-whatsapp">WhatsApp: {{ usLocation.additionalPhones[0] }}</p>
+            <p class="footer-whatsapp">
+              <span i18n="Footer|WhatsApp contact label">WhatsApp:</span>
+              {{ usLocation.additionalPhones[0] }}
+            </p>
           }
         </div>
       </div>
@@ -34,7 +37,7 @@
 
   <div class="footer-bottom">
     <div class="container">
-      <p>{{ copyright }}</p>
+      <p i18n="Footer|Copyright notice">{{ copyright }}</p>
     </div>
   </div>
 </footer>

@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="2703760609391382690" datatype="html">
+        <source>Professionals</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/contact/pages/contact-page/contact-page.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+        <note priority="1" from="description">Image of professionals alt text</note>
+        <note priority="1" from="meaning">Contact page</note>
+      </trans-unit>
+      <trans-unit id="7586455266301304874" datatype="html">
+        <source>Location not found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/contact/pages/contact-page/contact-page.html</context>
+          <context context-type="linenumber">90,94</context>
+        </context-group>
+        <note priority="1" from="description">Error message when location not found</note>
+        <note priority="1" from="meaning">Contact page</note>
+      </trans-unit>
+      <trans-unit id="236765309037521907" datatype="html">
+        <source>GET IN TOUCH</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">3,6</context>
+        </context-group>
+        <note priority="1" from="description">Heading for contact section</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="5493316653684101894" datatype="html">
+        <source> We&apos;re here to help you navigate your tax needs with confidence and ease. Whether you have questions about our services, need assistance with tax preparation, or want to schedule a consultation, our experienced team is ready to assist you. With offices conveniently located in San Diego and Tijuana, we serve clients on both sides of the border. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">9,14</context>
+        </context-group>
+        <note priority="1" from="description">First paragraph introducing services and locations</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="7718617788727751757" datatype="html">
+        <source> Reach out to us today to discover how we can help maximize your returns and ensure compliance with all tax regulations. Your financial peace of mind is our priority. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">15,19</context>
+        </context-group>
+        <note priority="1" from="description">Second paragraph encouraging contact</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="1507722827751011259" datatype="html">
+        <source>Contact Us</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">24,28</context>
+        </context-group>
+        <note priority="1" from="description">Button to navigate to contact page</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="1221479324238496245" datatype="html">
+        <source>Stay Connected</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+        <note priority="1" from="description">Heading for social media section</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="1990890082214797192" datatype="html">
+        <source> Follow us on social media for the latest tax tips, deadline reminders, and updates on tax law changes that may affect you. Join our community to stay informed year-round. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">32,36</context>
+        </context-group>
+        <note priority="1" from="description">Description of social media benefits</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="5180723528739218969" datatype="html">
+        <source>Follow us on Facebook</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+        <note priority="1" from="description">Facebook link aria label</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="8346811823581155589" datatype="html">
+        <source>Facebook</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">54,55</context>
+        </context-group>
+        <note priority="1" from="description">Facebook platform name</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="5472790599783059942" datatype="html">
+        <source>Get tax tips and updates on our Facebook page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">55,59</context>
+        </context-group>
+        <note priority="1" from="description">Facebook description</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="1372637452860998189" datatype="html">
+        <source>Follow us on Instagram</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">63,64</context>
+        </context-group>
+        <note priority="1" from="description">Instagram link aria label</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="6148566783687083730" datatype="html">
+        <source>Instagram</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">83,84</context>
+        </context-group>
+        <note priority="1" from="description">Instagram platform name</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="9137420823189370723" datatype="html">
+        <source>Follow us for tax season reminders and insights</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">85,88</context>
+        </context-group>
+        <note priority="1" from="description">Instagram description</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="hero-title" datatype="html">
+        <source> FEEL THE LARIOS<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> INCOME TAX AND<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> IMMIGRATION<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> DIFFERENCE </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/hero/hero.html</context>
+          <context context-type="linenumber">6,10</context>
+        </context-group>
+        <note priority="1" from="description">Main tagline on homepage hero</note>
+        <note priority="1" from="meaning">Hero section</note>
+      </trans-unit>
+      <trans-unit id="5008994663777480800" datatype="html">
+        <source>Learn More</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/hero/hero.html</context>
+          <context context-type="linenumber">12,16</context>
+        </context-group>
+        <note priority="1" from="description">Learn more button on homepage hero</note>
+        <note priority="1" from="meaning">Hero section</note>
+      </trans-unit>
+      <trans-unit id="services-overview-description" datatype="html">
+        <source>We want you to succeed. Contact us today to see how you can benefit from our variety of services.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/services-overview/services-overview.html</context>
+        </context-group>
+        <note priority="1" from="description">Description encouraging users to contact</note>
+        <note priority="1" from="meaning">Services overview</note>
+      </trans-unit>
+      <trans-unit id="2770216121459702656" datatype="html">
+        <source>More Services</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/services-overview/services-overview.html</context>
+          <context context-type="linenumber">28,33</context>
+        </context-group>
+        <note priority="1" from="description">Button to view all services</note>
+        <note priority="1" from="meaning">Services overview</note>
+      </trans-unit>
+      <trans-unit id="1293767056107034795" datatype="html">
+        <source>About This Service</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/services/pages/service-detail-page/service-detail-page.html</context>
+          <context context-type="linenumber">18,20</context>
+        </context-group>
+        <note priority="1" from="description">Heading for service description section</note>
+        <note priority="1" from="meaning">Service detail</note>
+      </trans-unit>
+      <trans-unit id="656950774021221178" datatype="html">
+        <source>Call us to schedule an appointment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/services/pages/service-detail-page/service-detail-page.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+        <note priority="1" from="description">Aria label for call us button</note>
+        <note priority="1" from="meaning">Service detail</note>
+      </trans-unit>
+      <trans-unit id="4812365445356953067" datatype="html">
+        <source>Call Us For an Appointment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/services/pages/service-detail-page/service-detail-page.html</context>
+          <context context-type="linenumber">36,39</context>
+        </context-group>
+        <note priority="1" from="description">Call us button text</note>
+        <note priority="1" from="meaning">Service detail</note>
+      </trans-unit>
+      <trans-unit id="5592133605128679617" datatype="html">
+        <source>Service not found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/services/pages/service-detail-page/service-detail-page.html</context>
+          <context context-type="linenumber">45,49</context>
+        </context-group>
+        <note priority="1" from="description">Error message when service not found</note>
+        <note priority="1" from="meaning">Service detail</note>
+      </trans-unit>
+      <trans-unit id="922525099711000615" datatype="html">
+        <source>WhatsApp:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/footer/footer.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+        <note priority="1" from="description">WhatsApp contact label</note>
+        <note priority="1" from="meaning">Footer</note>
+      </trans-unit>
+      <trans-unit id="5010666173730440311" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ copyright }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/footer/footer.html</context>
+          <context context-type="linenumber">40,42</context>
+        </context-group>
+        <note priority="1" from="description">Copyright notice</note>
+        <note priority="1" from="meaning">Footer</note>
+      </trans-unit>
+      <trans-unit id="6991133466387603368" datatype="html">
+        <source>Home</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">26,28</context>
+        </context-group>
+        <note priority="1" from="description">Home page navigation link</note>
+        <note priority="1" from="meaning">Navigation</note>
+      </trans-unit>
+      <trans-unit id="6412560973687134983" datatype="html">
+        <source>Services</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">29,31</context>
+        </context-group>
+        <note priority="1" from="description">Services page navigation link</note>
+        <note priority="1" from="meaning">Navigation</note>
+      </trans-unit>
+      <trans-unit id="7971380862379133260" datatype="html">
+        <source>Contact</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">39,41</context>
+        </context-group>
+        <note priority="1" from="description">Contact page navigation link</note>
+        <note priority="1" from="meaning">Navigation</note>
+      </trans-unit>
+      <trans-unit id="4392394578372686815" datatype="html">
+        <source>United States</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">43,45</context>
+        </context-group>
+        <note priority="1" from="description">Contact submenu - United States office</note>
+        <note priority="1" from="meaning">Navigation</note>
+      </trans-unit>
+      <trans-unit id="8419547633543736512" datatype="html">
+        <source>Mexico</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">46,49</context>
+        </context-group>
+        <note priority="1" from="description">Contact submenu - Mexico office</note>
+        <note priority="1" from="meaning">Navigation</note>
+      </trans-unit>
+      <trans-unit id="475390776779404543" datatype="html">
+        <source>Facebook</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+        <note priority="1" from="description">Facebook link aria label</note>
+        <note priority="1" from="meaning">Social media</note>
+      </trans-unit>
+      <trans-unit id="7500517773740108492" datatype="html">
+        <source>Instagram</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">87,88</context>
+        </context-group>
+        <note priority="1" from="description">Instagram link aria label</note>
+        <note priority="1" from="meaning">Social media</note>
+      </trans-unit>
+      <trans-unit id="3885722955928741367" datatype="html">
+        <source>Tax Preparation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <note priority="1" from="description">Tax Preparation service title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="611269692754391753" datatype="html">
+        <source>50 min</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <note priority="1" from="description">Service duration</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="2063765956579941856" datatype="html">
+        <source>Free Consultation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+        <note priority="1" from="description">Free consultation label</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="4869204710219937234" datatype="html">
+        <source>Expert tax preparation for individuals and businesses with maximum refund guarantee.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <note priority="1" from="description">Tax Preparation brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="4102707769478103600" datatype="html">
+        <source>Our professional tax preparation services ensure accurate filing and maximum refunds for both individuals and businesses. We handle all tax forms including 1040, Schedule C, and corporate returns. Our experienced team stays current with the latest tax laws and deductions to optimize your return. Whether you have simple W-2 income or complex business transactions, we provide personalized service to meet your unique tax situation. We also offer year-round tax planning advice to help you make informed financial decisions.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <note priority="1" from="description">Tax Preparation full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="5715212664859359069" datatype="html">
+        <source>Immigration Services</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <note priority="1" from="description">Immigration Services title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="4252146926604832847" datatype="html">
+        <source>Comprehensive immigration assistance including visa applications, green cards, and family petitions.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <note priority="1" from="description">Immigration Services brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="4521672958942334742" datatype="html">
+        <source>Navigate the complex immigration process with confidence through our comprehensive immigration services. We assist with family-based petitions, employment visas, green card applications, naturalization, DACA renewals, and adjustment of status. Our knowledgeable team provides step-by-step guidance through each stage of your immigration journey, ensuring all paperwork is completed accurately and submitted on time. We help you understand your options, prepare required documentation, and communicate effectively with USCIS. Let us handle the details while you focus on building your future in the United States.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <note priority="1" from="description">Immigration Services full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="8121178387380663709" datatype="html">
+        <source>Translations</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <note priority="1" from="description">Translations service title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="7869120292095921891" datatype="html">
+        <source>1 hr 50 min</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <note priority="1" from="description">Service duration</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="5331497422000915888" datatype="html">
+        <source>Certified translation services for legal, immigration, and official documents.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <note priority="1" from="description">Translations brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="7491561550552714033" datatype="html">
+        <source>Professional translation services for all your legal, immigration, and official document needs. We provide certified translations that are accepted by USCIS, courts, universities, and government agencies. Our experienced translators handle birth certificates, marriage certificates, divorce decrees, academic transcripts, financial documents, contracts, and more. Each translation is carefully reviewed for accuracy and includes a certificate of translation authenticity. We maintain strict confidentiality and ensure quick turnaround times without compromising quality. Trust us to bridge language barriers for your important documentation.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <note priority="1" from="description">Translations full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="5974250497701104262" datatype="html">
+        <source>E-File &amp; Rapid Refund</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+        <note priority="1" from="description">E-File &amp; Rapid Refund title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="7961143620173879396" datatype="html">
+        <source>30 min</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <note priority="1" from="description">Service duration</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="2054464550627790472" datatype="html">
+        <source>Fast electronic filing with IRS-approved rapid refund options.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <note priority="1" from="description">E-File brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="1446883612054594266" datatype="html">
+        <source>Get your tax refund faster with our electronic filing and rapid refund services. We submit your return electronically directly to the IRS, reducing processing time significantly compared to paper filing. Our rapid refund options can get money in your hands within days, not weeks. We partner with trusted financial institutions to provide refund advance loans for qualifying taxpayers. Track your refund status in real-time and receive notifications when your return is accepted. All e-filing is secure, encrypted, and IRS-approved for your peace of mind.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <note priority="1" from="description">E-File full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="6428806077407427547" datatype="html">
+        <source>Dual Citizenship</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <note priority="1" from="description">Dual Citizenship title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="3278767299941120292" datatype="html">
+        <source>1 hr</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+        <note priority="1" from="description">Service duration</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="3308230207405425058" datatype="html">
+        <source>Expert guidance for obtaining and maintaining dual citizenship status.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+        <note priority="1" from="description">Dual Citizenship brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="6836387625747884192" datatype="html">
+        <source>Explore the benefits and requirements of dual citizenship with our expert guidance. We help you understand eligibility requirements, gather necessary documentation, and navigate the application process for dual nationality. Whether you are seeking to reclaim citizenship by descent, establish dual status through marriage, or maintain citizenship ties to your country of origin, we provide comprehensive support. Our services include document authentication, application preparation, and ongoing consultation throughout the process. We explain the rights, responsibilities, and potential implications of holding dual citizenship to help you make informed decisions.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+        <note priority="1" from="description">Dual Citizenship full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="5135111079558723352" datatype="html">
+        <source>U.S. Citizenship</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <note priority="1" from="description">U.S. Citizenship title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="1845044756357101305" datatype="html">
+        <source>Complete support for naturalization and U.S. citizenship applications.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+        <note priority="1" from="description">U.S. Citizenship brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="7774058920740999529" datatype="html">
+        <source>Achieve your dream of becoming a U.S. citizen with our comprehensive naturalization services. We guide you through every step of the citizenship process, from determining eligibility to preparing for your interview and oath ceremony. Our services include Form N-400 preparation, documentation gathering, interview preparation with practice questions, and civics test study support. We help ensure your application is complete and accurate to avoid delays or denials. Our team stays with you throughout the entire process, providing encouragement and expert advice. Start your journey to U.S. citizenship with confidence.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <note priority="1" from="description">U.S. Citizenship full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="3500390381945011744" datatype="html">
+        <source>Global Entry/Sentri</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+        <note priority="1" from="description">Global Entry/Sentri title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="65143176340689312" datatype="html">
+        <source>45 min</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+        <note priority="1" from="description">Service duration</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="1838072226109264408" datatype="html">
+        <source>Application assistance for trusted traveler programs to expedite border crossings.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+        <note priority="1" from="description">Global Entry/Sentri brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="249920529099673342" datatype="html">
+        <source>Streamline your travel experience with Global Entry and SENTRI trusted traveler programs. We assist with the complete application process for these U.S. Customs and Border Protection programs that expedite clearance for pre-approved, low-risk travelers. Global Entry provides expedited processing through U.S. customs, while SENTRI offers dedicated lanes at the U.S.-Mexico border. Our service includes application completion, document preparation, background check support, and interview scheduling assistance. We help you understand program benefits, eligibility requirements, and the renewal process. Save hours at the border and airport with these valuable programs.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+        <note priority="1" from="description">Global Entry/Sentri full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="7895379823497442620" datatype="html">
+        <source>ITINs</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+        <note priority="1" from="description">ITINs title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="8855294286902366273" datatype="html">
+        <source>40 min</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+        <note priority="1" from="description">Service duration</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="8584761170039642866" datatype="html">
+        <source>Individual Taxpayer Identification Number applications and renewals for tax filing.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+        <note priority="1" from="description">ITINs brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="8656239594781739374" datatype="html">
+        <source>Obtain or renew your Individual Taxpayer Identification Number (ITIN) for federal tax reporting purposes. ITINs are essential for individuals who have tax filing or reporting requirements but do not qualify for a Social Security Number. We assist with new ITIN applications, renewals for expired numbers, and dependent ITINs for family members. As IRS-authorized Certifying Acceptance Agents, we can authenticate your original documents, so you do not have to mail them to the IRS. Our service includes Form W-7 preparation, document certification, and application submission. We ensure your ITIN application is processed correctly and efficiently.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+        <note priority="1" from="description">ITINs full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="3187256402214284482" datatype="html">
+        <source>Tourist Visas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+        <note priority="1" from="description">Tourist Visas title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="8448658020449625840" datatype="html">
+        <source>Tourist visa application support for visitors to the United States.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+        <note priority="1" from="description">Tourist Visas brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="5967056009847112302" datatype="html">
+        <source>Plan your visit to the United States with our tourist visa application support services. We help with B-1/B-2 visitor visa applications for tourism, family visits, medical treatment, or business activities. Our services include DS-160 form completion, visa interview preparation, supporting documentation guidance, and consular appointment scheduling. We help you demonstrate strong ties to your home country and clearly state the purpose of your visit to maximize approval chances. Our team provides country-specific advice based on your circumstances and helps you avoid common mistakes that lead to visa denials. Make your U.S. travel plans a reality.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">106</context>
+        </context-group>
+        <note priority="1" from="description">Tourist Visas full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

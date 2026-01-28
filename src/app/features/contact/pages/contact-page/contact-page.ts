@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy, Inject, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -95,7 +94,7 @@ export class ContactPage implements OnInit, OnDestroy {
   };
 
   constructor(
-    private route: ActivatedRoute,
+    @Inject(LOCALE_ID) private locale: string,
     private fb: FormBuilder,
     private seoService: SeoService
   ) {
@@ -108,17 +107,17 @@ export class ContactPage implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const location = params['location'];
-      this.currentLocation = this.locationData[location] || null;
+    // Automatically determine location based on locale
+    // English locale shows US office, Spanish locale shows Mexico office
+    const location = this.locale === 'es-MX' ? 'mexico' : 'united-states';
+    this.currentLocation = this.locationData[location] || null;
 
-      // Set SEO metadata based on location
-      if (location === 'united-states') {
-        this.setUnitedStatesSeo();
-      } else if (location === 'mexico') {
-        this.setMexicoSeo();
-      }
-    });
+    // Set SEO metadata based on location
+    if (location === 'united-states') {
+      this.setUnitedStatesSeo();
+    } else if (location === 'mexico') {
+      this.setMexicoSeo();
+    }
   }
 
   ngOnDestroy(): void {
@@ -148,13 +147,13 @@ export class ContactPage implements OnInit, OnDestroy {
         'San Diego tax help',
         'bilingual tax services',
       ],
-      url: 'https://lariosincometax.com/contact/united-states',
+      url: 'https://lariosincometax.com/contact',
       image: 'https://lariosincometax.com/assets/images/og-image.jpg',
       type: 'website',
       locale: 'en_US',
       alternateLocales: [
-        { hreflang: 'en-US', href: 'https://lariosincometax.com/contact/united-states' },
-        { hreflang: 'es-MX', href: 'https://lariosincometax.com/contact/mexico' },
+        { hreflang: 'en-US', href: 'https://lariosincometax.com/contact' },
+        { hreflang: 'es-MX', href: 'https://lariosincometax.com/es/contact' },
       ],
     });
 
@@ -171,7 +170,7 @@ export class ContactPage implements OnInit, OnDestroy {
       getUSLocalBusinessSchema(),
       getBreadcrumbSchema([
         { name: 'Home', url: 'https://lariosincometax.com/' },
-        { name: 'Contact', url: 'https://lariosincometax.com/contact/united-states' },
+        { name: 'Contact', url: 'https://lariosincometax.com/contact' },
       ]),
     ]);
   }
@@ -191,13 +190,13 @@ export class ContactPage implements OnInit, OnDestroy {
         'oficina de impuestos Tijuana',
         'ayuda con impuestos bilingüe',
       ],
-      url: 'https://lariosincometax.com/contact/mexico',
+      url: 'https://lariosincometax.com/es/contact',
       image: 'https://lariosincometax.com/assets/images/og-image.jpg',
       type: 'website',
       locale: 'es_MX',
       alternateLocales: [
-        { hreflang: 'en-US', href: 'https://lariosincometax.com/contact/united-states' },
-        { hreflang: 'es-MX', href: 'https://lariosincometax.com/contact/mexico' },
+        { hreflang: 'en-US', href: 'https://lariosincometax.com/contact' },
+        { hreflang: 'es-MX', href: 'https://lariosincometax.com/es/contact' },
       ],
     });
 
@@ -213,8 +212,8 @@ export class ContactPage implements OnInit, OnDestroy {
     this.seoService.addMultipleStructuredData([
       getMexicoLocalBusinessSchema(),
       getBreadcrumbSchema([
-        { name: 'Home', url: 'https://lariosincometax.com/' },
-        { name: 'Contacto', url: 'https://lariosincometax.com/contact/mexico' },
+        { name: 'Home', url: 'https://lariosincometax.com/es/' },
+        { name: 'Contacto', url: 'https://lariosincometax.com/es/contact' },
       ]),
     ]);
   }
