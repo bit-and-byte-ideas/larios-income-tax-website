@@ -55,28 +55,14 @@ describe('Header', () => {
     expect(phoneLink).toBeTruthy();
   });
 
-  it('should have Contact dropdown menu', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    const contactMenu = compiled.querySelector('mat-menu');
-    expect(contactMenu).toBeTruthy();
+  it('should display locale-aware contact information', () => {
+    // Default locale is en-US, so should show US contact info
+    expect(component.currentLocation).toBe(BUSINESS_INFO.locations.us);
   });
 
-  it('should have United States and Mexico dropdown links', () => {
-    // Find the contact button (4th nav button)
-    const navButtons = fixture.debugElement.queryAll(By.css('.nav-button'));
-    const contactButton = navButtons.find(
-      btn => btn.nativeElement.textContent?.trim() === 'Contact'
-    );
-    expect(contactButton).toBeTruthy();
-
-    // Trigger the menu to open
-    contactButton!.nativeElement.click();
-    fixture.detectChanges();
-
-    // Now query for menu items in the overlay
-    const menuButtons = document.querySelectorAll('button[mat-menu-item]');
-    expect(menuButtons.length).toBe(2);
-    expect(menuButtons[0].textContent?.trim()).toBe('United States');
-    expect(menuButtons[1].textContent?.trim()).toBe('Mexico');
+  it('should have language switcher component', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const languageSwitcher = compiled.querySelector('app-language-switcher');
+    expect(languageSwitcher).toBeTruthy();
   });
 });

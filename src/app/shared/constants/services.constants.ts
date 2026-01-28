@@ -1,3 +1,4 @@
+import '@angular/localize/init';
 import { Service } from '../models/service.model';
 
 /**

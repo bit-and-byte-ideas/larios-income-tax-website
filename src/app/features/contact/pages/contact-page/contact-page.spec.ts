@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
+import { LOCALE_ID } from '@angular/core';
 import { ContactPage } from './contact-page';
 import { BUSINESS_INFO } from '../../../../shared/constants/business-info.constants';
 
@@ -12,14 +11,7 @@ describe('ContactPage', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         imports: [ContactPage],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: {
-              params: of({ location: 'united-states' }),
-            },
-          },
-        ],
+        providers: [{ provide: LOCALE_ID, useValue: 'en-US' }],
       }).compileComponents();
 
       fixture = TestBed.createComponent(ContactPage);
@@ -132,14 +124,7 @@ describe('ContactPage', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         imports: [ContactPage],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: {
-              params: of({ location: 'mexico' }),
-            },
-          },
-        ],
+        providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }],
       }).compileComponents();
 
       fixture = TestBed.createComponent(ContactPage);
@@ -188,48 +173,11 @@ describe('ContactPage', () => {
     });
   });
 
-  describe('Invalid location', () => {
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
-        imports: [ContactPage],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: {
-              params: of({ location: 'invalid-location' }),
-            },
-          },
-        ],
-      }).compileComponents();
-
-      fixture = TestBed.createComponent(ContactPage);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-    });
-
-    it('should have null location', () => {
-      expect(component.currentLocation).toBeNull();
-    });
-
-    it('should display error message', () => {
-      const compiled = fixture.nativeElement as HTMLElement;
-      const errorMessage = compiled.querySelector('.error-message');
-      expect(errorMessage?.textContent?.trim()).toBe('Location not found');
-    });
-  });
-
   describe('Form validation', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         imports: [ContactPage],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: {
-              params: of({ location: 'united-states' }),
-            },
-          },
-        ],
+        providers: [{ provide: LOCALE_ID, useValue: 'en-US' }],
       }).compileComponents();
 
       fixture = TestBed.createComponent(ContactPage);
