@@ -11,7 +11,7 @@
         <note priority="1" from="description">Image of professionals alt text</note>
         <note priority="1" from="meaning">Contact page</note>
       </trans-unit>
-      <trans-unit id="3991306115385056190" datatype="html">
+      <trans-unit id="7586455266301304874" datatype="html">
         <source>Location not found</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/pages/contact-page/contact-page.html</context>
@@ -56,7 +56,7 @@
         <note priority="1" from="description">Button to navigate to contact page</note>
         <note priority="1" from="meaning">Contact section</note>
       </trans-unit>
-      <trans-unit id="3350302059337243167" datatype="html">
+      <trans-unit id="1221479324238496245" datatype="html">
         <source>Stay Connected</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
@@ -128,7 +128,7 @@
         <note priority="1" from="description">Instagram description</note>
         <note priority="1" from="meaning">Contact section</note>
       </trans-unit>
-      <trans-unit id="8642719619418341728" datatype="html">
+      <trans-unit id="hero-title" datatype="html">
         <source> FEEL THE LARIOS<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> INCOME TAX AND<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> IMMIGRATION<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> DIFFERENCE </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home/components/hero/hero.html</context>
@@ -146,11 +146,10 @@
         <note priority="1" from="description">Learn more button on homepage hero</note>
         <note priority="1" from="meaning">Hero section</note>
       </trans-unit>
-      <trans-unit id="8879813426622257246" datatype="html">
-        <source> We want you to succeed. Contact us today to see how you can benefit from our variety of services. </source>
+      <trans-unit id="services-overview-description" datatype="html">
+        <source>We want you to succeed. Contact us today to see how you can benefit from our variety of services.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home/components/services-overview/services-overview.html</context>
-          <context context-type="linenumber">21,26</context>
         </context-group>
         <note priority="1" from="description">Description encouraging users to contact</note>
         <note priority="1" from="meaning">Services overview</note>
@@ -164,7 +163,7 @@
         <note priority="1" from="description">Button to view all services</note>
         <note priority="1" from="meaning">Services overview</note>
       </trans-unit>
-      <trans-unit id="2985364752168004429" datatype="html">
+      <trans-unit id="1293767056107034795" datatype="html">
         <source>About This Service</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/services/pages/service-detail-page/service-detail-page.html</context>
@@ -191,7 +190,7 @@
         <note priority="1" from="description">Call us button text</note>
         <note priority="1" from="meaning">Service detail</note>
       </trans-unit>
-      <trans-unit id="6741422981457714734" datatype="html">
+      <trans-unit id="5592133605128679617" datatype="html">
         <source>Service not found</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/services/pages/service-detail-page/service-detail-page.html</context>
