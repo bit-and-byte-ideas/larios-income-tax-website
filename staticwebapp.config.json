@@ -1,16 +1,14 @@
 {
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/assets/*", "/*.{css,scss,js,png,jpg,jpeg,gif,svg,ico,woff,woff2,ttf,eot,json,xml,txt}"]
+    "exclude": [
+      "/assets/*",
+      "/es/assets/*",
+      "/*.{css,js,png,jpg,jpeg,gif,svg,ico,woff,woff2,ttf,eot,json,xml,txt}",
+      "/es/*.{css,js,png,jpg,jpeg,gif,svg,ico,woff,woff2,ttf,eot,json,xml,txt}"
+    ]
   },
   "routes": [
-    { "route": "/es/*.js", "rewrite": "/es/{*}" },
-    { "route": "/es/*.css", "rewrite": "/es/{*}" },
-    { "route": "/es/assets/*", "rewrite": "/es/assets/{*}" },
-    {
-      "route": "/es/*",
-      "rewrite": "/es/index.html"
-    },
     {
       "route": "/es",
       "rewrite": "/es/index.html"
