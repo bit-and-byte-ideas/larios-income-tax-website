@@ -38,11 +38,6 @@ jobs:
         run: |
           cp staticwebapp.config.json dist/larios-income-tax/browser/staticwebapp.config.json
 
-      - name: Copy English build to root for default locale
-        run: |
-          # Copy all English files to root so they're accessible without /en-US/ prefix
-          cp -r dist/larios-income-tax/browser/en-US/* dist/larios-income-tax/browser/
-
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
