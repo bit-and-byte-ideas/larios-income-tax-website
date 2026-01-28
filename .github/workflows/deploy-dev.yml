@@ -234,8 +234,9 @@ jobs:
     needs: [build-and-validate, deploy-infrastructure, check-infrastructure-changes]
     # Run if build succeeded and infrastructure deployment either succeeded or was skipped (no changes)
     if: |
+      always() &&
       needs.build-and-validate.result == 'success' &&
-      (needs.deploy-infrastructure.result == 'success' || needs.deploy-infrastructure.result == 'skipped')
+      (needs.deploy-infrastructure.result == 'success' || needs.deploy-infrastructure.result == 'skipped' || needs.deploy-infrastructure.result == 'cancelled')
     environment:
       name: dev
       url: ${{ steps.deploy.outputs.static_web_app_url }}
