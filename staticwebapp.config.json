@@ -4,6 +4,9 @@
     "exclude": ["/assets/*", "/*.{css,scss,js,png,jpg,jpeg,gif,svg,ico,woff,woff2,ttf,eot,json,xml,txt}"]
   },
   "routes": [
+    { "route": "/es/*.js", "rewrite": "/es/{*}" },
+    { "route": "/es/*.css", "rewrite": "/es/{*}" },
+    { "route": "/es/assets/*", "rewrite": "/es/assets/{*}" },
     {
       "route": "/es/*",
       "rewrite": "/es/index.html"
@@ -17,12 +20,6 @@
       "allowedRoles": ["anonymous"]
     }
   ],
-  "responseOverrides": {
-    "404": {
-      "rewrite": "/index.html",
-      "statusCode": 200
-    }
-  },
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "DENY",
