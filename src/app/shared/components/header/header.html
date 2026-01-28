@@ -37,11 +37,11 @@
       <!-- Contact and Social -->
       <div class="header-contact">
         <app-language-switcher></app-language-switcher>
-        <a [href]="usLocation.contact.emailLink" class="contact-link" mat-button>
-          {{ usLocation.contact.email.toUpperCase() }}
+        <a [href]="currentLocation.contact.emailLink" class="contact-link" mat-button>
+          {{ currentLocation.contact.email.toUpperCase() }}
         </a>
-        <a [href]="usLocation.contact.phoneLink" class="contact-link" mat-button>{{
-          usLocation.contact.phoneFormatted
+        <a [href]="currentLocation.contact.phoneLink" class="contact-link" mat-button>{{
+          currentLocation.contact.phoneFormatted
         }}</a>
         <a
           [href]="socialMediaLinks.facebook"

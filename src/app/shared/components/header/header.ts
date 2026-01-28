@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,6 +22,12 @@ import { LanguageSwitcher } from '../language-switcher/language-switcher';
 })
 export class Header {
   readonly businessInfo = BUSINESS_INFO;
-  readonly usLocation = BUSINESS_INFO.locations.us;
   readonly socialMediaLinks = BUSINESS_INFO.socialMedia;
+  readonly currentLocation;
+
+  constructor(@Inject(LOCALE_ID) private locale: string) {
+    // Use Mexico location for Spanish locale, US location for English
+    this.currentLocation =
+      this.locale === 'es-MX' ? BUSINESS_INFO.locations.mexico : BUSINESS_INFO.locations.us;
+  }
 }
