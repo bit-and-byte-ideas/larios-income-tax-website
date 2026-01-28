@@ -3,7 +3,12 @@
     <div class="services-grid">
       @for (service of featuredServices; track service.id) {
         <mat-card class="service-card" appearance="outlined">
-          <img mat-card-image [src]="service.image" [alt]="service.title" />
+          <img
+            mat-card-image
+            [src]="service.image"
+            [alt]="service.title"
+            i18n-alt="Services|Service card image alt text"
+          />
           <mat-card-content>
             <h3 class="service-title">{{ service.title.toUpperCase() }}</h3>
           </mat-card-content>
@@ -12,16 +17,16 @@
     </div>
 
     <div class="services-description">
-      <p>
+      <p i18n="Services overview|Description encouraging users to contact">
         We want you to succeed. Contact us today to see how you can benefit from our variety of
         services.
       </p>
     </div>
 
     <div class="services-action">
-      <a routerLink="/services" mat-raised-button color="primary" class="services-button"
-        >More Services</a
-      >
+      <a routerLink="/services" mat-raised-button color="primary" class="services-button">
+        <span i18n="Services overview|Button to view all services">More Services</span>
+      </a>
     </div>
   </div>
 </section>

@@ -10,6 +10,7 @@
               mat-card-image
               src="/assets/images/professionals.avif"
               alt="Professionals"
+              i18n-alt="Contact page|Image of professionals alt text"
               class="contact-image"
             />
           </mat-card>
@@ -86,7 +87,7 @@
 } @else {
   <div class="contact-page">
     <div class="container">
-      <p class="error-message">Location not found</p>
+      <p class="error-message" i18n="Contact page|Error message when location not found">Location not found</p>
     </div>
   </div>
 }

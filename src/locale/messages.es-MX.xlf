@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" target-language="es-MX" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="2703760609391382690" datatype="html">
+        <source>Professionals</source>
+        <target>Profesionales</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/contact/pages/contact-page/contact-page.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+        <note priority="1" from="description">Image of professionals alt text</note>
+        <note priority="1" from="meaning">Contact page</note>
+      </trans-unit>
+      <trans-unit id="3991306115385056190" datatype="html">
+        <source>Location not found</source>
+        <target>Ubicación no encontrada</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/contact/pages/contact-page/contact-page.html</context>
+          <context context-type="linenumber">90,94</context>
+        </context-group>
+        <note priority="1" from="description">Error message when location not found</note>
+        <note priority="1" from="meaning">Contact page</note>
+      </trans-unit>
+      <trans-unit id="236765309037521907" datatype="html">
+        <source>GET IN TOUCH</source>
+        <target>CONTÁCTENOS</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">3,6</context>
+        </context-group>
+        <note priority="1" from="description">Heading for contact section</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="5493316653684101894" datatype="html">
+        <source> We&apos;re here to help you navigate your tax needs with confidence and ease. Whether you have questions about our services, need assistance with tax preparation, or want to schedule a consultation, our experienced team is ready to assist you. With offices conveniently located in San Diego and Tijuana, we serve clients on both sides of the border. </source>
+        <target> Estamos aquí para ayudarle a navegar sus necesidades fiscales con confianza y facilidad. Ya sea que tenga preguntas sobre nuestros servicios, necesite ayuda con la preparación de impuestos o desee programar una consulta, nuestro experimentado equipo está listo para asistirle. Con oficinas convenientemente ubicadas en San Diego y Tijuana, atendemos a clientes en ambos lados de la frontera. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">9,14</context>
+        </context-group>
+        <note priority="1" from="description">First paragraph introducing services and locations</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="7718617788727751757" datatype="html">
+        <source> Reach out to us today to discover how we can help maximize your returns and ensure compliance with all tax regulations. Your financial peace of mind is our priority. </source>
+        <target> Contáctenos hoy para descubrir cómo podemos ayudarle a maximizar sus reembolsos y garantizar el cumplimiento de todas las regulaciones fiscales. Su tranquilidad financiera es nuestra prioridad. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">15,19</context>
+        </context-group>
+        <note priority="1" from="description">Second paragraph encouraging contact</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="1507722827751011259" datatype="html">
+        <source>Contact Us</source>
+        <target>Contáctenos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">24,28</context>
+        </context-group>
+        <note priority="1" from="description">Button to navigate to contact page</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="3350302059337243167" datatype="html">
+        <source>Stay Connected</source>
+        <target>Manténgase Conectado</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+        <note priority="1" from="description">Heading for social media section</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="1990890082214797192" datatype="html">
+        <source> Follow us on social media for the latest tax tips, deadline reminders, and updates on tax law changes that may affect you. Join our community to stay informed year-round. </source>
+        <target> Síganos en las redes sociales para obtener los últimos consejos fiscales, recordatorios de fechas límite y actualizaciones sobre cambios en las leyes fiscales que puedan afectarle. Únase a nuestra comunidad para mantenerse informado durante todo el año. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">32,36</context>
+        </context-group>
+        <note priority="1" from="description">Description of social media benefits</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="5180723528739218969" datatype="html">
+        <source>Follow us on Facebook</source>
+        <target>Síguenos en Facebook</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+        <note priority="1" from="description">Facebook link aria label</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="8346811823581155589" datatype="html">
+        <source>Facebook</source>
+        <target>Facebook</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">54,55</context>
+        </context-group>
+        <note priority="1" from="description">Facebook platform name</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="5472790599783059942" datatype="html">
+        <source>Get tax tips and updates on our Facebook page</source>
+        <target>Obtenga consejos fiscales y actualizaciones en nuestra página de Facebook</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">55,59</context>
+        </context-group>
+        <note priority="1" from="description">Facebook description</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="1372637452860998189" datatype="html">
+        <source>Follow us on Instagram</source>
+        <target>Síguenos en Instagram</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">63,64</context>
+        </context-group>
+        <note priority="1" from="description">Instagram link aria label</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="6148566783687083730" datatype="html">
+        <source>Instagram</source>
+        <target>Instagram</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">83,84</context>
+        </context-group>
+        <note priority="1" from="description">Instagram platform name</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="9137420823189370723" datatype="html">
+        <source>Follow us for tax season reminders and insights</source>
+        <target>Síguenos para recordatorios de temporada fiscal y consejos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/contact-section/contact-section.html</context>
+          <context context-type="linenumber">85,88</context>
+        </context-group>
+        <note priority="1" from="description">Instagram description</note>
+        <note priority="1" from="meaning">Contact section</note>
+      </trans-unit>
+      <trans-unit id="8642719619418341728" datatype="html">
+        <source> FEEL THE LARIOS<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> INCOME TAX AND<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> IMMIGRATION<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> DIFFERENCE </source>
+        <target> SIENTA LA DIFERENCIA<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> DE LARIOS INCOME TAX<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> AND<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> IMMIGRATION </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/hero/hero.html</context>
+          <context context-type="linenumber">6,10</context>
+        </context-group>
+        <note priority="1" from="description">Main tagline on homepage hero</note>
+        <note priority="1" from="meaning">Hero section</note>
+      </trans-unit>
+      <trans-unit id="5008994663777480800" datatype="html">
+        <source>Learn More</source>
+        <target>Más Información</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/hero/hero.html</context>
+          <context context-type="linenumber">12,16</context>
+        </context-group>
+        <note priority="1" from="description">Learn more button on homepage hero</note>
+        <note priority="1" from="meaning">Hero section</note>
+      </trans-unit>
+      <trans-unit id="8879813426622257246" datatype="html">
+        <source> We want you to succeed. Contact us today to see how you can benefit from our variety of services. </source>
+        <target> Queremos que tenga éxito. Contáctenos hoy para ver cómo puede beneficiarse de nuestra variedad de servicios. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/services-overview/services-overview.html</context>
+          <context context-type="linenumber">21,26</context>
+        </context-group>
+        <note priority="1" from="description">Description encouraging users to contact</note>
+        <note priority="1" from="meaning">Services overview</note>
+      </trans-unit>
+      <trans-unit id="2770216121459702656" datatype="html">
+        <source>More Services</source>
+        <target>Más Servicios</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/components/services-overview/services-overview.html</context>
+          <context context-type="linenumber">28,33</context>
+        </context-group>
+        <note priority="1" from="description">Button to view all services</note>
+        <note priority="1" from="meaning">Services overview</note>
+      </trans-unit>
+      <trans-unit id="2985364752168004429" datatype="html">
+        <source>About This Service</source>
+        <target>Acerca de Este Servicio</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/services/pages/service-detail-page/service-detail-page.html</context>
+          <context context-type="linenumber">18,20</context>
+        </context-group>
+        <note priority="1" from="description">Heading for service description section</note>
+        <note priority="1" from="meaning">Service detail</note>
+      </trans-unit>
+      <trans-unit id="656950774021221178" datatype="html">
+        <source>Call us to schedule an appointment</source>
+        <target>Llámenos para programar una cita</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/services/pages/service-detail-page/service-detail-page.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+        <note priority="1" from="description">Aria label for call us button</note>
+        <note priority="1" from="meaning">Service detail</note>
+      </trans-unit>
+      <trans-unit id="4812365445356953067" datatype="html">
+        <source>Call Us For an Appointment</source>
+        <target>Llámenos Para una Cita</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/services/pages/service-detail-page/service-detail-page.html</context>
+          <context context-type="linenumber">36,39</context>
+        </context-group>
+        <note priority="1" from="description">Call us button text</note>
+        <note priority="1" from="meaning">Service detail</note>
+      </trans-unit>
+      <trans-unit id="6741422981457714734" datatype="html">
+        <source>Service not found</source>
+        <target>Servicio no encontrado</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/services/pages/service-detail-page/service-detail-page.html</context>
+          <context context-type="linenumber">45,49</context>
+        </context-group>
+        <note priority="1" from="description">Error message when service not found</note>
+        <note priority="1" from="meaning">Service detail</note>
+      </trans-unit>
+      <trans-unit id="922525099711000615" datatype="html">
+        <source>WhatsApp:</source>
+        <target>WhatsApp:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/footer/footer.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+        <note priority="1" from="description">WhatsApp contact label</note>
+        <note priority="1" from="meaning">Footer</note>
+      </trans-unit>
+      <trans-unit id="5010666173730440311" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ copyright }}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{ copyright }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/footer/footer.html</context>
+          <context context-type="linenumber">40,42</context>
+        </context-group>
+        <note priority="1" from="description">Copyright notice</note>
+        <note priority="1" from="meaning">Footer</note>
+      </trans-unit>
+      <trans-unit id="6991133466387603368" datatype="html">
+        <source>Home</source>
+        <target>Inicio</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">26,28</context>
+        </context-group>
+        <note priority="1" from="description">Home page navigation link</note>
+        <note priority="1" from="meaning">Navigation</note>
+      </trans-unit>
+      <trans-unit id="6412560973687134983" datatype="html">
+        <source>Services</source>
+        <target>Servicios</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">29,31</context>
+        </context-group>
+        <note priority="1" from="description">Services page navigation link</note>
+        <note priority="1" from="meaning">Navigation</note>
+      </trans-unit>
+      <trans-unit id="7971380862379133260" datatype="html">
+        <source>Contact</source>
+        <target>Contacto</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">39,41</context>
+        </context-group>
+        <note priority="1" from="description">Contact page navigation link</note>
+        <note priority="1" from="meaning">Navigation</note>
+      </trans-unit>
+      <trans-unit id="4392394578372686815" datatype="html">
+        <source>United States</source>
+        <target>Estados Unidos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">43,45</context>
+        </context-group>
+        <note priority="1" from="description">Contact submenu - United States office</note>
+        <note priority="1" from="meaning">Navigation</note>
+      </trans-unit>
+      <trans-unit id="8419547633543736512" datatype="html">
+        <source>Mexico</source>
+        <target>México</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">46,49</context>
+        </context-group>
+        <note priority="1" from="description">Contact submenu - Mexico office</note>
+        <note priority="1" from="meaning">Navigation</note>
+      </trans-unit>
+      <trans-unit id="475390776779404543" datatype="html">
+        <source>Facebook</source>
+        <target>Facebook</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+        <note priority="1" from="description">Facebook link aria label</note>
+        <note priority="1" from="meaning">Social media</note>
+      </trans-unit>
+      <trans-unit id="7500517773740108492" datatype="html">
+        <source>Instagram</source>
+        <target>Instagram</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.html</context>
+          <context context-type="linenumber">87,88</context>
+        </context-group>
+        <note priority="1" from="description">Instagram link aria label</note>
+        <note priority="1" from="meaning">Social media</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

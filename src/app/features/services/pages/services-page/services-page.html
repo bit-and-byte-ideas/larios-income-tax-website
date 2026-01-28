@@ -9,9 +9,10 @@
         tabindex="0"
         role="button"
         [attr.aria-label]="'View details for ' + service.title"
+        i18n-aria-label="Services page|Aria label for service card"
       >
         <div class="service-image">
-          <img [src]="service.image" [alt]="service.title" />
+          <img [src]="service.image" [alt]="service.title" i18n-alt="Services page|Service image alt text" />
         </div>
         <div class="service-content">
           <h2>{{ service.title.toUpperCase() }}</h2>

@@ -6,6 +6,7 @@
         src="/assets/images/larios_header_logo_transparent.avif"
         [alt]="businessInfo.name + ' Logo'"
         class="header-logo-icon"
+        i18n-alt="Header logo alt text|Alt text for the company logo in the header"
       />
     </div>
   </mat-toolbar>
@@ -22,10 +23,10 @@
           [routerLinkActiveOptions]="{ exact: true }"
           class="nav-button"
         >
-          Home
+          <span i18n="Navigation|Home page navigation link">Home</span>
         </button>
         <button mat-button routerLink="/services" routerLinkActive="active-link" class="nav-button">
-          Services
+          <span i18n="Navigation|Services page navigation link">Services</span>
         </button>
         <!-- Book Online temporarily disabled - will be re-enabled in the future -->
         <button
@@ -35,11 +36,15 @@
           routerLinkActive="active-link"
           class="nav-button"
         >
-          Contact
+          <span i18n="Navigation|Contact page navigation link">Contact</span>
         </button>
         <mat-menu #contactMenu="matMenu" class="contact-dropdown">
-          <button mat-menu-item routerLink="/contact/united-states">United States</button>
-          <button mat-menu-item routerLink="/contact/mexico">Mexico</button>
+          <button mat-menu-item routerLink="/contact/united-states">
+            <span i18n="Navigation|Contact submenu - United States office">United States</span>
+          </button>
+          <button mat-menu-item routerLink="/contact/mexico">
+            <span i18n="Navigation|Contact submenu - Mexico office">Mexico</span>
+          </button>
         </mat-menu>
       </nav>
 
@@ -57,6 +62,7 @@
           rel="noopener"
           mat-icon-button
           aria-label="Facebook"
+          i18n-aria-label="Social media|Facebook link aria label"
           class="social-button"
         >
           <mat-icon svgIcon="facebook">
@@ -79,6 +85,7 @@
           rel="noopener"
           mat-icon-button
           aria-label="Instagram"
+          i18n-aria-label="Social media|Instagram link aria label"
           class="social-button"
         >
           <mat-icon svgIcon="instagram">
