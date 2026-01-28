@@ -281,6 +281,356 @@
         <note priority="1" from="description">Instagram link aria label</note>
         <note priority="1" from="meaning">Social media</note>
       </trans-unit>
+      <trans-unit id="3885722955928741367" datatype="html">
+        <source>Tax Preparation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <note priority="1" from="description">Tax Preparation service title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="611269692754391753" datatype="html">
+        <source>50 min</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <note priority="1" from="description">Service duration</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="2063765956579941856" datatype="html">
+        <source>Free Consultation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+        <note priority="1" from="description">Free consultation label</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="4869204710219937234" datatype="html">
+        <source>Expert tax preparation for individuals and businesses with maximum refund guarantee.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <note priority="1" from="description">Tax Preparation brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="4102707769478103600" datatype="html">
+        <source>Our professional tax preparation services ensure accurate filing and maximum refunds for both individuals and businesses. We handle all tax forms including 1040, Schedule C, and corporate returns. Our experienced team stays current with the latest tax laws and deductions to optimize your return. Whether you have simple W-2 income or complex business transactions, we provide personalized service to meet your unique tax situation. We also offer year-round tax planning advice to help you make informed financial decisions.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <note priority="1" from="description">Tax Preparation full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="5715212664859359069" datatype="html">
+        <source>Immigration Services</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <note priority="1" from="description">Immigration Services title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="4252146926604832847" datatype="html">
+        <source>Comprehensive immigration assistance including visa applications, green cards, and family petitions.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <note priority="1" from="description">Immigration Services brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="4521672958942334742" datatype="html">
+        <source>Navigate the complex immigration process with confidence through our comprehensive immigration services. We assist with family-based petitions, employment visas, green card applications, naturalization, DACA renewals, and adjustment of status. Our knowledgeable team provides step-by-step guidance through each stage of your immigration journey, ensuring all paperwork is completed accurately and submitted on time. We help you understand your options, prepare required documentation, and communicate effectively with USCIS. Let us handle the details while you focus on building your future in the United States.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <note priority="1" from="description">Immigration Services full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="8121178387380663709" datatype="html">
+        <source>Translations</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <note priority="1" from="description">Translations service title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="7869120292095921891" datatype="html">
+        <source>1 hr 50 min</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <note priority="1" from="description">Service duration</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="5331497422000915888" datatype="html">
+        <source>Certified translation services for legal, immigration, and official documents.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <note priority="1" from="description">Translations brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="7491561550552714033" datatype="html">
+        <source>Professional translation services for all your legal, immigration, and official document needs. We provide certified translations that are accepted by USCIS, courts, universities, and government agencies. Our experienced translators handle birth certificates, marriage certificates, divorce decrees, academic transcripts, financial documents, contracts, and more. Each translation is carefully reviewed for accuracy and includes a certificate of translation authenticity. We maintain strict confidentiality and ensure quick turnaround times without compromising quality. Trust us to bridge language barriers for your important documentation.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <note priority="1" from="description">Translations full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="5974250497701104262" datatype="html">
+        <source>E-File &amp; Rapid Refund</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+        <note priority="1" from="description">E-File &amp; Rapid Refund title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="7961143620173879396" datatype="html">
+        <source>30 min</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <note priority="1" from="description">Service duration</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="2054464550627790472" datatype="html">
+        <source>Fast electronic filing with IRS-approved rapid refund options.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <note priority="1" from="description">E-File brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="1446883612054594266" datatype="html">
+        <source>Get your tax refund faster with our electronic filing and rapid refund services. We submit your return electronically directly to the IRS, reducing processing time significantly compared to paper filing. Our rapid refund options can get money in your hands within days, not weeks. We partner with trusted financial institutions to provide refund advance loans for qualifying taxpayers. Track your refund status in real-time and receive notifications when your return is accepted. All e-filing is secure, encrypted, and IRS-approved for your peace of mind.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <note priority="1" from="description">E-File full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="6428806077407427547" datatype="html">
+        <source>Dual Citizenship</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <note priority="1" from="description">Dual Citizenship title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="3278767299941120292" datatype="html">
+        <source>1 hr</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+        <note priority="1" from="description">Service duration</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="3308230207405425058" datatype="html">
+        <source>Expert guidance for obtaining and maintaining dual citizenship status.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+        <note priority="1" from="description">Dual Citizenship brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="6836387625747884192" datatype="html">
+        <source>Explore the benefits and requirements of dual citizenship with our expert guidance. We help you understand eligibility requirements, gather necessary documentation, and navigate the application process for dual nationality. Whether you are seeking to reclaim citizenship by descent, establish dual status through marriage, or maintain citizenship ties to your country of origin, we provide comprehensive support. Our services include document authentication, application preparation, and ongoing consultation throughout the process. We explain the rights, responsibilities, and potential implications of holding dual citizenship to help you make informed decisions.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+        <note priority="1" from="description">Dual Citizenship full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="5135111079558723352" datatype="html">
+        <source>U.S. Citizenship</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <note priority="1" from="description">U.S. Citizenship title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="1845044756357101305" datatype="html">
+        <source>Complete support for naturalization and U.S. citizenship applications.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+        <note priority="1" from="description">U.S. Citizenship brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="7774058920740999529" datatype="html">
+        <source>Achieve your dream of becoming a U.S. citizen with our comprehensive naturalization services. We guide you through every step of the citizenship process, from determining eligibility to preparing for your interview and oath ceremony. Our services include Form N-400 preparation, documentation gathering, interview preparation with practice questions, and civics test study support. We help ensure your application is complete and accurate to avoid delays or denials. Our team stays with you throughout the entire process, providing encouragement and expert advice. Start your journey to U.S. citizenship with confidence.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <note priority="1" from="description">U.S. Citizenship full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="3500390381945011744" datatype="html">
+        <source>Global Entry/Sentri</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+        <note priority="1" from="description">Global Entry/Sentri title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="65143176340689312" datatype="html">
+        <source>45 min</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+        <note priority="1" from="description">Service duration</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="1838072226109264408" datatype="html">
+        <source>Application assistance for trusted traveler programs to expedite border crossings.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+        <note priority="1" from="description">Global Entry/Sentri brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="249920529099673342" datatype="html">
+        <source>Streamline your travel experience with Global Entry and SENTRI trusted traveler programs. We assist with the complete application process for these U.S. Customs and Border Protection programs that expedite clearance for pre-approved, low-risk travelers. Global Entry provides expedited processing through U.S. customs, while SENTRI offers dedicated lanes at the U.S.-Mexico border. Our service includes application completion, document preparation, background check support, and interview scheduling assistance. We help you understand program benefits, eligibility requirements, and the renewal process. Save hours at the border and airport with these valuable programs.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+        <note priority="1" from="description">Global Entry/Sentri full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="7895379823497442620" datatype="html">
+        <source>ITINs</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+        <note priority="1" from="description">ITINs title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="8855294286902366273" datatype="html">
+        <source>40 min</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+        <note priority="1" from="description">Service duration</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="8584761170039642866" datatype="html">
+        <source>Individual Taxpayer Identification Number applications and renewals for tax filing.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+        <note priority="1" from="description">ITINs brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="8656239594781739374" datatype="html">
+        <source>Obtain or renew your Individual Taxpayer Identification Number (ITIN) for federal tax reporting purposes. ITINs are essential for individuals who have tax filing or reporting requirements but do not qualify for a Social Security Number. We assist with new ITIN applications, renewals for expired numbers, and dependent ITINs for family members. As IRS-authorized Certifying Acceptance Agents, we can authenticate your original documents, so you do not have to mail them to the IRS. Our service includes Form W-7 preparation, document certification, and application submission. We ensure your ITIN application is processed correctly and efficiently.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+        <note priority="1" from="description">ITINs full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="3187256402214284482" datatype="html">
+        <source>Tourist Visas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+        <note priority="1" from="description">Tourist Visas title</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="8448658020449625840" datatype="html">
+        <source>Tourist visa application support for visitors to the United States.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+        <note priority="1" from="description">Tourist Visas brief description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
+      <trans-unit id="5967056009847112302" datatype="html">
+        <source>Plan your visit to the United States with our tourist visa application support services. We help with B-1/B-2 visitor visa applications for tourism, family visits, medical treatment, or business activities. Our services include DS-160 form completion, visa interview preparation, supporting documentation guidance, and consular appointment scheduling. We help you demonstrate strong ties to your home country and clearly state the purpose of your visit to maximize approval chances. Our team provides country-specific advice based on your circumstances and helps you avoid common mistakes that lead to visa denials. Make your U.S. travel plans a reality.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/services.constants.ts</context>
+          <context context-type="linenumber">106</context>
+        </context-group>
+        <note priority="1" from="description">Tourist Visas full description</note>
+        <note priority="1" from="meaning">Services</note>
+      </trans-unit>
     </body>
   </file>
 </xliff>

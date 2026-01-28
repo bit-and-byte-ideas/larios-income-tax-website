@@ -3,8 +3,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 import { BUSINESS_INFO } from '../../constants/business-info.constants';
+import { LanguageSwitcher } from '../language-switcher/language-switcher';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +15,7 @@ import { BUSINESS_INFO } from '../../constants/business-info.constants';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule,
+    LanguageSwitcher,
   ],
   templateUrl: './header.html',
   styleUrl: './header.css',

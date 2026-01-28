@@ -29,27 +29,14 @@
           <span i18n="Navigation|Services page navigation link">Services</span>
         </button>
         <!-- Book Online temporarily disabled - will be re-enabled in the future -->
-        <button
-          mat-button
-          [matMenuTriggerFor]="contactMenu"
-          routerLink="/contact"
-          routerLinkActive="active-link"
-          class="nav-button"
-        >
+        <button mat-button routerLink="/contact" routerLinkActive="active-link" class="nav-button">
           <span i18n="Navigation|Contact page navigation link">Contact</span>
         </button>
-        <mat-menu #contactMenu="matMenu" class="contact-dropdown">
-          <button mat-menu-item routerLink="/contact/united-states">
-            <span i18n="Navigation|Contact submenu - United States office">United States</span>
-          </button>
-          <button mat-menu-item routerLink="/contact/mexico">
-            <span i18n="Navigation|Contact submenu - Mexico office">Mexico</span>
-          </button>
-        </mat-menu>
       </nav>
 
       <!-- Contact and Social -->
       <div class="header-contact">
+        <app-language-switcher></app-language-switcher>
         <a [href]="usLocation.contact.emailLink" class="contact-link" mat-button>
           {{ usLocation.contact.email.toUpperCase() }}
         </a>
