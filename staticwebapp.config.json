@@ -1,16 +1,16 @@
 {
   "navigationFallback": {
-    "rewrite": "/browser/en-US/index.html",
+    "rewrite": "/en-US/index.html",
     "exclude": ["/assets/*", "/*.{css,scss,js,png,jpg,jpeg,gif,svg,ico,woff,woff2,ttf,eot,json,xml,txt}"]
   },
   "routes": [
     {
       "route": "/es/*",
-      "rewrite": "/browser/es-MX/index.html"
+      "rewrite": "/es-MX/index.html"
     },
     {
       "route": "/es",
-      "rewrite": "/browser/es-MX/index.html"
+      "rewrite": "/es-MX/index.html"
     },
     {
       "route": "/api/*",
@@ -19,7 +19,7 @@
   ],
   "responseOverrides": {
     "404": {
-      "rewrite": "/browser/en-US/index.html",
+      "rewrite": "/en-US/index.html",
       "statusCode": 200
     }
   },
