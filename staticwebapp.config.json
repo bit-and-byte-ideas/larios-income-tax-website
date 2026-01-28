@@ -5,6 +5,22 @@
   },
   "routes": [
     {
+      "route": "/es/assets/*",
+      "rewrite": "/es-MX/assets/{*}"
+    },
+    {
+      "route": "/es/*.{js,css,ico,txt,json}",
+      "rewrite": "/es-MX/{*}"
+    },
+    {
+      "route": "/assets/*",
+      "rewrite": "/en-US/assets/{*}"
+    },
+    {
+      "route": "/*.{js,css,ico,txt,json}",
+      "rewrite": "/en-US/{*}"
+    },
+    {
       "route": "/es/*",
       "rewrite": "/es-MX/index.html"
     },
