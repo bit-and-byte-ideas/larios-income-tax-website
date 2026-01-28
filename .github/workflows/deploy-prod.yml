@@ -44,9 +44,10 @@ jobs:
         run: |
           cp staticwebapp.config.json dist/larios-income-tax/browser/staticwebapp.config.json
 
-      - name: Ensure SWA root index.html exists
+      - name: Copy English build to root for default locale
         run: |
-          cp dist/larios-income-tax/browser/en-US/index.html dist/larios-income-tax/browser/index.html
+          # Copy all English files to root so they're accessible without /en-US/ prefix
+          cp -r dist/larios-income-tax/browser/en-US/* dist/larios-income-tax/browser/
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
