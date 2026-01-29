@@ -49,9 +49,9 @@ describe('ContactSection', () => {
   });
 
   it('should navigate to contact page when button is clicked', () => {
-    const navigateSpy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
-    component.navigateToContact();
-    expect(navigateSpy).toHaveBeenCalledWith(['/contact/united-states']);
+    const compiled = fixture.nativeElement as HTMLElement;
+    const contactButton = compiled.querySelector('.contact-button') as HTMLAnchorElement;
+    expect(contactButton?.getAttribute('routerLink')).toBe('/contact');
   });
 
   it('should display "Stay Connected" social heading', () => {
