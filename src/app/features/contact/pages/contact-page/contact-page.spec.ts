@@ -1,5 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LOCALE_ID } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RecaptchaModule } from 'ng-recaptcha';
 import { ContactPage } from './contact-page';
 import { BUSINESS_INFO } from '../../../../shared/constants/business-info.constants';
 
@@ -10,8 +14,12 @@ describe('ContactPage', () => {
   describe('United States location', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [ContactPage],
-        providers: [{ provide: LOCALE_ID, useValue: 'en-US' }],
+        imports: [ContactPage, MatSnackBarModule, RecaptchaModule],
+        providers: [
+          { provide: LOCALE_ID, useValue: 'en-US' },
+          provideHttpClient(),
+          provideHttpClientTesting(),
+        ],
       }).compileComponents();
 
       fixture = TestBed.createComponent(ContactPage);
@@ -92,6 +100,7 @@ describe('ContactPage', () => {
         email: 'john@example.com',
         subject: 'Test Subject',
         message: 'Test message',
+        recaptcha: 'test-recaptcha-token',
       });
       fixture.detectChanges();
 
@@ -123,8 +132,12 @@ describe('ContactPage', () => {
   describe('Mexico location', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [ContactPage],
-        providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }],
+        imports: [ContactPage, MatSnackBarModule, RecaptchaModule],
+        providers: [
+          { provide: LOCALE_ID, useValue: 'es-MX' },
+          provideHttpClient(),
+          provideHttpClientTesting(),
+        ],
       }).compileComponents();
 
       fixture = TestBed.createComponent(ContactPage);
@@ -176,8 +189,12 @@ describe('ContactPage', () => {
   describe('Form validation', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [ContactPage],
-        providers: [{ provide: LOCALE_ID, useValue: 'en-US' }],
+        imports: [ContactPage, MatSnackBarModule, RecaptchaModule],
+        providers: [
+          { provide: LOCALE_ID, useValue: 'en-US' },
+          provideHttpClient(),
+          provideHttpClientTesting(),
+        ],
       }).compileComponents();
 
       fixture = TestBed.createComponent(ContactPage);
@@ -219,6 +236,30 @@ describe('ContactPage', () => {
       expect(messageControl?.valid).toBe(false);
       messageControl?.setValue('Test message');
       expect(messageControl?.valid).toBe(true);
+    });
+
+    it('should require recaptcha field', () => {
+      const recaptchaControl = component.contactForm.get('recaptcha');
+      expect(recaptchaControl?.valid).toBe(false);
+      recaptchaControl?.setValue('test-recaptcha-token');
+      expect(recaptchaControl?.valid).toBe(true);
+    });
+
+    it('should only be valid when all fields including recaptcha are filled', () => {
+      expect(component.contactForm.valid).toBe(false);
+
+      component.contactForm.patchValue({
+        name: 'John Doe',
+        email: 'john@example.com',
+        subject: 'Test Subject',
+        message: 'Test message',
+      });
+      expect(component.contactForm.valid).toBe(false); // Still invalid without recaptcha
+
+      component.contactForm.patchValue({
+        recaptcha: 'test-recaptcha-token',
+      });
+      expect(component.contactForm.valid).toBe(true); // Now valid with recaptcha
     });
   });
 });
