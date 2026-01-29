@@ -23,8 +23,3 @@ output "resource_group_name" {
   description = "Name of the resource group"
   value       = module.static_web_app.resource_group_name
 }
-
-output "communication_service_from_address" {
-  description = "From email address for Communication Service"
-  value       = module.communication_service.email_domain_from_address
-}

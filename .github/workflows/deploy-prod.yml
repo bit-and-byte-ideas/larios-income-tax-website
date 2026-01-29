@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Extract release version
         id: version
@@ -21,9 +21,9 @@ jobs:
           echo "Release version: $VERSION"
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
@@ -36,10 +36,6 @@ jobs:
 
       - name: Run tests
         run: npm test
-
-      - name: Set reCAPTCHA site key
-        run: |
-          sed -i "s/YOUR_PROD_RECAPTCHA_SITE_KEY/${{ secrets.RECAPTCHA_SITE_KEY_PROD }}/g" src/environments/environment.prod.ts
 
       - name: Build Angular app
         run: npm run build:i18n
@@ -60,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -87,7 +83,7 @@ jobs:
       has_changes: ${{ steps.plan.outputs.has_changes }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -177,7 +173,7 @@ jobs:
       name: prod
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -264,7 +260,7 @@ jobs:
       url: ${{ steps.deploy.outputs.static_web_app_url }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Extract release version
         id: version
@@ -286,9 +282,8 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: 'upload'
           app_location: 'dist/larios-income-tax/browser'
-          api_location: 'api'
+          api_location: ''
           skip_app_build: true
-          skip_api_build: false
 
       - name: Create deployment record
         uses: actions/github-script@v7

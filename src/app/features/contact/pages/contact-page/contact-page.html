@@ -17,51 +17,17 @@
 
           <p class="contact-subheading">{{ currentLocation.labels.subheading }}</p>
 
-          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>{{ currentLocation.labels.name }}</mat-label>
-              <input matInput type="text" id="name" formControlName="name" />
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>{{ currentLocation.labels.email }}</mat-label>
-              <input matInput type="email" id="email" formControlName="email" />
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>{{ currentLocation.labels.subject }}</mat-label>
-              <mat-select id="subject" formControlName="subject">
-                @for (subject of subjects; track subject) {
-                  <mat-option [value]="subject">{{ subject }}</mat-option>
-                }
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>{{ currentLocation.labels.message }}</mat-label>
-              <textarea matInput id="message" formControlName="message" rows="5"></textarea>
-            </mat-form-field>
-
-            <re-captcha formControlName="recaptcha" [siteKey]="recaptchaSiteKey"></re-captcha>
-
-            <button
+          <div class="call-to-action">
+            <a
+              [href]="'tel:' + currentLocation.phoneRaw"
               mat-raised-button
               color="primary"
-              type="submit"
-              class="submit-button"
-              [disabled]="!contactForm.valid || isSubmitting"
+              class="call-button"
             >
-              @if (isSubmitting) {
-                <mat-spinner
-                  diameter="20"
-                  style="display: inline-block; margin-right: 8px"
-                ></mat-spinner>
-                {{ currentLocation.labels.submitting }}
-              } @else {
-                {{ currentLocation.labels.submit }}
-              }
-            </button>
-          </form>
+              <mat-icon>phone</mat-icon>
+              {{ currentLocation.labels.callButtonText }}
+            </a>
+          </div>
         </div>
 
         <div class="right-column">
