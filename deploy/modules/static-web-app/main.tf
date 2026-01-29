@@ -36,14 +36,6 @@ resource "azurerm_static_web_app" "main" {
   app_settings = var.app_settings
 }
 
-# Role assignment for managed identity to access Communication Service
-resource "azurerm_role_assignment" "acs_contributor" {
-  count                = var.enable_managed_identity && var.communication_service_id != "" ? 1 : 0
-  scope                = var.communication_service_id
-  role_definition_name = "Contributor"
-  principal_id         = azurerm_static_web_app.main.identity[0].principal_id
-}
-
 # Application Insights (optional)
 resource "azurerm_application_insights" "main" {
   count               = var.enable_application_insights ? 1 : 0

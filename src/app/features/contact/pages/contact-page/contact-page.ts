@@ -6,15 +6,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { SafePipe } from '../../../../shared/pipes/safe-pipe';
 import { getAllServices } from '../../../../shared/constants/services.constants';
 import { BUSINESS_INFO } from '../../../../shared/constants/business-info.constants';
 import { SeoService } from '../../../../core/services/seo.service';
-import { ContactFormService } from '../../../../core/services/contact-form.service';
-import { environment } from '../../../../../environments/environment';
 import {
   getUSLocalBusinessSchema,
   getMexicoLocalBusinessSchema,
@@ -34,11 +29,8 @@ interface LocationData {
     subject: string;
     message: string;
     submit: string;
-    submitting: string;
     addressLabel: string;
     subheading: string;
-    successMessage: string;
-    errorMessage: string;
   };
 }
 
@@ -53,10 +45,6 @@ interface LocationData {
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatProgressSpinnerModule,
-    MatSnackBarModule,
-    RecaptchaModule,
-    RecaptchaFormsModule,
   ],
   templateUrl: './contact-page.html',
   styleUrl: './contact-page.css',
@@ -65,8 +53,6 @@ export class ContactPage implements OnInit, OnDestroy {
   contactForm: FormGroup;
   currentLocation: LocationData | null = null;
   subjects: string[] = [...getAllServices().map(service => service.title), 'Other'];
-  isSubmitting = false;
-  recaptchaSiteKey = environment.recaptchaSiteKey;
 
   private locationData: Record<string, LocationData> = {
     'united-states': {
@@ -82,12 +68,9 @@ export class ContactPage implements OnInit, OnDestroy {
         subject: 'Subject',
         message: 'Message',
         submit: 'Submit',
-        submitting: 'Submitting...',
         addressLabel: 'Address',
         subheading:
           'Contact us to see how our expertise and personalized services can save you time, money, and frustration.',
-        successMessage: 'Message sent successfully! You will receive a confirmation email.',
-        errorMessage: 'An error occurred. Please try again or call us directly.',
       },
     },
     mexico: {
@@ -103,12 +86,9 @@ export class ContactPage implements OnInit, OnDestroy {
         subject: 'Asunto',
         message: 'Mensaje',
         submit: 'Enviar',
-        submitting: 'Enviando...',
         addressLabel: 'Dirección',
         subheading:
           'Contáctenos para ver cómo nuestra experiencia y servicios personalizados pueden ahorrarle tiempo, dinero y frustraciones.',
-        successMessage: '¡Mensaje enviado exitosamente! Recibirá un correo de confirmación.',
-        errorMessage: 'Ocurrió un error. Inténtelo de nuevo o llámenos directamente.',
       },
     },
   };
@@ -116,16 +96,13 @@ export class ContactPage implements OnInit, OnDestroy {
   constructor(
     @Inject(LOCALE_ID) private locale: string,
     private fb: FormBuilder,
-    private seoService: SeoService,
-    private contactFormService: ContactFormService,
-    private snackBar: MatSnackBar
+    private seoService: SeoService
   ) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       subject: ['', Validators.required],
       message: ['', Validators.required],
-      recaptcha: ['', Validators.required],
     });
   }
 
@@ -148,46 +125,9 @@ export class ContactPage implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    if (this.contactForm.valid && !this.isSubmitting) {
-      this.isSubmitting = true;
-
-      const formData = {
-        name: this.contactForm.value.name,
-        email: this.contactForm.value.email,
-        subject: this.contactForm.value.subject,
-        message: this.contactForm.value.message,
-        recaptchaToken: this.contactForm.value.recaptcha,
-        locale: this.locale,
-      };
-
-      this.contactFormService.submitContactForm(formData).subscribe({
-        next: response => {
-          this.isSubmitting = false;
-          if (response.success) {
-            this.snackBar.open(
-              this.currentLocation?.labels.successMessage ?? response.message,
-              'Close',
-              { duration: 6000, panelClass: ['success-snackbar'] }
-            );
-            this.contactForm.reset();
-          } else {
-            this.snackBar.open(
-              response.message ?? this.currentLocation?.labels.errorMessage ?? 'An error occurred',
-              'Close',
-              { duration: 6000, panelClass: ['error-snackbar'] }
-            );
-          }
-        },
-        error: error => {
-          this.isSubmitting = false;
-          console.error('Contact form error:', error);
-          this.snackBar.open(
-            this.currentLocation?.labels.errorMessage ?? 'An error occurred',
-            'Close',
-            { duration: 6000, panelClass: ['error-snackbar'] }
-          );
-        },
-      });
+    if (this.contactForm.valid) {
+      // Placeholder for future implementation
+      console.log('Form submitted:', this.contactForm.value);
     }
   }
 

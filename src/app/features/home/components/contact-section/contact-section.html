@@ -18,9 +18,14 @@
           Reach out to us today to discover how we can help maximize your returns and ensure
           compliance with all tax regulations. Your financial peace of mind is our priority.
         </p>
-        <a routerLink="/contact" mat-raised-button color="primary" class="contact-button">
+        <button
+          mat-raised-button
+          color="primary"
+          class="contact-button"
+          (click)="navigateToContact()"
+        >
           <span i18n="Contact section|Button to navigate to contact page">Contact Us</span>
-        </a>
+        </button>
       </div>
 
       <!-- Social Media Section -->

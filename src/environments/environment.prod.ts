@@ -7,7 +7,6 @@
 
 export const environment = {
   production: true,
-  recaptchaSiteKey: 'YOUR_PROD_RECAPTCHA_SITE_KEY', // Replaced by GitHub Actions during build
   apiUrl: 'https://api.lariosincometax.com/api', // Update with actual production API URL
   businessInfo: {
     name: 'Larios Income Tax',
