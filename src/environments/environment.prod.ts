@@ -7,7 +7,6 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'https://api.lariosincometax.com/api', // Update with actual production API URL
   businessInfo: {
     name: 'Larios Income Tax',
     phone: '+1 (619) 972-3350',

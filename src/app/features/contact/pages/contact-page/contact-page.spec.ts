@@ -30,11 +30,7 @@ describe('ContactPage', () => {
 
     it('should display English labels', () => {
       expect(component.currentLocation?.labels.heading).toBe('CONTACT US');
-      expect(component.currentLocation?.labels.name).toBe('Name');
-      expect(component.currentLocation?.labels.email).toBe('Email');
-      expect(component.currentLocation?.labels.subject).toBe('Subject');
-      expect(component.currentLocation?.labels.message).toBe('Message');
-      expect(component.currentLocation?.labels.submit).toBe('Submit');
+      expect(component.currentLocation?.labels.callButtonText).toBe('Call Us for an Appointment');
     });
 
     it('should display US address', () => {
@@ -62,42 +58,20 @@ describe('ContactPage', () => {
       expect(img.src).toContain('professionals.avif');
     });
 
-    it('should have contact form with required fields', () => {
+    it('should have call button with correct text', () => {
       const compiled = fixture.nativeElement as HTMLElement;
-      const nameInput = compiled.querySelector('#name');
-      const emailInput = compiled.querySelector('#email');
-      const subjectInput = compiled.querySelector('#subject');
-      const messageInput = compiled.querySelector('#message');
-      expect(nameInput).toBeTruthy();
-      expect(emailInput).toBeTruthy();
-      expect(subjectInput).toBeTruthy();
-      expect(messageInput).toBeTruthy();
+      const callButton = compiled.querySelector('.call-button');
+      expect(callButton).toBeTruthy();
+      expect(callButton?.textContent).toContain('Call Us for an Appointment');
     });
 
-    it('should have submit button', () => {
+    it('should have call button with correct phone link', () => {
       const compiled = fixture.nativeElement as HTMLElement;
-      const submitButton = compiled.querySelector('.submit-button');
-      expect(submitButton?.textContent?.trim()).toBe('Submit');
-    });
-
-    it('should disable submit button when form is invalid', () => {
-      const compiled = fixture.nativeElement as HTMLElement;
-      const submitButton = compiled.querySelector('.submit-button') as HTMLButtonElement;
-      expect(submitButton.disabled).toBe(true);
-    });
-
-    it('should enable submit button when form is valid', () => {
-      component.contactForm.patchValue({
-        name: 'John Doe',
-        email: 'john@example.com',
-        subject: 'Test Subject',
-        message: 'Test message',
-      });
-      fixture.detectChanges();
-
-      const compiled = fixture.nativeElement as HTMLElement;
-      const submitButton = compiled.querySelector('.submit-button') as HTMLButtonElement;
-      expect(submitButton.disabled).toBe(false);
+      const callButton = compiled.querySelector('.call-button') as HTMLAnchorElement;
+      expect(callButton).toBeTruthy();
+      expect(callButton.href).toContain(
+        'tel:' + BUSINESS_INFO.locations.us.contact.phone.replace(/[^0-9+]/g, '')
+      );
     });
 
     it('should display contact information', () => {
@@ -139,11 +113,7 @@ describe('ContactPage', () => {
 
     it('should display Spanish labels', () => {
       expect(component.currentLocation?.labels.heading).toBe('CONTÁCTENOS');
-      expect(component.currentLocation?.labels.name).toBe('Nombre');
-      expect(component.currentLocation?.labels.email).toBe('Correo Electrónico');
-      expect(component.currentLocation?.labels.subject).toBe('Asunto');
-      expect(component.currentLocation?.labels.message).toBe('Mensaje');
-      expect(component.currentLocation?.labels.submit).toBe('Enviar');
+      expect(component.currentLocation?.labels.callButtonText).toBe('Llámenos para una Cita');
     });
 
     it('should display Mexico address', () => {
@@ -166,59 +136,19 @@ describe('ContactPage', () => {
       );
     });
 
-    it('should display Spanish submit button', () => {
+    it('should have Spanish call button', () => {
       const compiled = fixture.nativeElement as HTMLElement;
-      const submitButton = compiled.querySelector('.submit-button');
-      expect(submitButton?.textContent?.trim()).toBe('Enviar');
-    });
-  });
-
-  describe('Form validation', () => {
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
-        imports: [ContactPage],
-        providers: [{ provide: LOCALE_ID, useValue: 'en-US' }],
-      }).compileComponents();
-
-      fixture = TestBed.createComponent(ContactPage);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
+      const callButton = compiled.querySelector('.call-button');
+      expect(callButton?.textContent).toContain('Llámenos para una Cita');
     });
 
-    it('should require name field', () => {
-      const nameControl = component.contactForm.get('name');
-      expect(nameControl?.valid).toBe(false);
-      nameControl?.setValue('John Doe');
-      expect(nameControl?.valid).toBe(true);
-    });
-
-    it('should require email field', () => {
-      const emailControl = component.contactForm.get('email');
-      expect(emailControl?.valid).toBe(false);
-      emailControl?.setValue('john@example.com');
-      expect(emailControl?.valid).toBe(true);
-    });
-
-    it('should validate email format', () => {
-      const emailControl = component.contactForm.get('email');
-      emailControl?.setValue('invalid-email');
-      expect(emailControl?.valid).toBe(false);
-      emailControl?.setValue('valid@email.com');
-      expect(emailControl?.valid).toBe(true);
-    });
-
-    it('should require subject field', () => {
-      const subjectControl = component.contactForm.get('subject');
-      expect(subjectControl?.valid).toBe(false);
-      subjectControl?.setValue('Test Subject');
-      expect(subjectControl?.valid).toBe(true);
-    });
-
-    it('should require message field', () => {
-      const messageControl = component.contactForm.get('message');
-      expect(messageControl?.valid).toBe(false);
-      messageControl?.setValue('Test message');
-      expect(messageControl?.valid).toBe(true);
+    it('should have call button with correct phone link for Mexico', () => {
+      const compiled = fixture.nativeElement as HTMLElement;
+      const callButton = compiled.querySelector('.call-button') as HTMLAnchorElement;
+      expect(callButton).toBeTruthy();
+      expect(callButton.href).toContain(
+        'tel:' + BUSINESS_INFO.locations.mexico.contact.phone.replace(/[^0-9+]/g, '')
+      );
     });
   });
 });

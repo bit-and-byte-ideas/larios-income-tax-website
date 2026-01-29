@@ -7,7 +7,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/api',
   businessInfo: {
     name: 'Larios Income Tax',
     phone: '+1 (619) 972-3350',
