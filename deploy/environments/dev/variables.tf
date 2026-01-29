@@ -7,7 +7,7 @@ variable "resource_group_name" {
 variable "location" {
   description = "Azure region for resources"
   type        = string
-  default     = "East US 2"
+  default     = "West US 2"
 }
 
 variable "static_web_app_name" {
@@ -50,4 +50,22 @@ variable "app_settings" {
   description = "Application settings for the Static Web App"
   type        = map(string)
   default     = {}
+}
+
+variable "communication_service_name" {
+  description = "Name of the Communication Service"
+  type        = string
+  default     = "acs-larios-income-tax-dev"
+}
+
+variable "email_service_name" {
+  description = "Name of the Email Communication Service"
+  type        = string
+  default     = "ecs-larios-income-tax-dev"
+}
+
+variable "business_email_address" {
+  description = "Business email address to receive contact form submissions"
+  type        = string
+  default     = "lariosincometax@gmail.com"
 }

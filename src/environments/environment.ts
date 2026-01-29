@@ -7,6 +7,7 @@
 
 export const environment = {
   production: false,
+  recaptchaSiteKey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', // Test key for local dev
   apiUrl: 'http://localhost:3000/api',
   businessInfo: {
     name: 'Larios Income Tax',

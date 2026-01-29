@@ -112,6 +112,29 @@
   cursor: not-allowed;
 }
 
+/* reCAPTCHA */
+re-captcha {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* Snackbar styling */
+::ng-deep .success-snackbar {
+  background-color: #4caf50 !important;
+}
+
+::ng-deep .success-snackbar .mat-mdc-snack-bar-label {
+  color: white !important;
+}
+
+::ng-deep .error-snackbar {
+  background-color: #f44336 !important;
+}
+
+::ng-deep .error-snackbar .mat-mdc-snack-bar-label {
+  color: white !important;
+}
+
 .right-column {
   display: flex;
   flex-direction: column;
