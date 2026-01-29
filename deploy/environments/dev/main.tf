@@ -19,11 +19,7 @@ module "communication_service" {
   communication_service_name = var.communication_service_name
   email_service_name         = var.email_service_name
 
-  tags = {
-    Environment = "dev"
-    Project     = "larios-income-tax"
-    ManagedBy   = "terraform"
-  }
+  tags = local.default_tags
 }
 
 module "static_web_app" {
@@ -45,9 +41,5 @@ module "static_web_app" {
     "EMAIL_TO_ADDRESS"                      = var.business_email_address
   })
 
-  tags = {
-    Environment = "dev"
-    Project     = "larios-income-tax"
-    ManagedBy   = "terraform"
-  }
+  tags = local.default_tags
 }
