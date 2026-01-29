@@ -99,3 +99,9 @@ swa-cli.config.json
 
 # Old Docker files (migrated to Static Web Apps)
 *.old
+
+# Azure Functions
+api/node_modules/
+api/dist/
+api/local.settings.json
+api/.funcignore

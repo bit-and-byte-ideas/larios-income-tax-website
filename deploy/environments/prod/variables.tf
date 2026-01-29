@@ -51,3 +51,21 @@ variable "app_settings" {
   type        = map(string)
   default     = {}
 }
+
+variable "communication_service_name" {
+  description = "Name of the Communication Service"
+  type        = string
+  default     = "acs-larios-income-tax-prod"
+}
+
+variable "email_service_name" {
+  description = "Name of the Email Communication Service"
+  type        = string
+  default     = "ecs-larios-income-tax-prod"
+}
+
+variable "business_email_address" {
+  description = "Business email address to receive contact form submissions"
+  type        = string
+  default     = "lariosincometax@gmail.com"
+}

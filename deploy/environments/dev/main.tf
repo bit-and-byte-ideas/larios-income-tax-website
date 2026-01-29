@@ -12,6 +12,20 @@ provider "azurerm" {
   features {}
 }
 
+module "communication_service" {
+  source = "../../modules/communication-service"
+
+  resource_group_name        = var.resource_group_name
+  communication_service_name = var.communication_service_name
+  email_service_name         = var.email_service_name
+
+  tags = {
+    Environment = "dev"
+    Project     = "larios-income-tax"
+    ManagedBy   = "terraform"
+  }
+}
+
 module "static_web_app" {
   source = "../../modules/static-web-app"
 
@@ -22,9 +36,14 @@ module "static_web_app" {
   sku_tier                    = var.sku_tier
   sku_size                    = var.sku_size
   enable_application_insights = var.enable_application_insights
-  enable_managed_identity     = false
+  enable_managed_identity     = true
   custom_domain               = var.custom_domain
-  app_settings                = var.app_settings
+  communication_service_id    = module.communication_service.communication_service_id
+  app_settings = merge(var.app_settings, {
+    "AZURE_COMMUNICATION_CONNECTION_STRING" = module.communication_service.communication_service_endpoint
+    "EMAIL_FROM_ADDRESS"                    = module.communication_service.email_domain_from_address
+    "EMAIL_TO_ADDRESS"                      = var.business_email_address
+  })
 
   tags = {
     Environment = "dev"

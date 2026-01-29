@@ -65,6 +65,12 @@ variable "app_settings" {
   default     = {}
 }
 
+variable "communication_service_id" {
+  description = "ID of the Azure Communication Service for role assignment"
+  type        = string
+  default     = ""
+}
+
 variable "tags" {
   description = "Tags to apply to all resources"
   type        = map(string)
