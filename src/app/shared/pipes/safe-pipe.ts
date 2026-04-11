@@ -14,9 +14,7 @@ export class SafePipe implements PipeTransform {
     if (type === 'resourceUrl') {
       try {
         const parsed = new URL(url);
-        const allowed = ALLOWED_RESOURCE_URL_ORIGINS.some(
-          (origin) => parsed.origin === origin,
-        );
+        const allowed = ALLOWED_RESOURCE_URL_ORIGINS.some(origin => parsed.origin === origin);
         if (allowed) {
           return this.sanitizer.bypassSecurityTrustResourceUrl(url);
         }
