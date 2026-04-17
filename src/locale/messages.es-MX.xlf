@@ -201,11 +201,38 @@
         <note priority="1" from="description">Error message when service not found</note>
         <note priority="1" from="meaning">Service detail</note>
       </trans-unit>
+      <trans-unit id="9035701204309080141" datatype="html">
+        <source>Larios Income Tax &amp; Immigration</source>
+        <target>Larios Income Tax &amp; Inmigración</target><context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/footer/footer.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+        <note priority="1" from="description">Company name in footer</note>
+        <note priority="1" from="meaning">Footer</note>
+      </trans-unit>
+      <trans-unit id="7679911101779872292" datatype="html">
+        <source>United States</source>
+        <target>Estados Unidos</target><context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/footer/footer.html</context>
+          <context context-type="linenumber">9,11</context>
+        </context-group>
+        <note priority="1" from="description">US location heading</note>
+        <note priority="1" from="meaning">Footer</note>
+      </trans-unit>
+      <trans-unit id="2483692120096146181" datatype="html">
+        <source>Mexico</source>
+        <target>México</target><context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/footer/footer.html</context>
+          <context context-type="linenumber">36,38</context>
+        </context-group>
+        <note priority="1" from="description">Mexico location heading</note>
+        <note priority="1" from="meaning">Footer</note>
+      </trans-unit>
       <trans-unit id="922525099711000615" datatype="html">
         <source>WhatsApp:</source>
         <target>WhatsApp:</target><context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/footer/footer.html</context>
-          <context context-type="linenumber">29,30</context>
+          <context context-type="linenumber">71,72</context>
         </context-group>
         <note priority="1" from="description">WhatsApp contact label</note>
         <note priority="1" from="meaning">Footer</note>
