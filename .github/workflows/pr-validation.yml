@@ -22,18 +22,32 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.6.0
+          terraform_wrapper: false
 
       - name: Terraform Format Check
         working-directory: ./deploy/environments/dev
         run: terraform fmt -check -recursive
 
+      - name: Cache Terraform providers
+        uses: actions/cache@v4
+        with:
+          path: ~/.terraform.d/plugin-cache
+          key: ${{ runner.os }}-terraform-azurerm-3x-${{ hashFiles('deploy/environments/dev/.terraform.lock.hcl') }}
+          restore-keys: |
+            ${{ runner.os }}-terraform-azurerm-3x-
+
+      - name: Configure Terraform plugin cache
+        run: |
+          mkdir -p ~/.terraform.d/plugin-cache
+          printf 'plugin_cache_dir = "%s/.terraform.d/plugin-cache"\n' "$HOME" > ~/.terraformrc
+
       - name: Terraform Init (no backend)
         working-directory: ./deploy/environments/dev
-        run: terraform init -backend=false
+        run: terraform init -backend=false -no-color
 
       - name: Terraform Validate
         working-directory: ./deploy/environments/dev
-        run: terraform validate
+        run: terraform validate -no-color
 
   terraform-validate-prod:
     name: Validate Terraform (prod)
@@ -46,18 +60,32 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.6.0
+          terraform_wrapper: false
 
       - name: Terraform Format Check
         working-directory: ./deploy/environments/prod
         run: terraform fmt -check -recursive
 
+      - name: Cache Terraform providers
+        uses: actions/cache@v4
+        with:
+          path: ~/.terraform.d/plugin-cache
+          key: ${{ runner.os }}-terraform-azurerm-3x-${{ hashFiles('deploy/environments/prod/.terraform.lock.hcl') }}
+          restore-keys: |
+            ${{ runner.os }}-terraform-azurerm-3x-
+
+      - name: Configure Terraform plugin cache
+        run: |
+          mkdir -p ~/.terraform.d/plugin-cache
+          printf 'plugin_cache_dir = "%s/.terraform.d/plugin-cache"\n' "$HOME" > ~/.terraformrc
+
       - name: Terraform Init (no backend)
         working-directory: ./deploy/environments/prod
-        run: terraform init -backend=false
+        run: terraform init -backend=false -no-color
 
       - name: Terraform Validate
         working-directory: ./deploy/environments/prod
-        run: terraform validate
+        run: terraform validate -no-color
 
   lint:
     name: Lint Code
