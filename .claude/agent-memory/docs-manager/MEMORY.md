@@ -95,7 +95,7 @@ Migrated from flat file structure to hierarchical TechDocs layout:
 - ✅ Features (home, services, contact pages)
 - ✅ Architecture (structure, patterns, principles)
 - ✅ Code Quality & Pre-commit
-- ✅ Azure Deployment (setup, infrastructure, checklist)
+- ✅ Azure Deployment (setup, checklist; infra lives in `platform-foundation`)
 - ✅ Production Build
 
 #### Adequate (Existing, Moved)
@@ -145,7 +145,6 @@ Migrated from flat file structure to hierarchical TechDocs layout:
 - pre-commit-setup.md → guides/pre-commit.md
 - ci-cd.md → guides/
 - azure-deployment-setup.md → guides/azure-deployment.md
-- azure-infrastructure.md → guides/
 - azure-deployment-checklist.md → guides/azure-checklist.md
 
 **Updated Files (2 files)**:

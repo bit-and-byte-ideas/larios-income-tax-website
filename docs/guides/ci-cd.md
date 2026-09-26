@@ -3,8 +3,8 @@
 ## Overview
 
 This project uses GitHub Actions for continuous integration and deployment to Azure Static Web Apps.
-Workflows are split by concern: CI checks run on every PR, infrastructure is managed independently of
-application deploys, and an OPA policy gate prevents mixing dev and prod infra changes in one PR.
+CI checks run on every PR and separate workflows deploy the application to dev and prod. Azure
+infrastructure is not managed here — it lives in the `platform-foundation` repository.
 
 ## Workflows
 
@@ -23,43 +23,7 @@ application deploys, and an OPA policy gate prevents mixing dev and prod infra c
 
 **Status:** All jobs must pass before merge
 
-### 2. Policy Checks
-
-**File:** `.github/workflows/policy-checks.yaml`
-
-**Trigger:** Pull requests to `main`
-
-**Jobs:**
-
-1. **OPA policy tests** - Runs `opa test policy/ --verbose` to validate the Rego unit tests
-1. **PR policy check** - Fetches changed files, evaluates `data.pr_checks.deny`:
-   - Denies PRs that touch both `deploy/infra/dev/` and `deploy/infra/prod/` simultaneously
-
-### 3. Deploy Infrastructure (dev)
-
-**File:** `.github/workflows/deploy-infra-dev.yaml`
-
-**Trigger:** Push to `main` and pull requests to `main`
-
-**Jobs:** Delegates entirely to the reusable workflow at
-`bit-and-byte-ideas/azure-static-webapp-cicd-kit/.github/workflows/opentofu.yml@main`
-
-1. **Validate** - `tofu fmt -check`, `tofu init -backend=false`, `tofu validate`
-1. **Plan** - OIDC login to Azure, `tofu init` with remote backend, `tofu plan -detailed-exitcode`
-1. **Apply** - Downloads plan artifact, applies changes — **gated by `dev` environment approval**,
-   **skipped on pull_request events**
-
-**Working directory:** `deploy/infra/dev`
-
-### 4. Deploy Infrastructure (prod)
-
-**File:** `.github/workflows/deploy-infra-prod.yaml`
-
-**Trigger:** Push to `main` only (no PR trigger)
-
-**Jobs:** Same reusable workflow as dev, working directory `deploy/infra/prod`, environment `prod`
-
-### 5. Deploy App (dev)
+### 2. Deploy App (dev)
 
 **File:** `.github/workflows/deploy-app-dev.yaml`
 
@@ -73,7 +37,7 @@ application deploys, and an OPA policy gate prevents mixing dev and prod infra c
 
 **Environment:** `dev` — reads `AZURE_STATIC_WEB_APPS_API_TOKEN` from environment secret
 
-### 6. Deploy App (prod)
+### 3. Deploy App (prod)
 
 **File:** `.github/workflows/deploy-app-prod.yaml`
 
@@ -81,7 +45,7 @@ application deploys, and an OPA policy gate prevents mixing dev and prod infra c
 
 **Jobs:** Same as dev but targeting `prod` environment
 
-### 7. TechDocs Validation
+### 4. TechDocs Validation
 
 **File:** `.github/workflows/techdocs.yml`
 
@@ -98,43 +62,18 @@ application deploys, and an OPA policy gate prevents mixing dev and prod infra c
 1. Lint markdown files
 1. Upload site artifact
 
-## Repository Variables and Secrets
+## Secrets
 
-Workflows authenticate to Azure via OIDC — no client secrets required.
-Non-sensitive IDs are stored as **repository variables** (`vars.*`).
-Sensitive tokens are stored as **environment secrets** (`secrets.*`).
-
-### Repository Variables (Settings → Secrets and variables → Actions → Variables)
-
-#### Azure Identity
-
-| Variable                     | Description                             | Required By                                   |
-| ---------------------------- | --------------------------------------- | --------------------------------------------- |
-| `AZURE_CLIENT_ID_DEV`        | Client ID of the dev service principal  | deploy-infra-dev.yaml                         |
-| `AZURE_CLIENT_ID_PROD`       | Client ID of the prod service principal | deploy-infra-prod.yaml                        |
-| `AZURE_TENANT_ID`            | Azure Active Directory tenant ID        | deploy-infra-dev.yaml, deploy-infra-prod.yaml |
-| `AZURE_SUBSCRIPTION_ID_DEV`  | Azure subscription ID for dev           | deploy-infra-dev.yaml                         |
-| `AZURE_SUBSCRIPTION_ID_PROD` | Azure subscription ID for prod          | deploy-infra-prod.yaml                        |
-
-#### OpenTofu Backend
-
-| Variable                     | Description                                            | Required By                                   |
-| ---------------------------- | ------------------------------------------------------ | --------------------------------------------- |
-| `TF_BACKEND_RESOURCE_GROUP`  | Resource group of the state storage                    | deploy-infra-dev.yaml, deploy-infra-prod.yaml |
-| `TF_BACKEND_STORAGE_ACCOUNT` | Storage account name                                   | deploy-infra-dev.yaml, deploy-infra-prod.yaml |
-| `TF_BACKEND_CONTAINER_DEV`   | Blob container for dev state                           | deploy-infra-dev.yaml                         |
-| `TF_BACKEND_CONTAINER_PROD`  | Blob container for prod state                          | deploy-infra-prod.yaml                        |
-| `TF_BACKEND_KEY_DEV`         | State file key (e.g. `larios-income-tax-dev.tfstate`)  | deploy-infra-dev.yaml                         |
-| `TF_BACKEND_KEY_PROD`        | State file key (e.g. `larios-income-tax-prod.tfstate`) | deploy-infra-prod.yaml                        |
-
-### Environment Secrets (Settings → Environments → `dev` / `prod` → Secrets)
+Workflows authenticate to Static Web Apps with a deployment token stored as an **environment secret**
+(Settings → Environments → `dev` / `prod` → Secrets):
 
 | Secret                            | Description              | Required By              |
 | --------------------------------- | ------------------------ | ------------------------ |
 | `AZURE_STATIC_WEB_APPS_API_TOKEN` | SWA deployment API token | deploy-app-dev/prod.yaml |
 
-The token value comes from `tofu output -raw api_key` after the first infra deployment.
-See [Azure Deployment Setup](azure-deployment.md) for the initial setup walkthrough.
+The token comes from the Static Web App provisioned by `platform-foundation`. No Azure OIDC
+credentials or repository variables are used by this repo. See
+[Azure Deployment Guide](azure-deployment.md) for setup.
 
 ## Workflow Details
 
@@ -159,26 +98,6 @@ jobs:
 - ✅ Unit tests pass
 - ✅ Bilingual production build succeeds (en-US + es-MX)
 
-### Infrastructure Workflows
-
-```yaml
-# deploy-infra-dev.yaml
-jobs:
-  opentofu:
-    uses: bit-and-byte-ideas/azure-static-webapp-cicd-kit/.github/workflows/opentofu.yml@main
-    with:
-      working_directory: deploy/infra/dev
-      environment: dev
-```
-
-The reusable workflow runs three sequential jobs:
-
-| Job      | Runs on   | Azure auth | Effect                                                         |
-| -------- | --------- | ---------- | -------------------------------------------------------------- |
-| validate | PR + push | No         | Format check, init (no backend), validate                      |
-| plan     | PR + push | Yes (OIDC) | Init with backend, plan, upload plan artifact                  |
-| apply    | Push only | Yes (OIDC) | Download artifact, apply — requires `dev` environment approval |
-
 ### App Deployment Workflows
 
 ```yaml
@@ -199,11 +118,9 @@ jobs:
 
 **On merge to main:**
 
-1. `ci.yaml` and `policy-checks.yaml` must have passed on the PR
+1. `ci.yaml` must have passed on the PR
 1. Code merged to main
-1. `deploy-infra-dev.yaml` runs validate → plan → apply (apply requires `dev` environment approval if
-   changes detected)
-1. `deploy-app-dev.yaml` runs in parallel: builds and deploys the Angular app
+1. `deploy-app-dev.yaml` builds and deploys the Angular app (requires `dev` environment approval)
 1. Automatic global CDN distribution
 
 ### Automatic Deployment to Production
@@ -211,8 +128,7 @@ jobs:
 **On GitHub Release:**
 
 1. Create GitHub Release with version tag (e.g., `v1.0.0`)
-1. `deploy-infra-prod.yaml` triggers: validate → plan → apply (requires `prod` environment approval)
-1. `deploy-app-prod.yaml` triggers: build + deploy
+1. `deploy-app-prod.yaml` triggers: build + deploy (requires `prod` environment approval)
 
 ### Creating Releases
 
@@ -221,7 +137,7 @@ git tag -a v1.0.0 -m "Release version 1.0.0"
 git push origin v1.0.0
 ```
 
-Then create a GitHub Release from the tag — both prod workflows trigger automatically.
+Then create a GitHub Release from the tag — the prod deploy workflow triggers automatically.
 
 ## Accessing Deployments
 
@@ -245,17 +161,15 @@ Then create a GitHub Release from the tag — both prod workflows trigger automa
 ## Cache Management
 
 Workflows use GitHub Actions cache for NPM dependencies (`cache: 'npm'`).
-OpenTofu provider binaries are cached automatically by `opentofu/setup-opentofu@v1`.
 
 If builds fail due to cache issues, navigate to **Actions → Caches** and delete the affected entry.
 
 ## Build Artifacts
 
-| Workflow              | Artifact      | Retention |
-| --------------------- | ------------- | --------- |
-| `ci.yaml`             | dist          | 7 days    |
-| `techdocs.yml`        | techdocs-site | 7 days    |
-| `deploy-infra-*.yaml` | tfplan        | 1 day     |
+| Workflow       | Artifact      | Retention |
+| -------------- | ------------- | --------- |
+| `ci.yaml`      | dist          | 7 days    |
+| `techdocs.yml` | techdocs-site | 7 days    |
 
 ## Troubleshooting
 
@@ -270,36 +184,12 @@ npm test
 npm run build:i18n
 ```
 
-### OpenTofu Validation Fails
-
-Validate locally:
-
-```bash
-cd deploy/infra/dev
-tofu init -backend=false
-tofu validate
-tofu fmt -check
-```
-
-### Infrastructure Apply Fails
-
-1. Check OIDC federated credentials are configured on the service principal
-1. Verify repository variables (`AZURE_CLIENT_ID_DEV`, `AZURE_TENANT_ID`, etc.)
-1. Review `plan` job logs for the error before the apply step
-1. Check Azure RBAC permissions on the service principal
-
 ### Deployment to Azure Fails
 
 1. Verify `AZURE_STATIC_WEB_APPS_API_TOKEN` secret is set in the GitHub environment (`dev` or `prod`)
-1. Confirm the Static Web App exists (infra must be deployed first)
+1. Confirm the Static Web App exists and the token belongs to it (provisioned in `platform-foundation`)
 1. Check build output path — should be `dist/larios-income-tax/browser`
 1. Verify `staticwebapp.config.json` exists in the repo root
-
-### OPA Policy Blocks PR
-
-If `policy-checks.yaml` denies your PR, you are likely touching both `deploy/infra/dev/` and
-`deploy/infra/prod/` in the same PR. Split the infra changes into two separate PRs — one per
-environment.
 
 ### Tests Failing in CI
 
@@ -315,12 +205,9 @@ environment.
 1. **Update dependencies** — Review Dependabot PRs, update Node.js and GitHub Actions versions
 1. **Monitor Azure resources** — Review Static Web Apps usage, bandwidth, deployment history
 1. **Review workflows** — Check execution times, optimize slow jobs
-1. **Security** — Review service principal RBAC permissions periodically
+1. **Security** — Rotate `AZURE_STATIC_WEB_APPS_API_TOKEN` when the Static Web App key changes
 
 ## Deployment Architecture
-
-See the `cicd-flow-diagram.drawio.xml` file in the project repository for the complete CI/CD flow
-diagram.
 
 ### Azure Static Web Apps Resources
 
@@ -328,20 +215,20 @@ diagram.
 
 - Resource Group: `rg-larios-income-tax-dev`
 - Static Web App: `swa-larios-income-tax-dev` (Free tier)
-- Managed by: `deploy/infra/dev/`
+- Managed by: `platform-foundation` repository
 
 #### Production Environment
 
 - Resource Group: `rg-larios-income-tax-prod`
 - Static Web App: `swa-larios-income-tax-prod` (Standard tier)
 - Custom domain: `www.lariosincometax.com`
-- Managed by: `deploy/infra/prod/`
+- Managed by: `platform-foundation` repository
 
 ### GitHub Environments
 
 **Development (`dev`):**
 
-- Required reviewers on the `apply` job
+- Required reviewers on the deploy job
 - Deployment branch: `main`
 
 **Production (`prod`):**
@@ -360,9 +247,6 @@ diagram.
 
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [Azure Static Web Apps Documentation](https://docs.microsoft.com/azure/static-web-apps/)
-- [OpenTofu Documentation](https://opentofu.org/docs/)
-- [azure-static-webapp-cicd-kit](https://github.com/bit-and-byte-ideas/azure-static-webapp-cicd-kit)
-- [Azure Infrastructure Architecture](azure-infrastructure.md)
-- [Azure Deployment Setup Guide](azure-deployment.md)
+- [Azure Deployment Guide](azure-deployment.md)
 - [Azure Deployment Checklist](azure-checklist.md)
 - Workflow Files: See `.github/workflows/` directory in repository root

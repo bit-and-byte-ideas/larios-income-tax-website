@@ -10,8 +10,7 @@
     "ghcr.io/gvatsal60/dev-container-features/pre-commit:1": {},
     "ghcr.io/devcontainers-extra/features/angular-cli:2": {},
     "ghcr.io/devcontainers-extra/features/prettier:1": {},
-    "ghcr.io/devcontainers/features/azure-cli:1": {},
-    "ghcr.io/devcontainers/features/terraform:1": {}
+    "ghcr.io/devcontainers/features/azure-cli:1": {}
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -23,13 +22,7 @@
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
-      "extensions": [
-        "anthropic.claude-code",
-        "tal7aouy.icons",
-        "angular.ng-template",
-        "hashicorp.terraform",
-        "ms-azuretools.vscode-azureterraform"
-      ]
+      "extensions": ["anthropic.claude-code", "tal7aouy.icons", "angular.ng-template"]
     }
   }
 
