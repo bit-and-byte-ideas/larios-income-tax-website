@@ -331,8 +331,6 @@ npm audit fix            # Fix vulnerabilities
 
 ### Deployment Stage
 
-- Terraform validation
-- Infrastructure deployment
 - Application deployment to Azure Static Web Apps
 - Deployment verification
 

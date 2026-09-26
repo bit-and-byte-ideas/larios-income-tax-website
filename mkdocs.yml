@@ -26,7 +26,6 @@ nav:
       - Pre-commit Setup: guides/pre-commit.md
       - CI/CD Pipeline: guides/ci-cd.md
       - Azure Deployment: guides/azure-deployment.md
-      - Azure Infrastructure: guides/azure-infrastructure.md
       - Deployment Checklist: guides/azure-checklist.md
   - Project Information:
       - About This Project: project-info.md

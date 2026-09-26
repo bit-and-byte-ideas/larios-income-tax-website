@@ -15,12 +15,6 @@ graphify-out/
 package-lock.json
 yarn.lock
 
-# Terraform state and provider cache (sensitive + auto-generated)
-**/.terraform/
-**/terraform.tfstate
-**/terraform.tfstate.backup
-**/.terraform.lock.hcl
-
 # Python virtual environments
 .venv/
 __pycache__/

@@ -35,13 +35,7 @@ larios-income-tax-website/
 ├── package.json            # NPM dependencies and scripts
 ├── README.md               # Project overview
 ├── staticwebapp.config.json # Azure Static Web Apps configuration
-├── tsconfig.json           # TypeScript configuration
-└── deploy/                 # Terraform infrastructure
-    ├── modules/
-    │   └── static-web-app/ # Static Web App module
-    └── environments/
-        ├── dev/            # Dev environment
-        └── prod/           # Prod environment
+└── tsconfig.json           # TypeScript configuration
 ```
 
 ## Key Directories
@@ -151,10 +145,8 @@ Static assets served directly without processing.
   - Navigation fallback for SPA routing
   - Security headers
   - MIME types
-- **deploy/** - Terraform infrastructure as code
-  - Infrastructure for dev and prod environments
-  - Static Web App resources
-  - Application Insights
+- Azure infrastructure (Static Web Apps, Application Insights) is managed in the separate
+  `platform-foundation` repository, not in this repo
 
 ### Development
 

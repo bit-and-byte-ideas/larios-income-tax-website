@@ -47,18 +47,20 @@ For detailed development workflow, see [Local Development](docs/getting-started/
 
 ## Azure Deployment
 
-This project includes complete Terraform infrastructure for deploying to Azure Static Web Apps:
+This project deploys to Azure Static Web Apps. The Azure infrastructure itself is managed in the
+separate `platform-foundation` repository; this repo only builds and deploys the application:
 
 - **Development**: Automatic deployment from `main` branch (with approval)
 - **Production**: Automatic deployment from GitHub Releases (with approval)
 
 ### Quick Deploy
 
-1. Configure [Azure and GitHub secrets](deploy/SETUP.md#step-3-github-secrets)
+1. Add the `AZURE_STATIC_WEB_APPS_API_TOKEN` environment secret to the `dev` and `prod` GitHub
+   environments (token comes from the Static Web Apps provisioned by `platform-foundation`)
 2. Push to main branch or create a release
 3. Approve deployment in GitHub Actions
 
-See [Infrastructure Setup Guide](deploy/SETUP.md) for complete instructions.
+See [Azure Deployment](docs/guides/azure-deployment.md) for details.
 
 ## Technology Stack
 
@@ -91,7 +93,7 @@ Comprehensive technical documentation is available in the `/docs` directory:
 - [Adding Translations](docs/guides/adding-translations.md) - i18n workflow
 - [Production Build](docs/guides/production-build.md) - Building for production
 - [Code Quality](docs/guides/code-quality.md) - Standards and linting
-- [Azure Deployment](docs/guides/azure-deployment.md) - Deployment setup
+- [Azure Deployment](docs/guides/azure-deployment.md) - Application deployment setup
 
 **View locally:**
 
